@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Semaine 2 — Pourcentages & Algèbre</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0d0e12;--surface:#16181f;--card:#1e2029;--border:#2a2d38;--text:#f0f0f0;--muted:#7a7d8a;--success:#4ecdc4;--danger:#ff6b6b;--warn:#ffd93d;}
+*{box-sizing:border-box;margin:0;padding:0;}html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;font-size:16px;line-height:1.6;min-height:100vh;}
+.topbar{position:sticky;top:0;z-index:100;background:rgba(13,14,18,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 1.5rem;display:flex;align-items:center;justify-content:space-between;height:54px;}
+.back-home{font-size:12px;color:var(--muted);text-decoration:none;transition:color .15s;}
+.back-home:hover{color:var(--accent);}
+.week-label{font-family:'Syne',sans-serif;font-weight:700;font-size:14px;}
+.topbar-right{display:flex;align-items:center;gap:10px;}
+.xp-pill{background:var(--accent);color:#fff;font-family:'Syne',sans-serif;font-weight:700;font-size:12px;padding:3px 12px;border-radius:20px;}
+.streak-pill{background:var(--surface);border:1px solid var(--border);font-size:12px;padding:3px 10px;border-radius:20px;color:var(--warn);}
+.pbtn{background:none;border:1px solid var(--border);color:var(--muted);font-size:11px;padding:5px 11px;border-radius:6px;cursor:pointer;transition:all .15s;}
+.pbtn:hover{border-color:var(--accent);color:var(--accent);}
+.container{max-width:900px;margin:0 auto;padding:2rem 1.5rem 6rem;}
+.week-hero{margin-bottom:2.5rem;}
+.week-hero h1{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(1.8rem,4vw,2.6rem);margin-bottom:.5rem;}
+.week-hero p{color:var(--muted);font-size:15px;}
+.xp-bar-wrap{background:var(--border);border-radius:4px;height:5px;margin:1rem 0 2rem;overflow:hidden;}
+.xp-bar{height:100%;background:var(--accent);border-radius:4px;transition:width .8s;}
+.day-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px;margin-bottom:2.5rem;}
+.day-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.25rem;cursor:pointer;transition:all .2s;position:relative;overflow:hidden;}
+.day-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--border);transition:background .2s;}
+.day-card:hover{border-color:var(--accent);transform:translateY(-2px);}
+.day-card:hover::before{background:var(--accent);}
+.day-card.done::before{background:var(--success);}
+.day-card.done{border-color:rgba(78,205,196,.25);}
+.dc-date{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px;font-family:'Syne',sans-serif;}
+.dc-title{font-family:'Syne',sans-serif;font-weight:700;font-size:13px;margin-bottom:10px;line-height:1.35;}
+.dc-tags{display:flex;gap:5px;flex-wrap:wrap;}
+.tag{font-size:9px;padding:2px 8px;border-radius:5px;background:var(--surface);border:1px solid var(--border);color:var(--muted);text-transform:uppercase;letter-spacing:.3px;}
+.done-tick{position:absolute;top:12px;right:12px;width:22px;height:22px;background:var(--success);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;color:#0d0e12;font-weight:700;}
+#lesson-view{display:none;}
+.lh-date{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px;}
+.lh-title{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(1.4rem,4vw,2rem);margin-bottom:10px;line-height:1.2;}
+.lh-xp{display:inline-block;background:var(--accent);color:#fff;font-family:'Syne',sans-serif;font-weight:700;font-size:12px;padding:3px 12px;border-radius:20px;margin-bottom:1.75rem;}
+.lesson-tabs{display:flex;gap:4px;background:var(--surface);border-radius:10px;padding:4px;margin-bottom:2rem;border:1px solid var(--border);}
+.ltab{flex:1;padding:10px;text-align:center;border-radius:7px;cursor:pointer;font-size:13px;font-family:'Syne',sans-serif;font-weight:600;color:var(--muted);transition:all .15s;}
+.ltab.active{background:var(--card);color:var(--text);border:1px solid var(--border);}
+.lsec-title{font-family:'Syne',sans-serif;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:1.2px;color:var(--muted);margin:2.25rem 0 .85rem;}
+.lsec-title:first-child{margin-top:0;}
+.concept{border-left:3px solid var(--accent);background:var(--card);border-radius:0 12px 12px 0;padding:1.35rem 1.6rem;margin-bottom:1.35rem;font-size:15px;line-height:1.9;}
+.concept strong,.concept b{color:var(--accent);}
+.analogy{background:rgba(232,255,71,.04);border:1px solid rgba(232,255,71,.14);border-radius:12px;padding:1.1rem 1.4rem;margin-bottom:1.35rem;font-size:14px;line-height:1.85;}
+.analogy .alabel{font-size:10px;text-transform:uppercase;letter-spacing:.7px;color:#e8ff47;font-family:'Syne',sans-serif;font-weight:700;margin-bottom:7px;}
+.step-box{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.35rem 1.6rem;margin-bottom:1.35rem;}
+.step-box .stitle{font-family:'Syne',sans-serif;font-weight:700;font-size:13px;color:var(--success);margin-bottom:.9rem;text-transform:uppercase;letter-spacing:.5px;}
+.step-row{display:flex;gap:13px;align-items:flex-start;margin-bottom:.8rem;font-size:14px;line-height:1.75;}
+.step-row:last-child{margin-bottom:0;}
+.sn{background:var(--accent);color:#fff;font-family:'Syne',sans-serif;font-weight:800;font-size:11px;border-radius:50%;min-width:22px;height:22px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:3px;}
+.eg{background:rgba(255,255,255,.02);border:1px solid var(--border);border-radius:12px;padding:1.35rem 1.6rem;margin-bottom:1.35rem;}
+.eg .etitle{font-size:10px;text-transform:uppercase;letter-spacing:.7px;color:var(--accent);font-family:'Syne',sans-serif;font-weight:700;margin-bottom:.9rem;}
+.eg .line{font-family:monospace;font-size:15px;color:var(--warn);margin:.4rem 0;line-height:1.65;}
+.eg .note{font-size:13px;color:var(--muted);margin-top:.7rem;font-style:italic;line-height:1.6;}
+.warn-box{background:rgba(255,107,107,.06);border:1px solid rgba(255,107,107,.2);border-radius:12px;padding:1.1rem 1.4rem;margin-bottom:1.35rem;}
+.warn-box .wtitle{font-size:10px;text-transform:uppercase;letter-spacing:.7px;color:var(--danger);font-family:'Syne',sans-serif;font-weight:700;margin-bottom:7px;}
+.recap{background:var(--surface);border:1px solid rgba(78,205,196,.2);border-radius:12px;padding:1.35rem 1.6rem;margin-bottom:1.35rem;font-size:14px;line-height:1.95;}
+.recap .rtitle{font-size:10px;text-transform:uppercase;letter-spacing:.7px;color:var(--success);font-family:'Syne',sans-serif;font-weight:700;margin-bottom:.8rem;}
+.svg-wrap{background:var(--card);border-radius:12px;padding:1rem;margin-bottom:1.35rem;}
+.quiz-item{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.6rem;margin-bottom:1.1rem;}
+.q-num{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:7px;font-family:'Syne',sans-serif;font-weight:600;}
+.q-text{font-family:'Syne',sans-serif;font-weight:600;font-size:15px;margin-bottom:1.1rem;line-height:1.55;}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:9px;}
+.opt{padding:12px 15px;background:var(--surface);border:1px solid var(--border);border-radius:10px;cursor:pointer;font-size:14px;color:var(--text);font-family:'DM Sans',sans-serif;text-align:left;transition:all .15s;line-height:1.4;}
+.opt:hover:not(:disabled){border-color:var(--accent);color:var(--accent);}
+.opt.correct{background:rgba(78,205,196,.1);border-color:var(--success);color:var(--success);}
+.opt.wrong-shake{background:rgba(255,107,107,.1);border-color:var(--danger);color:var(--danger);animation:shake .3s ease;}
+.opt.wrong-final{background:rgba(255,107,107,.05);border-color:rgba(255,107,107,.2);color:rgba(255,107,107,.45);}
+.opt.neutral-off{opacity:.38;}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+.retry-msg{margin-top:11px;padding:9px 14px;border-radius:8px;font-size:13px;background:rgba(255,211,61,.06);border:1px solid rgba(255,211,61,.18);color:var(--warn);}
+.fb{margin-top:13px;padding:15px 17px;border-radius:10px;font-size:14px;line-height:1.8;}
+.fb.ok{background:rgba(78,205,196,.05);border:1px solid rgba(78,205,196,.2);}
+.fb.ko{background:rgba(255,107,107,.05);border:1px solid rgba(255,107,107,.18);}
+.fb-label{font-family:'Syne',sans-serif;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.5px;margin-bottom:9px;}
+.fb.ok .fb-label{color:var(--success);}
+.fb.ko .fb-label{color:var(--danger);}
+.fb-step{display:flex;gap:11px;align-items:flex-start;margin-bottom:.5rem;font-size:13px;color:var(--muted);}
+.fb-step .arr{color:#e8ff47;font-weight:700;flex-shrink:0;}
+.quiz-score{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:15px 20px;text-align:center;margin-top:1.1rem;font-family:'Syne',sans-serif;font-weight:700;font-size:19px;color:var(--accent);}
+.ch-info{background:rgba(255,255,255,.02);border:1px solid var(--border);border-radius:12px;padding:1.1rem 1.4rem;margin-bottom:1.5rem;font-size:13px;color:var(--muted);line-height:1.65;}
+.ch-info span{color:#e8ff47;font-family:'Syne',sans-serif;font-weight:700;}
+.ch-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.6rem;margin-bottom:1.1rem;}
+.ch-title{font-family:'Syne',sans-serif;font-weight:700;font-size:15px;color:var(--accent);margin-bottom:9px;}
+.ch-ctx{font-size:14px;color:var(--muted);line-height:1.85;margin-bottom:1.3rem;}
+.answer-input{width:100%;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:13px 15px;color:var(--text);font-size:14px;font-family:'DM Sans',sans-serif;outline:none;transition:border-color .15s;resize:vertical;}
+.answer-input:focus{border-color:var(--accent);}
+.code-row{margin-top:11px;display:flex;gap:9px;align-items:center;flex-wrap:wrap;}
+.code-input{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:9px 13px;color:var(--text);font-size:15px;font-family:'Syne',sans-serif;font-weight:700;letter-spacing:3px;width:105px;outline:none;}
+.code-input:focus{border-color:var(--accent);}
+.code-hint{font-size:11px;color:var(--muted);}
+.unlock-btn{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:9px 13px;cursor:pointer;font-size:12px;font-family:'Syne',sans-serif;font-weight:600;color:var(--muted);transition:all .15s;}
+.unlock-btn:hover{border-color:var(--accent);color:var(--accent);}
+.ans-reveal{background:rgba(78,205,196,.03);border:1px solid rgba(78,205,196,.18);border-radius:10px;padding:1.1rem 1.4rem;margin-top:11px;font-size:14px;line-height:1.85;display:none;}
+.ans-label{font-size:10px;text-transform:uppercase;letter-spacing:.5px;color:var(--success);font-family:'Syne',sans-serif;font-weight:700;margin-bottom:7px;}
+.wrong-code{color:var(--danger);font-size:12px;margin-top:5px;display:none;}
+.complete-btn{width:100%;margin-top:1.85rem;padding:16px;background:var(--accent);color:#fff;font-family:'Syne',sans-serif;font-weight:800;font-size:15px;border:none;border-radius:12px;cursor:pointer;transition:all .15s;}
+.complete-btn:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(0,0,0,.3);}
+.done-banner{background:rgba(78,205,196,.06);border:1px solid rgba(78,205,196,.22);border-radius:12px;padding:1.6rem;text-align:center;margin-top:1.6rem;}
+.done-banner .big{font-family:'Syne',sans-serif;font-weight:800;font-size:1.7rem;color:var(--success);}
+.parent-panel{display:none;background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:1.6rem;margin-bottom:2.2rem;}
+.parent-panel h3{font-family:'Syne',sans-serif;font-weight:700;font-size:14px;color:var(--accent);margin-bottom:1.1rem;}
+.pp-row{display:flex;justify-content:space-between;align-items:center;padding:9px 0;border-bottom:1px solid var(--border);font-size:13px;}
+.pp-row:last-child{border-bottom:none;}
+.pp-q{color:var(--muted);flex:1;padding-right:1rem;line-height:1.4;}
+.pp-clics{font-family:'Syne',sans-serif;font-weight:700;font-size:13px;white-space:nowrap;}
+.pp-clics.good{color:var(--success);}
+.pp-clics.warn{color:var(--warn);}
+.pp-clics.bad{color:var(--danger);}
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:200;align-items:center;justify-content:center;}
+.modal-overlay.open{display:flex;}
+.modal{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:2.2rem;max-width:360px;width:92%;}
+.modal h3{font-family:'Syne',sans-serif;font-weight:700;font-size:16px;margin-bottom:1.1rem;}
+.modal p{font-size:13px;color:var(--muted);margin-bottom:1rem;line-height:1.6;}
+.modal input{width:100%;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:11px 15px;color:var(--text);font-size:20px;font-family:'Syne',sans-serif;font-weight:700;letter-spacing:5px;outline:none;text-align:center;margin-bottom:1.1rem;}
+.modal input:focus{border-color:var(--accent);}
+.modal-btns{display:flex;gap:9px;}
+.modal-btns button{flex:1;padding:11px;border-radius:8px;cursor:pointer;font-family:'Syne',sans-serif;font-weight:600;font-size:13px;border:1px solid var(--border);background:var(--surface);color:var(--muted);transition:all .15s;}
+.modal-btns button.primary{background:var(--accent);border-color:var(--accent);color:#fff;}
+.modal-err{color:var(--danger);font-size:12px;text-align:center;margin-top:-7px;margin-bottom:9px;display:none;}
+.hidden{display:none!important;}
+.back-btn{background:none;border:1px solid var(--border);color:var(--muted);font-size:13px;padding:8px 15px;border-radius:8px;cursor:pointer;margin-bottom:1.6rem;font-family:'DM Sans',sans-serif;transition:all .15s;}
+.back-btn:hover{color:var(--accent);border-color:var(--accent);}
+
+:root { --accent:#ff6b35; }
+</style>
+</head>
+<body>
+<nav class="topbar">
+  <div class="topbar-left">
+    <a href="index.html" class="back-home">← Accueil</a>
+    <span class="week-label">Semaine 2 · 23–25 juin</span>
+  </div>
+  <div class="topbar-right">
+    <span class="streak-pill" id="streak-top">🔥 0</span>
+    <span class="xp-pill" id="xp-top">0 XP</span>
+    <button class="pbtn" onclick="openParentModal()">👨‍👩 Parents</button>
+  </div>
+</nav>
+<div class="modal-overlay" id="parent-modal">
+  <div class="modal">
+    <h3>🔐 Vue parents</h3>
+    <p style="font-size:13px;color:var(--muted);margin-bottom:1rem">Ce panneau montre pour chaque question du quiz combien de clics votre fils a fait avant de trouver la bonne réponse.</p>
+    <input type="text" id="parent-input" placeholder="PAPA" maxlength="4" oninput="this.value=this.value.toUpperCase()">
+    <div class="modal-err" id="modal-err">Code incorrect — réessaie</div>
+    <div class="modal-btns">
+      <button onclick="closeParentModal()">Annuler</button>
+      <button class="primary" onclick="checkParentCode()">Accéder</button>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div id="main-view">
+    <div class="week-hero">
+      <h1>Semaine 2 — <span style="color:var(--accent)">Pourcentages &amp; Algèbre</span></h1>
+      <p>Jours 4, 5, 6 · Pourcentages · Nombres relatifs · Calcul littéral</p>
+      <div class="xp-bar-wrap"><div class="xp-bar" id="xp-bar" style="width:0%"></div></div>
+    </div>
+    <div class="day-grid" id="day-grid"></div>
+  </div>
+  <div id="lesson-view">
+    <button class="back-btn" onclick="backToGrid()">← Retour aux jours</button>
+    <div class="parent-panel" id="parent-panel">
+      <h3>📊 Suivi parental — Clics par question</h3>
+      <div id="pp-content"></div>
+    </div>
+    <div class="lh-date" id="lh-date"></div>
+    <div class="lh-title" id="lh-title"></div>
+    <div class="lh-xp" id="lh-xp"></div>
+    <div class="lesson-tabs">
+      <div class="ltab active" id="tab-learn" onclick="setTab('learn')">📖 Apprendre</div>
+      <div class="ltab" id="tab-quiz" onclick="setTab('quiz')">🎯 Quiz</div>
+      <div class="ltab" id="tab-challenges" onclick="setTab('challenges')">🏆 Défis</div>
+    </div>
+    <div id="sec-learn"></div>
+    <div id="sec-quiz" class="hidden"></div>
+    <div id="sec-challenges" class="hidden"></div>
+  </div>
+</div>
+<script>
+const DAYS = [
+{
+  id:4, date:"Lundi 23 juin", title:"Pourcentages — les 3 formules", xp:100, theme:"Pourcentages",
+  learn:`
+<div class="lsec-title">1. Un pourcentage, c'est quoi exactement ?</div>
+<div class="concept">Un pourcentage = une fraction dont le dénominateur est toujours <strong>100</strong>.<br>Le symbole <strong>%</strong> se lit "pour cent" = "sur 100".<br><br>30% = 30/100 = 0,30<br>75% = 75/100 = 0,75<br>100% = 100/100 = 1 (le tout entier)<br>150% = 150/100 = 1,5 (possible ! plus que le tout)<br><br>% → décimal : ÷100 (déplace la virgule de 2 rangs à gauche)<br>Décimal → % : ×100 (déplace de 2 rangs à droite)</div>
+<div class="svg-wrap"><svg viewBox="0 0 500 120" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:500px;display:block;margin:0 auto"><text x="250" y="16" text-anchor="middle" fill="#7a7d8a" font-size="11" font-family="sans-serif" font-weight="700" letter-spacing="1">LES POURCENTAGES EN VISUEL</text><rect x="20" y="25" width="460" height="28" rx="5" fill="#2a2d38"/><rect x="20" y="25" width="345" height="28" rx="5" fill="rgba(232,255,71,0.3)" stroke="#e8ff47" stroke-width="1.5"/><text x="192" y="44" text-anchor="middle" fill="#e8ff47" font-size="13" font-weight="700" font-family="sans-serif">75%</text><text x="415" y="44" text-anchor="middle" fill="#7a7d8a" font-size="12" font-family="sans-serif">25%</text><text x="480" y="20" text-anchor="middle" fill="#7a7d8a" font-size="10" font-family="sans-serif">100%</text><rect x="20" y="62" width="460" height="48" rx="5" fill="#16181f" stroke="#2a2d38" stroke-width="1"/><text x="62" y="92" text-anchor="middle" fill="#f0f0f0" font-size="13" font-family="sans-serif">50%=1/2</text><line x1="116" y1="66" x2="116" y2="106" stroke="#2a2d38" stroke-width="1"/><text x="163" y="92" text-anchor="middle" fill="#f0f0f0" font-size="13" font-family="sans-serif">25%=1/4</text><line x1="210" y1="66" x2="210" y2="106" stroke="#2a2d38" stroke-width="1"/><text x="258" y="92" text-anchor="middle" fill="#f0f0f0" font-size="13" font-family="sans-serif">10%=0,1</text><line x1="306" y1="66" x2="306" y2="106" stroke="#2a2d38" stroke-width="1"/><text x="353" y="92" text-anchor="middle" fill="#f0f0f0" font-size="13" font-family="sans-serif">33%≈1/3</text><line x1="400" y1="66" x2="400" y2="106" stroke="#2a2d38" stroke-width="1"/><text x="447" y="92" text-anchor="middle" fill="#f0f0f0" font-size="13" font-family="sans-serif">75%=3/4</text></svg></div>
+<div class="lsec-title">2. Formule 1 — Calculer x% d'un nombre</div>
+<div class="concept"><strong>x% de A = A × x/100 = A × (x÷100)</strong><br><br>20% de 150 = 150×0,20 = 30<br>15% de 80 = 80×0,15 = 12<br><br><strong>Astuce mentale pour 10% :</strong> divise par 10. 10% de 430=43.<br>Puis : 5%=la moitié de 10% | 15%=10%+5% | 20%=2×10% | 1%=10%÷10</div>
+<div class="lsec-title">3. Formule 2 — Calculer le taux de x par rapport à y</div>
+<div class="concept"><strong>Taux = (A÷B)×100</strong><br><br>18 plaquages réussis sur 24 : (18÷24)×100 = 75%<br><br>800→1000 licenciés : variation=200, taux=(200÷800)×100=25%<br><br><strong>Attention :</strong> on divise par la valeur DE DÉPART, pas par l'arrivée.</div>
+<div class="lsec-title">4. Formule 3 — Appliquer une hausse ou une baisse</div>
+<div class="concept"><strong>Augmenter de x% :</strong> ×(1 + x/100)<br><strong>Diminuer de x% :</strong> ×(1 − x/100)<br><br>+20% → ×1,20 | −15% → ×0,85 | +5% → ×1,05 | −50% → ×0,50<br><br>Exemple : maillot à 80€ soldé −25% :<br>80×0,75 = 60€. Ou : 25% de 80=20. 80−20=60€ ✓</div>
+<div class="warn-box"><div class="wtitle">⚠️ Piège majeur : remises successives</div>100€ : −20% puis −10%.<br>FAUX : 100−30%=70€ ❌<br>JUSTE : 100×0,80=80€, puis 80×0,90=<strong>72€</strong><br>−10% s'applique sur 80€, pas sur 100€. 72€≠70€.</div>
+<div class="analogy"><div class="alabel">🏎️ F1 2024</div>24 courses. Verstappen : 9 victoires → (9÷24)×100=37,5%<br>Norris : 4 → 16,7% | Leclerc : 3 → 12,5% | Autres : 8 → 33,3%<br>Vérif : 37,5+16,7+12,5+33,3=100% ✓</div>
+<div class="recap"><div class="rtitle">📄 Récap Jour 4</div>• F1 : x% de A = A×(x÷100). Astuce : 10%=÷10.<br>• F2 : taux=(A÷B)×100. Divise par la valeur DE DÉPART.<br>• F3 : +x%→×(1+x/100), −x%→×(1−x/100).<br>• Remises successives : JAMAIS additionner les %, appliquer l'une après l'autre.</div>`,
+  quiz:[
+    {q:"15% de 80=?",opts:["8","12","15","20"],ans:1,
+     exp:{ok:"Parfait ! 80×0,15=12. Ou : 10%=8, 5%=4, 15%=12.",ko:"15%=0,15. 80×0,15=12. Ou 10% de 80=8 + 5% de 80=4.",steps:["15%=0,15","80×0,15=12","Ou : 10%=8, 5%=4, total=12"]}},
+    {q:"Maillot 80€ soldé −25%. Nouveau prix ?",opts:["55€","60€","65€","20€"],ans:1,
+     exp:{ok:"Bien ! −25%→×0,75. 80×0,75=60€.",ko:"−25%→coeff=1−0,25=0,75.",steps:["−25%→×0,75","80×0,75=60€","Ou : 25% de 80=20, 80−20=60€ ✓"]}},
+    {q:"18 plaquages sur 24. Taux de réussite ?",opts:["18%","25%","75%","80%"],ans:2,
+     exp:{ok:"Exact ! (18÷24)×100=75%.",ko:"Taux=(valeur÷total)×100.",steps:["18÷24=0,75","0,75×100=75%"]}},
+    {q:"800 → 1000 licenciés. Hausse en % ?",opts:["10%","20%","25%","200%"],ans:2,
+     exp:{ok:"Parfait ! Variation=200. (200÷800)×100=25%.",ko:"Taux=(variation÷départ)×100. Départ=800.",steps:["Variation=1000−800=200","(200÷800)×100=25%"]}},
+    {q:"Salaire 2000€, hausse 15%. Nouveau ?",opts:["2150€","2300€","2200€","300€"],ans:1,
+     exp:{ok:"Bien ! +15%→×1,15. 2000×1,15=2300€.",ko:"+15%→×(1+0,15)=×1,15.",steps:["+15%→×1,15","2000×1,15=2300€"]}},
+    {q:"100€ : −20% puis −10%. Prix final ?",opts:["70€","72€","68€","30€"],ans:1,
+     exp:{ok:"Parfait ! 100×0,80=80€, puis 80×0,90=72€. Pas −30% directement !",ko:"Applique les coefficients l'un APRÈS l'autre. Le −10% porte sur le nouveau prix.",steps:["−20%→×0,80 : 100×0,80=80€","−10%→×0,90 : 80×0,90=72€","ATTENTION : pas −30% direct (donnerait 70€≠72€)"]}}  ,
+    {q:"Verstappen : 9 victoires sur 24. Son taux ?",opts:["9%","33,3%","37,5%","40%"],ans:2,
+     exp:{ok:"Super ! (9÷24)×100=37,5%.",ko:"(victoires÷courses)×100.",steps:["9÷24=0,375","0,375×100=37,5%"]}},
+    {q:"TVA 20% sur 150€ HT. Prix TTC ?",opts:["30€","120€","170€","180€"],ans:3,
+     exp:{ok:"Exact ! +20%→×1,20. 150×1,20=180€.",ko:"TTC=HT+TVA. TVA=20% de 150=30. 150+30=180€.",steps:["TVA=20% de 150=30€","TTC=150+30=180€","Ou : ×1,20 → 180€"]}}
+  ],
+  challenges:[
+    {title:"🏎️ Défi salaire et pourcentages",ctx:"Joueur pro : 4000€/mois. 1) Saison 1 : hausse 15%. 2) Saison 2 : hausse 10% sur le nouveau. 3) Saison 3 : blessure, baisse 20%. Calcule chaque salaire. Puis la variation totale entre 4000€ et le salaire final.",
+     ans:"1) 4000×1,15=4600€. 2) 4600×1,10=5060€. 3) 5060×0,80=4048€. Variation totale : ((4048−4000)÷4000)×100=1,2%. Surprenant : +15%+10%−20% ≈ seulement +1,2% !"},
+    {title:"🏉 Défi stats saison",ctx:"24 courses F1 2024. Verstappen:9, Norris:4, Leclerc:3, autres:le reste. 1) % de victoires pour chacun. 2) Vérif que tout fait 100%. 3) Si Norris améliore son taux de 50% en 2025 (24 courses), combien de victoires ?",
+     ans:"1) Verstappen:37,5%, Norris:16,7%, Leclerc:12,5%, Autres:33,3%. 2) 37,5+16,7+12,5+33,3=100% ✓. 3) Taux Norris 2025=16,7%×1,5=25%. 25% de 24=6 victoires."}
+  ]
+},
+{
+  id:5, date:"Mardi 24 juin", title:"Nombres relatifs", xp:100, theme:"Algèbre",
+  learn:`
+<div class="lsec-title">1. Pourquoi des nombres négatifs ?</div>
+<div class="concept">Dans la réalité, certaines situations imposent des valeurs "en dessous de zéro" :<br>— Température : −3°C = 3 degrés sous zéro<br>— Compte bancaire : −50€ = dette de 50€<br>— Altitude : −350 m = sous le niveau de la mer<br><br>Un <strong>nombre relatif</strong> = un signe (+ ou −) + une valeur absolue.<br>La <strong>valeur absolue</strong> = distance au zéro sans le signe : |+7|=7 et |−7|=7.</div>
+<div class="svg-wrap"><svg viewBox="0 0 500 105" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:500px;display:block;margin:0 auto"><text x="250" y="14" text-anchor="middle" fill="#7a7d8a" font-size="11" font-family="sans-serif" font-weight="700" letter-spacing="1">LA DROITE NUMÉRIQUE</text><text x="100" y="30" text-anchor="middle" fill="rgba(255,107,107,0.7)" font-size="10" font-family="sans-serif">← plus petits</text><text x="400" y="30" text-anchor="middle" fill="rgba(78,205,196,0.7)" font-size="10" font-family="sans-serif">plus grands →</text><line x1="18" y1="55" x2="482" y2="55" stroke="#2a2d38" stroke-width="2.5"/><polygon points="482,55 470,50 470,60" fill="#7a7d8a"/><polygon points="18,55 30,50 30,60" fill="#7a7d8a"/><line x1="50" y1="48" x2="50" y2="62" stroke="#ff6b6b" stroke-width="2.5"/><circle cx="50" cy="55" r="8" fill="#ff6b6b" stroke="#0d0e12" stroke-width="2"/><text x="50" y="80" text-anchor="middle" fill="#ff6b6b" font-size="13" font-weight="700" font-family="sans-serif">-4</text><line x1="110" y1="48" x2="110" y2="62" stroke="#7a7d8a" stroke-width="1.5"/><text x="110" y="78" text-anchor="middle" fill="#7a7d8a" font-size="12" font-family="sans-serif">-3</text><line x1="170" y1="48" x2="170" y2="62" stroke="#7a7d8a" stroke-width="1.5"/><text x="170" y="78" text-anchor="middle" fill="#7a7d8a" font-size="12" font-family="sans-serif">-2</text><line x1="230" y1="48" x2="230" y2="62" stroke="#7a7d8a" stroke-width="1.5"/><text x="230" y="78" text-anchor="middle" fill="#7a7d8a" font-size="12" font-family="sans-serif">-1</text><line x1="290" y1="45" x2="290" y2="65" stroke="#f0f0f0" stroke-width="3"/><text x="290" y="82" text-anchor="middle" fill="#f0f0f0" font-size="14" font-weight="700" font-family="sans-serif">0</text><line x1="350" y1="48" x2="350" y2="62" stroke="#7a7d8a" stroke-width="1.5"/><text x="350" y="78" text-anchor="middle" fill="#7a7d8a" font-size="12" font-family="sans-serif">+1</text><line x1="410" y1="48" x2="410" y2="62" stroke="#7a7d8a" stroke-width="1.5"/><text x="410" y="78" text-anchor="middle" fill="#7a7d8a" font-size="12" font-family="sans-serif">+2</text><line x1="460" y1="48" x2="460" y2="62" stroke="#4ecdc4" stroke-width="2.5"/><circle cx="460" cy="55" r="8" fill="#4ecdc4" stroke="#0d0e12" stroke-width="2"/><text x="460" y="80" text-anchor="middle" fill="#4ecdc4" font-size="13" font-weight="700" font-family="sans-serif">+3</text></svg></div>
+<div class="lsec-title">2. Comparer et ordonner</div>
+<div class="concept">Plus à <strong>gauche</strong> sur la droite numérique = plus <strong>petit</strong>.<br>Tous les négatifs &lt; 0 &lt; tous les positifs.<br>Entre deux négatifs : le plus grand en valeur absolue est le plus PETIT (−8 &lt; −3).<br><br>Exemple : −5 &lt; −2 &lt; 0 &lt; +1 &lt; +4</div>
+<div class="lsec-title">3. Addition — la mécanique</div>
+<div class="concept"><strong>Cas 1 : même signe → additionne les valeurs absolues, garde le signe.</strong><br>(+4)+(+3) = +(4+3) = +7<br>(−4)+(−3) = −(4+3) = −7<br><br><strong>Cas 2 : signes différents → soustrait les valeurs absolues, garde le signe du plus grand.</strong><br>(+7)+(−4) : |7|&gt;|4|, signe + → +(7−4) = +3<br>(+4)+(−7) : |7|&gt;|4|, signe − → −(7−4) = −3<br><br><strong>Soustraire = ajouter l'opposé :</strong><br>5−(−3) = 5+3 = 8<br>−5−(−8) = −5+8 = +3</div>
+<div class="warn-box"><div class="wtitle">⚠️ Confusion classique</div>Dans 3−(−5) : le premier − est l'opération, le second − est le signe du nombre.<br>FAUX : 3−(−5)=−2 ❌ | JUSTE : 3−(−5)=3+5=<strong>8</strong> ✓</div>
+<div class="lsec-title">4. Multiplication et division — règle des signes</div>
+<div class="concept"><strong>Mêmes signes → positif (+)</strong> : (+)×(+)=+ | (−)×(−)=+<br><strong>Signes différents → négatif (−)</strong> : (+)×(−)=− | (−)×(+)=−<br><br>(+3)×(−4)=−12 | (−3)×(−4)=+12 | (−6)÷(−2)=+3<br><br>Astuce : nombre pair de facteurs négatifs → résultat positif.</div>
+<div class="analogy"><div class="alabel">🏎️ Températures sur circuit</div>Piste à −4°C le matin. Monte de 18°C : −4+18=+14°C.<br>La nuit, descend de 20°C : 14−20=−6°C.<br>Variation totale : −6−(−4)=−6+4=−2°C.</div>
+<div class="recap"><div class="rtitle">📄 Récap Jour 5</div>• Droite numérique : gauche=plus petit. −8&lt;−3&lt;0&lt;+5.<br>• Même signe + : additionne valeurs abs., garde signe.<br>• Signes différents + : soustrait, garde signe du plus grand.<br>• Soustraire=ajouter l'opposé : a−(−b)=a+b.<br>• Règle des signes × : mêmes=+, différents=−.</div>`,
+  quiz:[
+    {q:"Le plus petit parmi : −8, −2, 0, +1",opts:["−8","−2","0","+1"],ans:0,
+     exp:{ok:"Exact ! −8 est le plus à gauche → le plus petit.",ko:"Sur la droite numérique, plus à gauche = plus petit.",steps:["Droite : −8...−2...0...+1","−8 est le plus à gauche → le plus petit"]}},
+    {q:"(−4)+9=?",opts:["−13","5","13","−5"],ans:1,
+     exp:{ok:"Bien ! Signes différents. |9|=9&gt;|4|=4, signe=+. 9−4=+5.",ko:"Signes différents → soustrait valeurs abs. (9−4=5), signe du plus grand (9 est positif).",steps:["Signes diff. : + et −","|9|=9&gt;|4|=4 → signe positif","9−4=5 → +5"]}},
+    {q:"5−(−3)=?",opts:["2","8","−2","−8"],ans:1,
+     exp:{ok:"Super ! Soustraire −3=ajouter +3. 5+3=8.",ko:"Soustraire un négatif=ajouter son opposé positif.",steps:["Opposé de −3 est +3","5−(−3)=5+3=8"]}},
+    {q:"(−3)×(−4)=?",opts:["−12","12","−7","+7"],ans:1,
+     exp:{ok:"Parfait ! Mêmes signes (deux −) → positif. 3×4=12.",ko:"Mêmes signes → résultat positif.",steps:["Deux signes − = mêmes signes","Résultat positif : +12"]}},
+    {q:"Ordonne : −5 ; +2 ; −1 ; 0 ; +4",opts:["−5;−1;0;+2;+4","0;−1;−5;+2;+4","+4;+2;0;−1;−5","−1;−5;0;+2;+4"],ans:0,
+     exp:{ok:"Parfait ! De gauche à droite sur la droite numérique.",ko:"Négatifs à gauche du 0, positifs à droite. Entre négatifs : le plus grand en valeur abs. est le plus petit.",steps:["Négatifs : −5&lt;−1","0 au milieu","Positifs : +2&lt;+4","Ordre : −5;−1;0;+2;+4"]}},
+    {q:"(+6)÷(−2)=?",opts:["3","−3","4","−4"],ans:1,
+     exp:{ok:"Exact ! Signes différents → résultat négatif. 6÷2=3 → −3.",ko:"Signes différents → négatif.",steps:["Signes diff. → résultat −","6÷2=3 → −3"]}},
+    {q:"Température : −3°C le matin, +11°C l'après-midi. Variation ?",opts:["8°C","14°C","−14°C","−8°C"],ans:1,
+     exp:{ok:"Exact ! (+11)−(−3)=11+3=14°C de hausse.",ko:"Variation=finale−initiale. (+11)−(−3)=11+3.",steps:["Variation=(+11)−(−3)","=11+3=14°C de hausse"]}},
+    {q:"(−2)⁴=?",opts:["−16","8","16","−8"],ans:2,
+     exp:{ok:"Bien ! 4 facteurs négatifs (pair) → positif. 2⁴=16.",ko:"(−2)×(−2)×(−2)×(−2). 4 facteurs négatifs (pair) → positif.",steps:["(−2)×(−2)=+4","(+4)×(−2)=−8","(−8)×(−2)=+16","4 facteurs − (pair) → positif"]}},
+  ],
+  challenges:[
+    {title:"🏎️ Défi températures de Grand Prix",ctx:"Vendredi matin : −2°C. L'AM monte 15°C. La nuit descend 18°C. Samedi matin remonte 8°C. 1) Température à chaque étape. 2) Écart max-min. 3) Les pneus F1 fonctionnent entre 0° et 100°C. Problème vendredi matin ?",
+     ans:"Vendredi AM : −2+15=13°C. Nuit : 13−18=−5°C. Samedi matin : −5+8=3°C. Températures : −2,13,−5,3. Max=13, min=−5, écart=13−(−5)=18°C. Vendredi matin −2°C&lt;0°C → hors plage optimale → problème !"},
+    {title:"🏉 Défi compte en points",ctx:"Un compte commence à 0pt. Opérations : +25pts, −10pts (pénalité), +18pts, −5pts, +25pts. 1) Solde après chaque opération. 2) À quel moment passe-t-il en négatif pour la première fois (ou jamais) ? 3) Quel bonus minimum suffisait pour finir à +60pts ?",
+     ans:"Après +25:25. Après −10:15. Après +18:33. Après −5:28. Après +25:53pts. Jamais en négatif. Bonus minimum pour atteindre 60 : 60−53=7pts."}
+  ]
+},
+{
+  id:6, date:"Mercredi 25 juin", title:"Calcul littéral &amp; développement", xp:100, theme:"Algèbre",
+  learn:`
+<div class="lsec-title">1. Pourquoi des lettres en maths ?</div>
+<div class="concept">Le calcul littéral permet d'écrire des <strong>formules générales</strong> valables pour n'importe quelles valeurs.<br><br>Sans lettres : chaque calcul recommence. Avec lettres : une formule pour tout.<br>Aire d'un rectangle → A=L×l. Valable pour TOUT rectangle.<br>Distance en F1 → d=v×t. Valable pour toute course.<br><br>Une <strong>expression littérale</strong> prend une valeur numérique quand on remplace les lettres.</div>
+<div class="lsec-title">2. Réduire — regrouper les termes semblables</div>
+<div class="concept">Deux termes sont <strong>semblables</strong> s'ils ont la même lettre et le même exposant.<br>3x et 5x → semblables → 3x+5x=<strong>8x</strong><br>3x et 5y → PAS semblables (lettres différentes)<br>3x et 3x² → PAS semblables (exposants différents)<br><br>Le <strong>coefficient</strong> = le nombre devant la lettre. Dans 3x, coefficient=3.</div>
+<div class="eg"><div class="etitle">Exemples de réduction</div><div class="line">4a+3a = 7a</div><div class="line">5x−2x+3 = 3x+3 (le +3 reste seul)</div><div class="line">2x+3y+4x−y = 6x+2y</div><div class="note">3x+2 ne se simplifie pas : 3x a une lettre, 2 n'en a pas.</div></div>
+<div class="lsec-title">3. Développer — distribuer la multiplication</div>
+<div class="concept">Développer = supprimer les parenthèses en multipliant par chaque terme.<br><strong>k×(a+b) = k×a + k×b</strong><br><br>Quand le facteur est négatif, TOUS les signes intérieurs changent.</div>
+<div class="eg"><div class="etitle">Tous les cas</div><div class="line">3(x+4) = 3x+12</div><div class="line">5(2x−3) = 10x−15</div><div class="line">−2(x+6) = −2x−12</div><div class="line">−3(x−4) = −3x+12 ← (−3)×(−4)=+12</div><div class="line">4(3x−1)+2x = 12x−4+2x = 14x−4</div></div>
+<div class="warn-box"><div class="wtitle">⚠️ Signe − devant parenthèse</div>−(x+3) = −x−3 (pas −x+3 ❌)<br>Le − change le signe de TOUT ce qui est dedans.<br>−(5x−2) = −5x+2 ← les deux signes changent</div>
+<div class="lsec-title">4. Factoriser — l'inverse du développement</div>
+<div class="concept">Factoriser = mettre le diviseur commun devant une parenthèse.<br><br>6x+9 : diviseur commun de 6 et 9 = 3. 6x÷3=2x et 9÷3=3 → <strong>3(2x+3)</strong>.<br>Vérif : 3×2x+3×3=6x+9 ✓</div>
+<div class="eg"><div class="etitle">Exemples de factorisation</div><div class="line">4x+8 → ÷4 → 4(x+2)</div><div class="line">10x−15 → ÷5 → 5(2x−3)</div><div class="line">12x−8 → ÷4 → 4(3x−2)</div></div>
+<div class="analogy"><div class="alabel">🏉 Score de rugby</div>S=5e+2t+3p (essais, transformations, pénalités).<br>Pour e=4, t=3, p=2 : S=20+6+6=32pts.<br>Si l'équipe double tous ses scores : 2(5e+2t+3p)=10e+4t+6p → développement !<br>10e+4t+6p=2(5e+2t+3p) → factorisation !</div>
+<div class="recap"><div class="rtitle">📄 Récap Jour 6</div>• Termes semblables = même lettre + même exposant → additionne les coefficients.<br>• Développer : k(a+b)=ka+kb. Signe − change tous les signes intérieurs.<br>• Factoriser = inverse : trouver diviseur commun, le mettre devant.<br>• Toujours vérifier en développant.</div>`,
+  quiz:[
+    {q:"Simplifie : 5a+3a",opts:["8a","8a²","15a","53a"],ans:0,
+     exp:{ok:"Correct ! (5+3)a=8a.",ko:"Termes semblables (même lettre) → additionne les coefficients.",steps:["5a et 3a semblables","5+3=8 → 8a"]}},
+    {q:"Simplifie : 7x−3x+2",opts:["4x+2","7x−1","4x−2","6x"],ans:0,
+     exp:{ok:"Bien ! 7x−3x=4x. Le +2 reste seul.",ko:"Regroupe les x : 7x−3x=4x. Le 2 n'a pas de lettre → reste seul.",steps:["7x−3x=4x","Le +2 reste","= 4x+2"]}},
+    {q:"Développe : 4(x+5)",opts:["4x+5","4x+20","x+20","9x"],ans:1,
+     exp:{ok:"Parfait ! 4×x=4x et 4×5=20.",ko:"Multiplie le 4 par CHAQUE terme.",steps:["4×x=4x","4×5=20","= 4x+20"]}},
+    {q:"Développe : −3(x−4)",opts:["−3x−12","−3x+12","3x−12","3x+12"],ans:1,
+     exp:{ok:"Super ! (−3)×x=−3x et (−3)×(−4)=+12.",ko:"(−3) multiplie tout. (−3)×(−4)=+12 (deux −=+).",steps:["(−3)×x=−3x","(−3)×(−4)=+12","= −3x+12"]}},
+    {q:"Factorise : 6x+9",opts:["3(2x+3)","2(3x+4)","6(x+3)","9(x+1)"],ans:0,
+     exp:{ok:"Super ! Diviseur commun 3. 6x=3×2x, 9=3×3 → 3(2x+3).",ko:"Plus grand diviseur commun de 6 et 9 = 3.",steps:["6÷3=2x et 9÷3=3","→ 3(2x+3)","Vérif : 6x+9 ✓"]}},
+    {q:"Si x=3, que vaut 2x²−3x+1 ?",opts:["10","4","7","16"],ans:0,
+     exp:{ok:"Bien ! 2×9−9+1=18−9+1=10.",ko:"Remplace x par 3. D'abord 3²=9.",steps:["2×(3²)−3×3+1","=2×9−9+1","=18−9+1=10"]}},
+    {q:"Développe et réduis : 3(x+2)+2(x−1)",opts:["5x+4","5x+8","5x+2","6x+4"],ans:0,
+     exp:{ok:"Parfait ! 3x+6+2x−2=5x+4.",ko:"Développe chaque parenthèse séparément, puis regroupe.",steps:["3(x+2)=3x+6","2(x−1)=2x−2","(3x+2x)+(6−2)=5x+4"]}},
+    {q:"Coefficient de x dans 5−3x+2x² ?",opts:["5","−3","2","−3x"],ans:1,
+     exp:{ok:"Exact ! Dans −3x, le coefficient de x est −3.",ko:"Coefficient = le nombre devant la lettre. Dans −3x, c'est −3.",steps:["Terme en x : −3x","Coefficient = −3"]}}
+  ],
+  challenges:[
+    {title:"🏉 Défi formules score",ctx:"S=5e+2t+3p+3d (e=essais,t=transfo,p=pénalités,d=drops). 1) Pour e=3,t=2,p=4,d=1 : calcule S. 2) Développe : 2(3e+t)+3(p−1). 3) Factorise 10e+15p. 4) L'équipe double ses essais et triple ses pénalités (départ e=2,p=3). Score avant et après ?",
+     ans:"1) 15+4+12+3=34pts. 2) 6e+2t+3p−3. 3) 5(2e+3p). 4) Avant : 5×2+3×3=19pts. Après : 5×4+3×9=20+27=47pts."},
+    {title:"🏎️ Défi formules F1",ctx:"Distance=v×t. 1) Pour v=220,t=1,5h : d=? 2) Développe : 3(2v+5)−2(v−3). 3) n tours à 7km puis (n+10) tours à 5km : distance totale D(n) développée et réduite. 4) Pour n=15, D=?",
+     ans:"1) 220×1,5=330km. 2) 6v+15−2v+6=4v+21. 3) D=7n+5(n+10)=7n+5n+50=12n+50. 4) 12×15+50=230km."}
+  ]
+}
+];
+// MOTEUR COMMUN — injecté dans chaque fichier semaine
+// Variables à définir avant injection : DAYS, ACCENT_COLOR, WEEK_TITLE
+const PARENT_CODE="PAPA";
+const getDC=id=>String(id*37).padStart(3,'0');
+let ST={xp:0,streak:0,tab:{},qa:{},tries:{},done:{},parentUnlocked:false};
+let currentDay=null;
+function lvl(x){return x<100?"Apprenti":x<250?"Élève":x<400?"Confirmé":"Expert !";}
+function upUI(){
+  document.getElementById('xp-top').textContent=ST.xp+' XP';
+  document.getElementById('streak-top').textContent='🔥 '+ST.streak;
+  const mx=DAYS.reduce((s,d)=>s+d.xp,0);
+  document.getElementById('xp-bar').style.width=Math.min(100,ST.xp/mx*100)+'%';
+  DAYS.forEach(d=>{if(ST.done[d.id])localStorage.setItem('day_done_'+d.id,'1');});
+}
+function findDay(id){return DAYS.find(d=>d.id===id);}
+function openParentModal(){document.getElementById('parent-modal').classList.add('open');}
+function closeParentModal(){document.getElementById('parent-modal').classList.remove('open');document.getElementById('modal-err').style.display='none';}
+function checkParentCode(){
+  if(document.getElementById('parent-input').value.toUpperCase()===PARENT_CODE){
+    ST.parentUnlocked=true;closeParentModal();
+    document.getElementById('parent-panel').style.display='block';renderParentPanel();
+  }else{document.getElementById('modal-err').style.display='block';setTimeout(()=>{document.getElementById('parent-input').value='';document.getElementById('modal-err').style.display='none';},1800);}
+}
+function renderParentPanel(){
+  const d=findDay(currentDay);
+  if(!d){document.getElementById('pp-content').innerHTML='<p style="color:var(--muted);font-size:13px">Ouvre un jour pour voir les résultats.</p>';return;}
+  let h='<p style="font-size:12px;color:var(--muted);margin-bottom:.75rem">1 clic = compris du 1er coup ✓ &nbsp;·&nbsp; 2 clics = 1 erreur avant &nbsp;·&nbsp; — = non répondu</p>';
+  d.quiz.forEach((q,qi)=>{
+    const key=d.id+'_'+qi;
+    const clicks=(ST.tries[key]||0)+(ST.qa[key]!==undefined?1:0);
+    const ok=ST.qa[key]===q.ans;
+    let cls='bad',label='— Non répondu';
+    if(ST.qa[key]!==undefined){
+      if(ok&&clicks===1){cls='good';label='✓ 1 clic — compris';}
+      else if(ok&&clicks===2){cls='warn';label='⚠ 2 clics — 1 erreur';}
+      else{cls='bad';label='✗ '+clicks+' clics — incorrect';}
+    }
+    h+=`<div class="pp-row"><div class="pp-q">Q${qi+1}. ${q.q.substring(0,60)}${q.q.length>60?'...':''}</div><div class="pp-clics ${cls}">${label}</div></div>`;
+  });
+  document.getElementById('pp-content').innerHTML=h;
+}
+function renderGrid(){
+  document.getElementById('day-grid').innerHTML=DAYS.map(d=>{
+    const done=ST.done[d.id];
+    const today=new Date().toLocaleDateString('fr-FR',{weekday:'short',day:'numeric',month:'short'});
+    return`<div class="day-card ${done?'done':''}" onclick="openDay(${d.id})">
+      ${done?'<div class="done-tick">✓</div>':''}
+      <div class="dc-date">${d.date}</div>
+      <div class="dc-title">${d.title}</div>
+      <div class="dc-tags"><span class="tag">${d.theme}</span><span class="tag">${d.xp} XP</span></div>
+    </div>`;
+  }).join('');
+}
+function openDay(id){
+  currentDay=id;
+  document.getElementById('main-view').style.display='none';
+  document.getElementById('lesson-view').style.display='block';
+  const d=findDay(id);
+  document.getElementById('lh-date').textContent=d.date;
+  document.getElementById('lh-title').textContent=d.title;
+  document.getElementById('lh-xp').textContent=`+${d.xp} XP`;
+  setTab(ST.tab[id]||'learn');window.scrollTo(0,0);
+  if(ST.parentUnlocked)renderParentPanel();
+}
+function backToGrid(){
+  currentDay=null;
+  document.getElementById('main-view').style.display='block';
+  document.getElementById('lesson-view').style.display='none';
+  renderGrid();if(ST.parentUnlocked)document.getElementById('parent-panel').style.display='none';
+}
+function setTab(tab){
+  const d=findDay(currentDay);if(!d)return;
+  ST.tab[currentDay]=tab;
+  ['learn','quiz','challenges'].forEach(t=>{
+    document.getElementById('tab-'+t).classList.toggle('active',t===tab);
+    document.getElementById('sec-'+t).classList.toggle('hidden',t!==tab);
+  });
+  if(tab==='learn')renderLearn(d);
+  if(tab==='quiz')renderQuiz(d);
+  if(tab==='challenges')renderChallenges(d);
+}
+function renderLearn(d){document.getElementById('sec-learn').innerHTML=d.learn+(ST.done[d.id]?doneBanner(d):'');}
+function renderQuiz(d){
+  let h='';
+  d.quiz.forEach((q,qi)=>{
+    const key=d.id+'_'+qi;
+    const finalAns=ST.qa[key];
+    const triesCount=ST.tries[key]||0;
+    const solved=(finalAns!==undefined);
+    h+=`<div class="quiz-item" id="qi_${key}"><div class="q-num">Question ${qi+1} / ${d.quiz.length}</div><div class="q-text">${q.q}</div><div class="opts">`;
+    q.opts.forEach((opt,oi)=>{
+      h+=`<button class="opt" ${solved?'disabled':''} onclick="answerQ(${d.id},${qi},${oi})">${opt}</button>`;
+    });
+    h+=`</div>`;
+    if(!solved&&triesCount===1)h+=`<div class="retry-msg">❌ Mauvaise réponse. Il te reste <strong>1 essai</strong> — réfléchis bien.</div>`;
+    if(solved){
+      const ok=(finalAns===q.ans);
+      h+=`<div class="fb ${ok?'ok':'ko'}"><div class="fb-label">${ok?'✓ Correct !':'✗ Mauvaise réponse'}</div><p style="margin-bottom:${ok?'0':'.75rem'}">${ok?q.exp.ok:q.exp.ko}</p>`;
+      if(!ok){h+=`<div style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:.5rem;font-family:'Syne',sans-serif;font-weight:700">Raisonnement étape par étape :</div>`;q.exp.steps.forEach(s=>{h+=`<div class="fb-step"><div class="arr">→</div><div>${s}</div></div>`;});}
+      h+=`</div>`;
+    }
+    h+=`</div>`;
+  });
+  const allDone=d.quiz.every((_,qi)=>ST.qa[d.id+'_'+qi]!==undefined);
+  if(allDone){const c=d.quiz.filter((_,qi)=>ST.qa[d.id+'_'+qi]===d.quiz[qi].ans).length;h+=`<div class="quiz-score">${c}/${d.quiz.length} bonnes réponses ${c===d.quiz.length?'🏆':c>=Math.ceil(d.quiz.length*.75)?'💪':'📚'}</div>`;}
+  if(ST.done[d.id])h+=doneBanner(d);
+  document.getElementById('sec-quiz').innerHTML=h;
+  d.quiz.forEach((q,qi)=>{
+    const key=d.id+'_'+qi;const fa=ST.qa[key];if(fa===undefined)return;
+    const item=document.getElementById('qi_'+key);if(!item)return;
+    item.querySelectorAll('.opt').forEach((btn,oi)=>{btn.className='opt';if(oi===q.ans)btn.classList.add('correct');else if(oi===fa&&fa!==q.ans)btn.classList.add('wrong-final');else btn.classList.add('neutral-off');});
+  });
+}
+function answerQ(dayId,qi,oi){
+  const key=dayId+'_'+qi;if(ST.qa[key]!==undefined)return;
+  const d=findDay(dayId);const correct=d.quiz[qi].ans;const tries=ST.tries[key]||0;
+  if(oi===correct){ST.qa[key]=oi;upUI();renderQuiz(d);if(ST.parentUnlocked)renderParentPanel();return;}
+  if(tries===0){
+    ST.tries[key]=1;
+    const item=document.getElementById('qi_'+key);
+    if(item){const btn=item.querySelectorAll('.opt')[oi];if(btn){btn.classList.add('wrong-shake');setTimeout(()=>btn.classList.remove('wrong-shake'),400);}}
+    renderQuiz(d);
+  }else{ST.qa[key]=oi;renderQuiz(d);}
+  if(ST.parentUnlocked)renderParentPanel();
+}
+function renderChallenges(d){
+  const code=getDC(d.id);
+  let h=`<div class="ch-info"><span>DÉFIS DU JOUR</span> — Essaie vraiment par toi-même. Écris ton raisonnement complet. Demande le code à tes parents pour voir la correction.</div>`;
+  d.challenges.forEach((c,ci)=>{
+    const cid=d.id+'_'+ci;
+    h+=`<div class="ch-card"><div class="ch-title">${c.title}</div><div class="ch-ctx">${c.ctx}</div>
+    <textarea class="answer-input" rows="6" placeholder="Écris ici ton raisonnement et tes calculs étape par étape..."></textarea>
+    <div class="code-row">
+      <input type="text" class="code-input" id="ci_${cid}" placeholder="CODE" maxlength="3" oninput="this.value=this.value.replace(/\\D/g,'')">
+      <button class="unlock-btn" onclick="tryCode('${cid}','${code}')">Voir la correction</button>
+      <span class="code-hint">Code 3 chiffres · donné par tes parents</span>
+    </div>
+    <div class="wrong-code" id="wc_${cid}">❌ Code incorrect, réessaie !</div>
+    <div class="ans-reveal" id="ar_${cid}"><div class="ans-label">✓ Correction détaillée</div><div style="line-height:1.85;font-size:14px">${c.ans}</div></div></div>`;
+  });
+  h+=`<button class="complete-btn" onclick="completeDay(${d.id})">✓ J'ai terminé cette journée — Gagner ${d.xp} XP</button>`;
+  if(ST.done[d.id])h+=doneBanner(d);
+  document.getElementById('sec-challenges').innerHTML=h;
+}
+function tryCode(cid,correct){
+  const inp=document.getElementById('ci_'+cid),wc=document.getElementById('wc_'+cid),ar=document.getElementById('ar_'+cid);
+  if(inp.value===correct){ar.style.display='block';wc.style.display='none';inp.style.borderColor='var(--success)';inp.disabled=true;}
+  else{wc.style.display='block';inp.style.borderColor='var(--danger)';setTimeout(()=>{inp.style.borderColor='';inp.value='';wc.style.display='none';},1800);}
+}
+function completeDay(id){
+  if(ST.done[id])return;
+  const d=findDay(id);ST.done[id]=true;ST.xp+=d.xp;ST.streak++;
+  localStorage.setItem('day_done_'+id,'1');upUI();renderGrid();setTab(ST.tab[id]||'challenges');
+}
+function doneBanner(d){return`<div class="done-banner"><div class="big">+${d.xp} XP !</div><p style="color:var(--muted);font-size:13px;margin-top:4px">${lvl(ST.xp)} · ${d.date} terminé 🎉</p></div>`;}
+renderGrid();upUI();
+
+</script>
+</body>
+</html>

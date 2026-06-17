@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Semaine 1 — Fractions & Proportionnalité</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0d0e12;--surface:#16181f;--card:#1e2029;--border:#2a2d38;--text:#f0f0f0;--muted:#7a7d8a;--success:#4ecdc4;--danger:#ff6b6b;--warn:#ffd93d;}
+*{box-sizing:border-box;margin:0;padding:0;}html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;font-size:16px;line-height:1.6;min-height:100vh;}
+.topbar{position:sticky;top:0;z-index:100;background:rgba(13,14,18,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 1.5rem;display:flex;align-items:center;justify-content:space-between;height:54px;}
+.back-home{font-size:12px;color:var(--muted);text-decoration:none;transition:color .15s;}
+.back-home:hover{color:var(--accent);}
+.week-label{font-family:'Syne',sans-serif;font-weight:700;font-size:14px;}
+.topbar-right{display:flex;align-items:center;gap:10px;}
+.xp-pill{background:var(--accent);color:#fff;font-family:'Syne',sans-serif;font-weight:700;font-size:12px;padding:3px 12px;border-radius:20px;}
+.streak-pill{background:var(--surface);border:1px solid var(--border);font-size:12px;padding:3px 10px;border-radius:20px;color:var(--warn);}
+.pbtn{background:none;border:1px solid var(--border);color:var(--muted);font-size:11px;padding:5px 11px;border-radius:6px;cursor:pointer;transition:all .15s;}
+.pbtn:hover{border-color:var(--accent);color:var(--accent);}
+.container{max-width:900px;margin:0 auto;padding:2rem 1.5rem 6rem;}
+.week-hero{margin-bottom:2.5rem;}
+.week-hero h1{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(1.8rem,4vw,2.6rem);margin-bottom:.5rem;}
+.week-hero p{color:var(--muted);font-size:15px;}
+.xp-bar-wrap{background:var(--border);border-radius:4px;height:5px;margin:1rem 0 2rem;overflow:hidden;}
+.xp-bar{height:100%;background:var(--accent);border-radius:4px;transition:width .8s;}
+.day-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px;margin-bottom:2.5rem;}
+.day-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.25rem;cursor:pointer;transition:all .2s;position:relative;overflow:hidden;}
+.day-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--border);transition:background .2s;}
+.day-card:hover{border-color:var(--accent);transform:translateY(-2px);}
+.day-card:hover::before{background:var(--accent);}
+.day-card.done::before{background:var(--success);}
+.day-card.done{border-color:rgba(78,205,196,.25);}
+.dc-date{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px;font-family:'Syne',sans-serif;}
+.dc-title{font-family:'Syne',sans-serif;font-weight:700;font-size:13px;margin-bottom:10px;line-height:1.35;}
+.dc-tags{display:flex;gap:5px;flex-wrap:wrap;}
+.tag{font-size:9px;padding:2px 8px;border-radius:5px;background:var(--surface);border:1px solid var(--border);color:var(--muted);text-transform:uppercase;letter-spacing:.3px;}
+.done-tick{position:absolute;top:12px;right:12px;width:22px;height:22px;background:var(--success);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;color:#0d0e12;font-weight:700;}
+#lesson-view{display:none;}
+.lh-date{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px;}
+.lh-title{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(1.4rem,4vw,2rem);margin-bottom:10px;line-height:1.2;}
+.lh-xp{display:inline-block;background:var(--accent);color:#fff;font-family:'Syne',sans-serif;font-weight:700;font-size:12px;padding:3px 12px;border-radius:20px;margin-bottom:1.75rem;}
+.lesson-tabs{display:flex;gap:4px;background:var(--surface);border-radius:10px;padding:4px;margin-bottom:2rem;border:1px solid var(--border);}
+.ltab{flex:1;padding:10px;text-align:center;border-radius:7px;cursor:pointer;font-size:13px;font-family:'Syne',sans-serif;font-weight:600;color:var(--muted);transition:all .15s;}
+.ltab.active{background:var(--card);color:var(--text);border:1px solid var(--border);}
+.lsec-title{font-family:'Syne',sans-serif;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:1.2px;color:var(--muted);margin:2.25rem 0 .85rem;}
+.lsec-title:first-child{margin-top:0;}
+.concept{border-left:3px solid var(--accent);background:var(--card);border-radius:0 12px 12px 0;padding:1.35rem 1.6rem;margin-bottom:1.35rem;font-size:15px;line-height:1.9;}
+.concept strong,.concept b{color:var(--accent);}
+.analogy{background:rgba(232,255,71,.04);border:1px solid rgba(232,255,71,.14);border-radius:12px;padding:1.1rem 1.4rem;margin-bottom:1.35rem;font-size:14px;line-height:1.85;}
+.analogy .alabel{font-size:10px;text-transform:uppercase;letter-spacing:.7px;color:#e8ff47;font-family:'Syne',sans-serif;font-weight:700;margin-bottom:7px;}
+.step-box{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.35rem 1.6rem;margin-bottom:1.35rem;}
+.step-box .stitle{font-family:'Syne',sans-serif;font-weight:700;font-size:13px;color:var(--success);margin-bottom:.9rem;text-transform:uppercase;letter-spacing:.5px;}
+.step-row{display:flex;gap:13px;align-items:flex-start;margin-bottom:.8rem;font-size:14px;line-height:1.75;}
+.step-row:last-child{margin-bottom:0;}
+.sn{background:var(--accent);color:#fff;font-family:'Syne',sans-serif;font-weight:800;font-size:11px;border-radius:50%;min-width:22px;height:22px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:3px;}
+.eg{background:rgba(255,255,255,.02);border:1px solid var(--border);border-radius:12px;padding:1.35rem 1.6rem;margin-bottom:1.35rem;}
+.eg .etitle{font-size:10px;text-transform:uppercase;letter-spacing:.7px;color:var(--accent);font-family:'Syne',sans-serif;font-weight:700;margin-bottom:.9rem;}
+.eg .line{font-family:monospace;font-size:15px;color:var(--warn);margin:.4rem 0;line-height:1.65;}
+.eg .note{font-size:13px;color:var(--muted);margin-top:.7rem;font-style:italic;line-height:1.6;}
+.warn-box{background:rgba(255,107,107,.06);border:1px solid rgba(255,107,107,.2);border-radius:12px;padding:1.1rem 1.4rem;margin-bottom:1.35rem;}
+.warn-box .wtitle{font-size:10px;text-transform:uppercase;letter-spacing:.7px;color:var(--danger);font-family:'Syne',sans-serif;font-weight:700;margin-bottom:7px;}
+.recap{background:var(--surface);border:1px solid rgba(78,205,196,.2);border-radius:12px;padding:1.35rem 1.6rem;margin-bottom:1.35rem;font-size:14px;line-height:1.95;}
+.recap .rtitle{font-size:10px;text-transform:uppercase;letter-spacing:.7px;color:var(--success);font-family:'Syne',sans-serif;font-weight:700;margin-bottom:.8rem;}
+.svg-wrap{background:var(--card);border-radius:12px;padding:1rem;margin-bottom:1.35rem;}
+.quiz-item{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.6rem;margin-bottom:1.1rem;}
+.q-num{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:7px;font-family:'Syne',sans-serif;font-weight:600;}
+.q-text{font-family:'Syne',sans-serif;font-weight:600;font-size:15px;margin-bottom:1.1rem;line-height:1.55;}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:9px;}
+.opt{padding:12px 15px;background:var(--surface);border:1px solid var(--border);border-radius:10px;cursor:pointer;font-size:14px;color:var(--text);font-family:'DM Sans',sans-serif;text-align:left;transition:all .15s;line-height:1.4;}
+.opt:hover:not(:disabled){border-color:var(--accent);color:var(--accent);}
+.opt.correct{background:rgba(78,205,196,.1);border-color:var(--success);color:var(--success);}
+.opt.wrong-shake{background:rgba(255,107,107,.1);border-color:var(--danger);color:var(--danger);animation:shake .3s ease;}
+.opt.wrong-final{background:rgba(255,107,107,.05);border-color:rgba(255,107,107,.2);color:rgba(255,107,107,.45);}
+.opt.neutral-off{opacity:.38;}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+.retry-msg{margin-top:11px;padding:9px 14px;border-radius:8px;font-size:13px;background:rgba(255,211,61,.06);border:1px solid rgba(255,211,61,.18);color:var(--warn);}
+.fb{margin-top:13px;padding:15px 17px;border-radius:10px;font-size:14px;line-height:1.8;}
+.fb.ok{background:rgba(78,205,196,.05);border:1px solid rgba(78,205,196,.2);}
+.fb.ko{background:rgba(255,107,107,.05);border:1px solid rgba(255,107,107,.18);}
+.fb-label{font-family:'Syne',sans-serif;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.5px;margin-bottom:9px;}
+.fb.ok .fb-label{color:var(--success);}
+.fb.ko .fb-label{color:var(--danger);}
+.fb-step{display:flex;gap:11px;align-items:flex-start;margin-bottom:.5rem;font-size:13px;color:var(--muted);}
+.fb-step .arr{color:#e8ff47;font-weight:700;flex-shrink:0;}
+.quiz-score{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:15px 20px;text-align:center;margin-top:1.1rem;font-family:'Syne',sans-serif;font-weight:700;font-size:19px;color:var(--accent);}
+.ch-info{background:rgba(255,255,255,.02);border:1px solid var(--border);border-radius:12px;padding:1.1rem 1.4rem;margin-bottom:1.5rem;font-size:13px;color:var(--muted);line-height:1.65;}
+.ch-info span{color:#e8ff47;font-family:'Syne',sans-serif;font-weight:700;}
+.ch-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.6rem;margin-bottom:1.1rem;}
+.ch-title{font-family:'Syne',sans-serif;font-weight:700;font-size:15px;color:var(--accent);margin-bottom:9px;}
+.ch-ctx{font-size:14px;color:var(--muted);line-height:1.85;margin-bottom:1.3rem;}
+.answer-input{width:100%;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:13px 15px;color:var(--text);font-size:14px;font-family:'DM Sans',sans-serif;outline:none;transition:border-color .15s;resize:vertical;}
+.answer-input:focus{border-color:var(--accent);}
+.code-row{margin-top:11px;display:flex;gap:9px;align-items:center;flex-wrap:wrap;}
+.code-input{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:9px 13px;color:var(--text);font-size:15px;font-family:'Syne',sans-serif;font-weight:700;letter-spacing:3px;width:105px;outline:none;}
+.code-input:focus{border-color:var(--accent);}
+.code-hint{font-size:11px;color:var(--muted);}
+.unlock-btn{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:9px 13px;cursor:pointer;font-size:12px;font-family:'Syne',sans-serif;font-weight:600;color:var(--muted);transition:all .15s;}
+.unlock-btn:hover{border-color:var(--accent);color:var(--accent);}
+.ans-reveal{background:rgba(78,205,196,.03);border:1px solid rgba(78,205,196,.18);border-radius:10px;padding:1.1rem 1.4rem;margin-top:11px;font-size:14px;line-height:1.85;display:none;}
+.ans-label{font-size:10px;text-transform:uppercase;letter-spacing:.5px;color:var(--success);font-family:'Syne',sans-serif;font-weight:700;margin-bottom:7px;}
+.wrong-code{color:var(--danger);font-size:12px;margin-top:5px;display:none;}
+.complete-btn{width:100%;margin-top:1.85rem;padding:16px;background:var(--accent);color:#fff;font-family:'Syne',sans-serif;font-weight:800;font-size:15px;border:none;border-radius:12px;cursor:pointer;transition:all .15s;}
+.complete-btn:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(0,0,0,.3);}
+.done-banner{background:rgba(78,205,196,.06);border:1px solid rgba(78,205,196,.22);border-radius:12px;padding:1.6rem;text-align:center;margin-top:1.6rem;}
+.done-banner .big{font-family:'Syne',sans-serif;font-weight:800;font-size:1.7rem;color:var(--success);}
+.parent-panel{display:none;background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:1.6rem;margin-bottom:2.2rem;}
+.parent-panel h3{font-family:'Syne',sans-serif;font-weight:700;font-size:14px;color:var(--accent);margin-bottom:1.1rem;}
+.pp-row{display:flex;justify-content:space-between;align-items:center;padding:9px 0;border-bottom:1px solid var(--border);font-size:13px;}
+.pp-row:last-child{border-bottom:none;}
+.pp-q{color:var(--muted);flex:1;padding-right:1rem;line-height:1.4;}
+.pp-clics{font-family:'Syne',sans-serif;font-weight:700;font-size:13px;white-space:nowrap;}
+.pp-clics.good{color:var(--success);}
+.pp-clics.warn{color:var(--warn);}
+.pp-clics.bad{color:var(--danger);}
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:200;align-items:center;justify-content:center;}
+.modal-overlay.open{display:flex;}
+.modal{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:2.2rem;max-width:360px;width:92%;}
+.modal h3{font-family:'Syne',sans-serif;font-weight:700;font-size:16px;margin-bottom:1.1rem;}
+.modal p{font-size:13px;color:var(--muted);margin-bottom:1rem;line-height:1.6;}
+.modal input{width:100%;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:11px 15px;color:var(--text);font-size:20px;font-family:'Syne',sans-serif;font-weight:700;letter-spacing:5px;outline:none;text-align:center;margin-bottom:1.1rem;}
+.modal input:focus{border-color:var(--accent);}
+.modal-btns{display:flex;gap:9px;}
+.modal-btns button{flex:1;padding:11px;border-radius:8px;cursor:pointer;font-family:'Syne',sans-serif;font-weight:600;font-size:13px;border:1px solid var(--border);background:var(--surface);color:var(--muted);transition:all .15s;}
+.modal-btns button.primary{background:var(--accent);border-color:var(--accent);color:#fff;}
+.modal-err{color:var(--danger);font-size:12px;text-align:center;margin-top:-7px;margin-bottom:9px;display:none;}
+.hidden{display:none!important;}
+.back-btn{background:none;border:1px solid var(--border);color:var(--muted);font-size:13px;padding:8px 15px;border-radius:8px;cursor:pointer;margin-bottom:1.6rem;font-family:'DM Sans',sans-serif;transition:all .15s;}
+.back-btn:hover{color:var(--accent);border-color:var(--accent);}
+
+:root { --accent:#e8ff47; }
+</style>
+</head>
+<body>
+<nav class="topbar">
+  <div class="topbar-left">
+    <a href="index.html" class="back-home">← Accueil</a>
+    <span class="week-label">Semaine 1 · 17–19 juin</span>
+  </div>
+  <div class="topbar-right">
+    <span class="streak-pill" id="streak-top">🔥 0</span>
+    <span class="xp-pill" id="xp-top">0 XP</span>
+    <button class="pbtn" onclick="openParentModal()">👨‍👩 Parents</button>
+  </div>
+</nav>
+<div class="modal-overlay" id="parent-modal">
+  <div class="modal">
+    <h3>🔐 Vue parents</h3>
+    <p style="font-size:13px;color:var(--muted);margin-bottom:1rem">Ce panneau montre pour chaque question du quiz combien de clics votre fils a fait avant de trouver la bonne réponse.</p>
+    <input type="text" id="parent-input" placeholder="PAPA" maxlength="4" oninput="this.value=this.value.toUpperCase()">
+    <div class="modal-err" id="modal-err">Code incorrect — réessaie</div>
+    <div class="modal-btns">
+      <button onclick="closeParentModal()">Annuler</button>
+      <button class="primary" onclick="checkParentCode()">Accéder</button>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div id="main-view">
+    <div class="week-hero">
+      <h1>Semaine 1 — <span style="color:var(--accent)">Fractions &amp; Proportionnalité</span></h1>
+      <p>Jours 1, 2, 3 · Fractions · Proportionnalité</p>
+      <div class="xp-bar-wrap"><div class="xp-bar" id="xp-bar" style="width:0%"></div></div>
+    </div>
+    <div class="day-grid" id="day-grid"></div>
+  </div>
+  <div id="lesson-view">
+    <button class="back-btn" onclick="backToGrid()">← Retour aux jours</button>
+    <div class="parent-panel" id="parent-panel">
+      <h3>📊 Suivi parental — Clics par question</h3>
+      <div id="pp-content"></div>
+    </div>
+    <div class="lh-date" id="lh-date"></div>
+    <div class="lh-title" id="lh-title"></div>
+    <div class="lh-xp" id="lh-xp"></div>
+    <div class="lesson-tabs">
+      <div class="ltab active" id="tab-learn" onclick="setTab('learn')">📖 Apprendre</div>
+      <div class="ltab" id="tab-quiz" onclick="setTab('quiz')">🎯 Quiz</div>
+      <div class="ltab" id="tab-challenges" onclick="setTab('challenges')">🏆 Défis</div>
+    </div>
+    <div id="sec-learn"></div>
+    <div id="sec-quiz" class="hidden"></div>
+    <div id="sec-challenges" class="hidden"></div>
+  </div>
+</div>
+<script>
+const DAYS = [
+{
+  id:1, date:"Mercredi 17 juin", title:"Fractions — bases &amp; mécanique", xp:100, theme:"Fractions",
+  learn:`
+<div class="lsec-title">1. Le sens d'une fraction</div>
+<div class="concept">Imagine une pizza coupée en <strong>4 parts égales</strong>. Tu en manges <strong>3</strong>. On écrit <strong>3/4</strong> — "trois quarts".<br><br>La barre sépare deux informations :<br>— En <strong>bas</strong> : le <strong>dénominateur</strong> = en combien de parts on a coupé le tout (ici : 4).<br>— En <strong>haut</strong> : le <strong>numérateur</strong> = combien de parts on prend (ici : 3).<br><br>Astuce : <strong>D</strong>énominateur = <strong>D</strong>essous. Les deux D vont ensemble.</div>
+<div class="svg-wrap"><svg viewBox="0 0 480 175" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:480px;display:block;margin:0 auto"><text x="240" y="18" text-anchor="middle" fill="#7a7d8a" font-size="11" font-family="sans-serif" font-weight="700" letter-spacing="1">LA FRACTION 3/4 EN IMAGE</text><g transform="translate(90,100)"><circle cx="0" cy="0" r="65" fill="#2a2d38" stroke="#e8ff47" stroke-width="2"/><path d="M0,0 L0,-65 A65,65 0 0,1 65,0 Z" fill="rgba(232,255,71,0.25)" stroke="#e8ff47" stroke-width="1.5"/><path d="M0,0 L65,0 A65,65 0 0,1 0,65 Z" fill="rgba(232,255,71,0.25)" stroke="#e8ff47" stroke-width="1.5"/><path d="M0,0 L0,65 A65,65 0 0,1 -65,0 Z" fill="rgba(232,255,71,0.25)" stroke="#e8ff47" stroke-width="1.5"/><path d="M0,0 L-65,0 A65,65 0 0,1 0,-65 Z" fill="#1e2029" stroke="#2a2d38" stroke-width="1.5"/><line x1="0" y1="-65" x2="0" y2="65" stroke="#0d0e12" stroke-width="2.5"/><line x1="-65" y1="0" x2="65" y2="0" stroke="#0d0e12" stroke-width="2.5"/></g><text x="225" y="62" fill="#e8ff47" font-size="13" font-weight="700" font-family="sans-serif">Numérateur = 3</text><text x="225" y="78" fill="#7a7d8a" font-size="12" font-family="sans-serif">→ parts prises (jaune)</text><text x="225" y="118" fill="#ff6b35" font-size="13" font-weight="700" font-family="sans-serif">Dénominateur = 4</text><text x="225" y="134" fill="#7a7d8a" font-size="12" font-family="sans-serif">→ parts totales</text><text x="90" y="172" text-anchor="middle" fill="#7a7d8a" font-size="11" font-family="sans-serif">3/4 = 0,75 = 75%</text></svg></div>
+<div class="lsec-title">2. Fractions équivalentes</div>
+<div class="concept">1/2 et 2/4 = même quantité. Règle : multiplier ou diviser le numérateur ET le dénominateur par le <strong>même nombre</strong>.<br><br>Exemple — 1/2 vers 3/6 :<br>Je veux 6 au dénominateur. 2×3=6, donc ×3. Je fais PAREIL en haut : 1×3=3. → 1/2=3/6.<br>Vérif : 1÷2=0,5 et 3÷6=0,5 ✓</div>
+<div class="eg"><div class="etitle">Simplifier 3/6 vers 1/2</div><div class="line">Quel nombre divise exactement 3 ET 6 ? → 3</div><div class="line">3÷3=1 et 6÷3=2 → 3/6 = 1/2</div><div class="note">Vérif : 3÷6=0,5=1÷2 ✓</div></div>
+<div class="lsec-title">3. Simplifier — fraction irréductible</div>
+<div class="step-box"><div class="stitle">Méthode</div>
+<div class="step-row"><div class="sn">1</div><div>Cherche un nombre qui divise exactement le numérateur ET le dénominateur.</div></div>
+<div class="step-row"><div class="sn">2</div><div>Divise les deux. Recommence jusqu'à ce qu'aucun diviseur commun n'existe.</div></div>
+<div class="step-row"><div class="sn">✓</div><div>Vérif : même résultat décimal avant et après.</div></div></div>
+<div class="eg"><div class="etitle">Simplifier 12/18</div><div class="line">÷2 → 6/9 → ÷3 → 2/3. Irréductible : 2 et 3 sans diviseur commun.</div><div class="note">Vérif : 12÷18=0,666=2÷3 ✓</div></div>
+<div class="warn-box"><div class="wtitle">⚠️ Erreur absolue à éviter</div>FAUX : 3/6 − soustraire 2 → 1/4 ❌ | FAUX : diviser seulement le numérateur → 1/6 ❌<br>JUSTE : diviser LES DEUX par 3 → 1/2 ✓</div>
+<div class="lsec-title">4. Fraction ↔ décimal</div>
+<div class="concept"><strong>Fraction → décimal :</strong> divise numérateur par dénominateur. La barre = signe de division.<br>3/4 = 3÷4 = 0,75 | 1/3 = 0,333… | 7/2 = 3,5<br><br><strong>Décimal → fraction :</strong> nombre de décimales = dénominateur (/10, /100, /1000…) puis simplifie.<br>0,4 = 4/10 → ÷2 → 2/5 | 0,25 = 25/100 → ÷25 → 1/4 | 0,75 = 75/100 → ÷25 → 3/4</div>
+<div class="svg-wrap"><svg viewBox="0 0 500 100" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:500px;display:block;margin:0 auto"><text x="250" y="16" text-anchor="middle" fill="#7a7d8a" font-size="11" font-family="sans-serif" font-weight="700" letter-spacing="1">CONVERSIONS À MÉMORISER</text><rect x="10" y="25" width="480" height="65" rx="8" fill="#16181f" stroke="#2a2d38" stroke-width="1"/><text x="57" y="55" text-anchor="middle" fill="#f0f0f0" font-size="14" font-weight="700" font-family="sans-serif">1/2</text><text x="57" y="73" text-anchor="middle" fill="#e8ff47" font-size="12" font-family="sans-serif">0,5 = 50%</text><line x1="106" y1="30" x2="106" y2="85" stroke="#2a2d38" stroke-width="1"/><text x="155" y="55" text-anchor="middle" fill="#f0f0f0" font-size="14" font-weight="700" font-family="sans-serif">1/4</text><text x="155" y="73" text-anchor="middle" fill="#e8ff47" font-size="12" font-family="sans-serif">0,25 = 25%</text><line x1="204" y1="30" x2="204" y2="85" stroke="#2a2d38" stroke-width="1"/><text x="253" y="55" text-anchor="middle" fill="#f0f0f0" font-size="14" font-weight="700" font-family="sans-serif">3/4</text><text x="253" y="73" text-anchor="middle" fill="#e8ff47" font-size="12" font-family="sans-serif">0,75 = 75%</text><line x1="302" y1="30" x2="302" y2="85" stroke="#2a2d38" stroke-width="1"/><text x="351" y="55" text-anchor="middle" fill="#f0f0f0" font-size="14" font-weight="700" font-family="sans-serif">1/3</text><text x="351" y="73" text-anchor="middle" fill="#e8ff47" font-size="12" font-family="sans-serif">0,333…</text><line x1="400" y1="30" x2="400" y2="85" stroke="#2a2d38" stroke-width="1"/><text x="448" y="55" text-anchor="middle" fill="#f0f0f0" font-size="14" font-weight="700" font-family="sans-serif">1/5</text><text x="448" y="73" text-anchor="middle" fill="#e8ff47" font-size="12" font-family="sans-serif">0,2 = 20%</text></svg></div>
+<div class="analogy"><div class="alabel">🏉 XV de France</div>15 joueurs : 8 avants + 7 arrières.<br>8/15 + 7/15 = 15/15 = 1 (tout le groupe). Avants : 8÷15 ≈ 53,3%.</div>
+<div class="recap"><div class="rtitle">📄 Récap Jour 1</div>• D = Dessous = Dénominateur (parts totales). Haut = Numérateur (parts prises).<br>• Équivalentes : ×ou÷ les DEUX par le même nombre.<br>• Simplifier : trouver diviseur commun, diviser les deux, recommencer.<br>• Fraction→décimal : numérateur÷dénominateur.<br>• Décimal→fraction : /10 ou /100 selon décimales, puis simplifier.</div>`,
+  quiz:[
+    {q:"Dans 5/8, quel est le dénominateur ?",opts:["5","8","13","40"],ans:1,
+     exp:{ok:"Exact ! Dénominateur = Dessous. Dans 5/8, en bas c'est 8.",ko:"D = Dessous. Le nombre EN BAS de la barre = dénominateur.",steps:["5 / 8","Haut = numérateur = 5","Bas = dénominateur = 8"]}},
+    {q:"Quelle fraction est équivalente à 1/2 ?",opts:["2/3","4/8","3/5","5/8"],ans:1,
+     exp:{ok:"Parfait ! 1×4=4 et 2×4=8 → 4/8. Vérif : 4÷8=0,5=1÷2 ✓",ko:"Convertis en décimal : 4÷8=0,5=1÷2 ✓.",steps:["1÷2=0,5","4÷8=0,5 ✓ → c'est 4/8"]}},
+    {q:"Simplifie 12/16",opts:["6/8","4/5","3/4","2/3"],ans:2,
+     exp:{ok:"Bravo ! 12÷4=3 et 16÷4=4 → 3/4. Vérif : 12÷16=0,75=3÷4 ✓",ko:"Cherche un diviseur de 12 ET 16. 4 fonctionne : 12÷4=3, 16÷4=4.",steps:["12÷2=6, 16÷2=8 → 6/8","6÷2=3, 8÷2=4 → 3/4 irréductible","Vérif : 12÷16=0,75=3÷4 ✓"]}},
+    {q:"3/4 en décimal ?",opts:["0,43","0,34","0,75","1,33"],ans:2,
+     exp:{ok:"Parfait ! 3÷4=0,75.",ko:"La barre = division. 3/4 = 3÷4 = 0,75.",steps:["3÷4","30÷4=7 reste 2","20÷4=5 reste 0","= 0,75"]}},
+    {q:"XV de France, 6 joueurs remplacés sur 15. Fraction simplifiée ?",opts:["6/15","2/5","3/5","1/3"],ans:1,
+     exp:{ok:"Super ! 6/15 ÷3 → 2/5. Vérif : 6÷15=0,4=2÷5 ✓",ko:"6/15 : diviseur commun de 6 et 15 = 3.",steps:["6÷3=2 et 15÷3=5 → 2/5","Vérif : 6÷15=0,4=2÷5 ✓"]}},
+    {q:"Convertis 0,4 en fraction irréductible",opts:["4/100","2/5","4/10","1/4"],ans:1,
+     exp:{ok:"Exact ! 0,4=4/10 → ÷2 → 2/5. Vérif : 2÷5=0,4 ✓",ko:"1 décimale → /10. 0,4=4/10. Puis simplifie.",steps:["0,4 = 4/10","÷2 → 2/5","Vérif : 2÷5=0,4 ✓"]}},
+    {q:"F1 2024 : 9 victoires sur 24 courses. Fraction simplifiée ?",opts:["9/24","1/3","3/8","3/9"],ans:2,
+     exp:{ok:"Parfait ! 9/24 ÷3 → 3/8. Vérif : 9÷24=0,375=3÷8 ✓",ko:"9/24 : diviseur commun de 9 et 24 = 3.",steps:["9÷3=3 et 24÷3=8 → 3/8","Vérif : 9÷24=0,375=3÷8 ✓"]}},
+    {q:"0,25 en fraction irréductible ?",opts:["25/10","1/4","5/20","2/8"],ans:1,
+     exp:{ok:"Bien ! 0,25 = 25/100 → ÷25 → 1/4. Vérif : 1÷4=0,25 ✓",ko:"2 décimales → /100. 0,25=25/100. Simplifie ÷25.",steps:["0,25 = 25/100","÷25 → 1/4","Vérif : 1÷4=0,25 ✓"]}}
+  ],
+  challenges:[
+    {title:"🏉 Défi XV de France",ctx:"15 joueurs : 8 avants, 7 arrières. 1) Fraction d'avants simplifiée ? 2) Fraction d'arrières ? 3) Additionne les deux et explique le résultat. 4) Convertis chaque fraction en pourcentage (arrondi au dixième).",
+     ans:"1) 8/15 (irréductible : 8 et 15 sans diviseur commun). 2) 7/15 (idem). 3) 8/15+7/15=15/15=1 : logique car tous les joueurs sont soit avants soit arrières → le tout entier. 4) 8÷15≈53,3% et 7÷15≈46,7%. Vérif : 53,3+46,7=100% ✓"},
+    {title:"🏎️ Défi conversions F1",ctx:"Un pilote termine 0,75 de la course avant abandon. 1) Convertis 0,75 en fraction (toutes étapes). 2) La course = 60 tours. Combien en a-t-il fait ? 3) Fraction des tours NON effectués ?",
+     ans:"1) 0,75=75/100 → ÷25 → 3/4. 2) 3/4×60=45 tours. 3) 1−3/4=1/4 des tours non faits. 1/4×60=15 tours. Vérif : 45+15=60 ✓"}
+  ]
+},
+{
+  id:2, date:"Jeudi 18 juin", title:"Fractions — toutes les opérations", xp:100, theme:"Fractions",
+  learn:`
+<div class="lsec-title">1. Addition — le piège à éviter absolument</div>
+<div class="concept">Tentation : 1/2+1/3=2/5. <strong>NON, FAUX.</strong><br><br>Pourquoi ? Dénominateurs différents = parts de tailles différentes. Comme additionner des mètres et des km sans convertir.<br><br>Preuve : 1/2+1/3 doit valoir 0,5+0,333=0,833. Or 2÷5=0,4 → pas la même chose !<br><br><strong>Règle absolue :</strong> on ne peut additionner (ou soustraire) des fractions que si elles ont le <strong>même dénominateur</strong>.</div>
+<div class="warn-box"><div class="wtitle">⚠️ Erreur n°1 en 5e</div>1/2+1/3 = 2/5 → <strong style="color:var(--danger)">FAUX !</strong> On n'additionne JAMAIS numérateurs et dénominateurs séparément.</div>
+<div class="lsec-title">2. Addition/soustraction — méthode complète</div>
+<div class="step-box"><div class="stitle">Les 5 étapes</div>
+<div class="step-row"><div class="sn">1</div><div>Dénominateurs identiques ? Additionne les numérateurs, le dénominateur reste. FIN.</div></div>
+<div class="step-row"><div class="sn">2</div><div>Dénominateurs différents ? Trouver le commun (méthode simple : multiplier les deux dénominateurs).</div></div>
+<div class="step-row"><div class="sn">3</div><div>Convertir la 1ère fraction : "×combien pour passer au nouveau dénominateur ?" → multiplier le numérateur par ce même nombre.</div></div>
+<div class="step-row"><div class="sn">4</div><div>Convertir la 2ème fraction de la même façon.</div></div>
+<div class="step-row"><div class="sn">5</div><div>Additionner/soustraire les numérateurs. Simplifier si possible.</div></div></div>
+<div class="eg"><div class="etitle">Exemple fil rouge : 1/2 + 1/3</div><div class="line">Commun = 2×3 = 6</div><div class="line">1/2 → ×3 → 3/6 | 1/3 → ×2 → 2/6</div><div class="line">3/6+2/6 = 5/6. Irréductible (5 et 6 sans diviseur commun).</div><div class="note">Vérif : 0,5+0,333=0,833=5÷6 ✓</div></div>
+<div class="eg"><div class="etitle">Exemple soustraction : 5/6 − 1/4</div><div class="line">Commun = 6×4 = 24</div><div class="line">5/6 → ×4 → 20/24 | 1/4 → ×6 → 6/24</div><div class="line">20/24−6/24 = 14/24 → ÷2 → 7/12</div><div class="note">Vérif : 5÷6−1÷4=0,583=7÷12 ✓</div></div>
+<div class="lsec-title">3. Multiplication — la règle directe</div>
+<div class="concept">Pas besoin de dénominateur commun. <strong>(a/b)×(c/d) = (a×c)/(b×d)</strong><br><br>2/3×3/4 = 6/12 = 1/2.<br><br><strong>Le mot "de" = multiplication :</strong> "les 3/4 de 80" = 3/4×80. Méthode rapide : 80÷4=20, puis 20×3=60.</div>
+<div class="lsec-title">4. Division — la règle KFC</div>
+<div class="concept"><strong>KFC : Keep · Flip · Change</strong><br>— Keep : garde la 1ère fraction<br>— Flip : retourne la 2ème<br>— Change : remplace ÷ par ×<br><br>2/3÷1/4 → K:2/3, F:4/1, C:× → 2/3×4/1=8/3</div>
+<div class="analogy"><div class="alabel">🏉 Possession de balle</div>France : 3/8 du temps en 1re MT et 2/5 en 2e MT.<br>Commun=40. 15/40+16/40=31/40 du match. Adversaire : 9/40.</div>
+<div class="recap"><div class="rtitle">📄 Récap Jour 2</div>• JAMAIS additionner numérateurs et dénominateurs séparément.<br>• Addition : dénominateur commun → convertir → opérer les numérateurs.<br>• Multiplication : (a/b)×(c/d)=(a×c)/(b×d). Pas de commun nécessaire.<br>• "de"=multiplication. Rapide : ÷dénom puis ×num.<br>• Division : KFC → multiplier par l'inverse.</div>`,
+  quiz:[
+    {q:"3/8+2/8=?",opts:["5/16","5/8","1","6/8"],ans:1,
+     exp:{ok:"Parfait ! Même dénominateur → 3+2=5, dénom reste 8 → 5/8.",ko:"Même dénominateur → additionne seulement les numérateurs.",steps:["Dénom identiques (8 et 8)","3+2=5, dénom reste 8","= 5/8"]}},
+    {q:"1/2+1/3=? (piège !)",opts:["2/5","2/6","5/6","1/6"],ans:2,
+     exp:{ok:"Excellent ! Commun=6. 1/2=3/6, 1/3=2/6. 3+2=5 → 5/6.",ko:"JAMAIS 2/5 ! Il faut un commun : 6.",steps:["Commun=2×3=6","1/2→×3→3/6","1/3→×2→2/6","3/6+2/6=5/6"]}},
+    {q:"3/4 de 80=?",opts:["20","40","60","30"],ans:2,
+     exp:{ok:"Parfait ! 'de'=×. 80÷4=20, 20×3=60.",ko:"'de'=multiplication. ÷dénom puis ×num.",steps:["÷4 : 80÷4=20","×3 : 20×3=60"]}},
+    {q:"2/3×3/5=?",opts:["5/8","6/15","1/5","2/5"],ans:3,
+     exp:{ok:"Bien ! 2×3=6, 3×5=15 → 6/15 → ÷3 → 2/5.",ko:"Num×num et dénom×dénom. Puis simplifie.",steps:["2×3=6 et 3×5=15 → 6/15","÷3 → 2/5"]}},
+    {q:"3/4÷1/2=?",opts:["3/8","6/4","3/2","4/6"],ans:2,
+     exp:{ok:"Super ! KFC : 3/4, 1/2→2/1, × → 3/4×2/1=6/4=3/2.",ko:"KFC : K=3/4, F=1/2→2/1, C=×.",steps:["K: 3/4 | F: 2/1 | C: ×","3/4×2/1=6/4=3/2"]}},
+    {q:"1/3+1/6=?",opts:["2/9","1/2","3/6","2/6"],ans:1,
+     exp:{ok:"Bien ! 6 est multiple de 3. Commun=6. 1/3=2/6. 2/6+1/6=3/6=1/2.",ko:"6 est multiple de 3 → commun=6.",steps:["Commun=6","1/3→2/6","2/6+1/6=3/6=1/2"]}},
+    {q:"3/5−1/3=?",opts:["2/2","4/15","2/15","4/8"],ans:1,
+     exp:{ok:"Bravo ! Commun=15. 9/15−5/15=4/15.",ko:"Commun=5×3=15. Convertis puis soustrait.",steps:["Commun=15","3/5→9/15, 1/3→5/15","9−5=4 → 4/15"]}},
+    {q:"2/5+1/4=?",opts:["3/9","13/20","3/20","6/20"],ans:1,
+     exp:{ok:"Exact ! Commun=20. 2/5=8/20 et 1/4=5/20. 8+5=13 → 13/20.",ko:"Commun=5×4=20. Convertis puis additionne.",steps:["Commun=20","2/5→8/20, 1/4→5/20","8+5=13 → 13/20"]}}
+  ],
+  challenges:[
+    {title:"🏉 Défi possession de balle",ctx:"XV de France, 80 min. 1re MT (40 min) : 3/8 de possession. 2e MT (40 min) : 2/5. 1) Minutes de possession par MT ? 2) Fraction totale du match ? 3) L'adversaire en minutes ?",
+     ans:"1) 1re MT : 3/8×40=15 min. 2e MT : 2/5×40=16 min. 2) (15+16)÷80=31/80 du match. 3) Adversaire = 80−31=49 min. Vérif : 31+49=80 ✓"},
+    {title:"🏎️ Défi stratégie pneus",ctx:"Course 60 tours. Tendres : 1/3. Médiums : 5/12. Durs : le reste. 1) Tours en tendres et médiums ? 2) Fraction en durs ? Nombre de tours ? 3) Vérifie que 1/3+5/12+fraction_durs=1.",
+     ans:"1) Tendres : 20 tours. Médiums : 25 tours. 2) Durs : 1−1/3−5/12=12/12−4/12−5/12=3/12=1/4. 1/4×60=15 tours. 3) 4/12+5/12+3/12=12/12=1 ✓ Et 20+25+15=60 ✓"}
+  ]
+},
+{
+  id:3, date:"Vendredi 19 juin", title:"Proportionnalité &amp; règle de trois", xp:100, theme:"Proportionnalité",
+  learn:`
+<div class="lsec-title">1. La proportionnalité — ce que ça veut dire vraiment</div>
+<div class="concept">Deux grandeurs sont <strong>proportionnelles</strong> quand si l'une est multipliée par k, l'autre l'est aussi par k.<br><br>Maillots de rugby à 25€ : 1→25€, 2→50€, 5→125€, 0→0€.<br>Si quantité ×3, prix ×3. La relation passe toujours par zéro.<br><br><strong>Coefficient de proportionnalité</strong> = rapport constant : prix÷quantité=25 toujours.</div>
+<div class="svg-wrap"><svg viewBox="0 0 500 155" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:500px;display:block;margin:0 auto"><text x="250" y="16" text-anchor="middle" fill="#7a7d8a" font-size="11" font-family="sans-serif" font-weight="700" letter-spacing="1">TABLEAU DE PROPORTIONNALITÉ — MAILLOTS</text><rect x="20" y="25" width="460" height="115" rx="8" fill="#16181f" stroke="#2a2d38" stroke-width="1.5"/><rect x="20" y="25" width="460" height="30" rx="8" fill="#2a2d38"/><line x1="200" y1="25" x2="200" y2="140" stroke="#2a2d38" stroke-width="1.5"/><line x1="360" y1="25" x2="360" y2="140" stroke="#2a2d38" stroke-width="1.5"/><text x="110" y="46" text-anchor="middle" fill="#e8ff47" font-size="12" font-weight="700" font-family="sans-serif">Nb maillots</text><text x="280" y="46" text-anchor="middle" fill="#e8ff47" font-size="12" font-weight="700" font-family="sans-serif">Prix (€)</text><text x="425" y="46" text-anchor="middle" fill="#e8ff47" font-size="11" font-weight="700" font-family="sans-serif">Quotient</text><line x1="20" y1="70" x2="480" y2="70" stroke="#2a2d38" stroke-width="1"/><text x="110" y="62" text-anchor="middle" fill="#f0f0f0" font-size="14" font-family="sans-serif">1</text><text x="280" y="62" text-anchor="middle" fill="#f0f0f0" font-size="14" font-family="sans-serif">25</text><text x="425" y="62" text-anchor="middle" fill="#4ecdc4" font-size="13" font-weight="700" font-family="sans-serif">25</text><line x1="20" y1="95" x2="480" y2="95" stroke="#2a2d38" stroke-width="1"/><text x="110" y="87" text-anchor="middle" fill="#f0f0f0" font-size="14" font-family="sans-serif">3</text><text x="280" y="87" text-anchor="middle" fill="#f0f0f0" font-size="14" font-family="sans-serif">75</text><text x="425" y="87" text-anchor="middle" fill="#4ecdc4" font-size="13" font-weight="700" font-family="sans-serif">25</text><line x1="20" y1="120" x2="480" y2="120" stroke="#2a2d38" stroke-width="1"/><text x="110" y="112" text-anchor="middle" fill="#f0f0f0" font-size="14" font-family="sans-serif">7</text><text x="280" y="112" text-anchor="middle" fill="#e8ff47" font-size="14" font-weight="700" font-family="sans-serif">?</text><text x="425" y="112" text-anchor="middle" fill="#4ecdc4" font-size="13" font-weight="700" font-family="sans-serif">25</text><text x="110" y="136" text-anchor="middle" fill="#f0f0f0" font-size="14" font-family="sans-serif">10</text><text x="280" y="136" text-anchor="middle" fill="#f0f0f0" font-size="14" font-family="sans-serif">250</text><text x="425" y="136" text-anchor="middle" fill="#4ecdc4" font-size="13" font-weight="700" font-family="sans-serif">25</text></svg></div>
+<div class="lsec-title">2. Règle de trois — produit en croix</div>
+<div class="step-box"><div class="stitle">Méthode</div>
+<div class="step-row"><div class="sn">1</div><div>Écris les deux valeurs connues l'une sous l'autre, avec l'inconnue x en face.</div></div>
+<div class="step-row"><div class="sn">2</div><div>x = (valeur côté x) × (valeur connue opposée) ÷ (valeur connue même côté).</div></div>
+<div class="step-row"><div class="sn">✓</div><div>Vérif : quotient constant.</div></div></div>
+<div class="eg"><div class="etitle">3 maillots = 75€. Prix de 7 maillots ?</div><div class="line">x = (7×75)÷3 = 525÷3 = 175€</div><div class="line">Ou : 75÷3=25€/maillot → 7×25=175€</div><div class="note">Vérif : 175÷7=25=75÷3 ✓</div></div>
+<div class="lsec-title">3. Ce qui N'est PAS proportionnel</div>
+<div class="concept">✅ Prix de n billets, distance à vitesse constante.<br>❌ Abonnement+conso (terme fixe → pas 0 quand x=0).<br>❌ Taille selon l'âge.<br>❌ Aire d'un carré selon le côté (×2 côté → ×4 aire).<br><br><strong>Test :</strong> x=0 → y=0 ? Et quotient constant ?</div>
+<div class="analogy"><div class="alabel">🏎️ Spa-Francorchamps</div>7,004 km/tour à 230 km/h. Temps par tour ≈ 1,83 min. Pour 44 tours ≈ 80,5 min.<br>Proportionnel : 0 tour=0 min ✓, quotient=1,83 min/tour constant ✓</div>
+<div class="recap"><div class="rtitle">📄 Récap Jour 3</div>• Proportionnel = quotient constant ET passe par zéro.<br>• Coefficient = quotient entre les deux grandeurs.<br>• Règle de 3 : x = (valeur cherchée × valeur connue) ÷ valeur de référence.<br>• Rapide : valeur pour 1 unité, puis multiplier.</div>`,
+  quiz:[
+    {q:"5 maillots=100€. Prix de 8 maillots ?",opts:["125€","160€","200€","80€"],ans:1,
+     exp:{ok:"Parfait ! 100÷5=20€/maillot. 8×20=160€.",ko:"Valeur unitaire : 100÷5=20€. Puis ×8.",steps:["100÷5=20€/maillot","8×20=160€"]}},
+    {q:"180 km/h, vitesse constante. Combien en 45 min ?",opts:["90 km","120 km","135 km","150 km"],ans:2,
+     exp:{ok:"Exact ! 45 min=3/4 h. 180×3/4=135 km.",ko:"45 min=45/60=3/4 h. Distance ∝ temps.",steps:["45 min=3/4 h","180×3/4=135 km"]}},
+    {q:"Coefficient=25, valeur pour x=4 ?",opts:["4","25","100","29"],ans:2,
+     exp:{ok:"Exact ! 4×25=100.",ko:"Valeur B = coeff × valeur A.",steps:["4×25=100"]}},
+    {q:"3,5 essais/match. Sur 26 matchs ?",opts:["78","91","84","96"],ans:1,
+     exp:{ok:"Parfait ! 3,5×26=91.",ko:"Proportionnel : 3,5×26.",steps:["3,5×20=70","3,5×6=21","70+21=91"]}},
+    {q:"8 ouvriers, 6 jours. Pour 12 ouvriers ?",opts:["9 jours","4 jours","3 jours","8 jours"],ans:1,
+     exp:{ok:"Bien ! Proportion inverse. 8×6=48 jours-ouvriers. 48÷12=4 jours.",ko:"Proportion INVERSE : plus d'ouvriers = moins de temps. Travail total=8×6=48.",steps:["Travail=8×6=48 jours-ouvriers","48÷12=4 jours"]}},
+    {q:"Laquelle EST proportionnelle ?",opts:["Abonnement 30€+0,02€/SMS","n kg à 15€/kg","Taille selon l'âge","Aire d'un carré selon le côté"],ans:1,
+     exp:{ok:"Exact ! n kg à 15€/kg : 0kg=0€ ✓, quotient=15 constant ✓",ko:"Test : 0→0 ? Quotient constant ?",steps:["Abonnement : 0 SMS=30€≠0 → non","n kg : 0kg=0€ ✓, quotient=15 ✓ → OUI"]}},
+    {q:"Spa : 7 km/tour, 210 km/h. Temps pour 1 tour (en secondes) ?",opts:["90 s","120 s","150 s","180 s"],ans:1,
+     exp:{ok:"Bien ! 7÷210=1/30 h=2 min=120 s.",ko:"Temps=dist÷vitesse=7÷210=1/30 h. ×3600 s.",steps:["7÷210=1/30 h","1/30×60=2 min","2×60=120 s"]}},
+    {q:"3 billets de train = 45€. Tarif de 7 billets ?",opts:["85€","105€","90€","120€"],ans:1,
+     exp:{ok:"Parfait ! 45÷3=15€/billet. 7×15=105€.",ko:"Valeur unitaire : 45÷3=15€.",steps:["45÷3=15€/billet","7×15=105€"]}}
+  ],
+  challenges:[
+    {title:"🏎️ Défi règle de trois F1",ctx:"Spa : 7,004 km/tour, 230 km/h. Course doit dépasser 305 km. 1) Nombre de tours minimum ? 2) Distance réelle ? 3) Durée en min et secondes ? 4) Distance en 1 heure à ce rythme ?",
+     ans:"1) 305÷7,004≈43,5 → 44 tours minimum. 2) 44×7,004=308,176 km. 3) 308,176÷230×60≈80,4 min=80 min 24 s. 4) 230 km (définition km/h)."},
+    {title:"🏉 Défi saison Top 14",ctx:"Équipe : 3,5 essais/match sur 26 matchs. Transforme 2/3 des essais (2pts). Pénalités : 1,5/match (3pts). 1) Total essais ? 2) Transformations ? 3) Pts essais+transfo ? 4) Pts pénalités ? 5) Total saison ?",
+     ans:"1) 3,5×26=91 essais. 2) 2/3×91≈60 transfo. 3) 91×5+60×2=455+120=575 pts. 4) 1,5×26×3=117 pts. 5) 575+117=692 pts."}
+  ]
+}
+];
+// MOTEUR COMMUN — injecté dans chaque fichier semaine
+// Variables à définir avant injection : DAYS, ACCENT_COLOR, WEEK_TITLE
+const PARENT_CODE="PAPA";
+const getDC=id=>String(id*37).padStart(3,'0');
+let ST={xp:0,streak:0,tab:{},qa:{},tries:{},done:{},parentUnlocked:false};
+let currentDay=null;
+function lvl(x){return x<100?"Apprenti":x<250?"Élève":x<400?"Confirmé":"Expert !";}
+function upUI(){
+  document.getElementById('xp-top').textContent=ST.xp+' XP';
+  document.getElementById('streak-top').textContent='🔥 '+ST.streak;
+  const mx=DAYS.reduce((s,d)=>s+d.xp,0);
+  document.getElementById('xp-bar').style.width=Math.min(100,ST.xp/mx*100)+'%';
+  DAYS.forEach(d=>{if(ST.done[d.id])localStorage.setItem('day_done_'+d.id,'1');});
+}
+function findDay(id){return DAYS.find(d=>d.id===id);}
+function openParentModal(){document.getElementById('parent-modal').classList.add('open');}
+function closeParentModal(){document.getElementById('parent-modal').classList.remove('open');document.getElementById('modal-err').style.display='none';}
+function checkParentCode(){
+  if(document.getElementById('parent-input').value.toUpperCase()===PARENT_CODE){
+    ST.parentUnlocked=true;closeParentModal();
+    document.getElementById('parent-panel').style.display='block';renderParentPanel();
+  }else{document.getElementById('modal-err').style.display='block';setTimeout(()=>{document.getElementById('parent-input').value='';document.getElementById('modal-err').style.display='none';},1800);}
+}
+function renderParentPanel(){
+  const d=findDay(currentDay);
+  if(!d){document.getElementById('pp-content').innerHTML='<p style="color:var(--muted);font-size:13px">Ouvre un jour pour voir les résultats.</p>';return;}
+  let h='<p style="font-size:12px;color:var(--muted);margin-bottom:.75rem">1 clic = compris du 1er coup ✓ &nbsp;·&nbsp; 2 clics = 1 erreur avant &nbsp;·&nbsp; — = non répondu</p>';
+  d.quiz.forEach((q,qi)=>{
+    const key=d.id+'_'+qi;
+    const clicks=(ST.tries[key]||0)+(ST.qa[key]!==undefined?1:0);
+    const ok=ST.qa[key]===q.ans;
+    let cls='bad',label='— Non répondu';
+    if(ST.qa[key]!==undefined){
+      if(ok&&clicks===1){cls='good';label='✓ 1 clic — compris';}
+      else if(ok&&clicks===2){cls='warn';label='⚠ 2 clics — 1 erreur';}
+      else{cls='bad';label='✗ '+clicks+' clics — incorrect';}
+    }
+    h+=`<div class="pp-row"><div class="pp-q">Q${qi+1}. ${q.q.substring(0,60)}${q.q.length>60?'...':''}</div><div class="pp-clics ${cls}">${label}</div></div>`;
+  });
+  document.getElementById('pp-content').innerHTML=h;
+}
+function renderGrid(){
+  document.getElementById('day-grid').innerHTML=DAYS.map(d=>{
+    const done=ST.done[d.id];
+    const today=new Date().toLocaleDateString('fr-FR',{weekday:'short',day:'numeric',month:'short'});
+    return`<div class="day-card ${done?'done':''}" onclick="openDay(${d.id})">
+      ${done?'<div class="done-tick">✓</div>':''}
+      <div class="dc-date">${d.date}</div>
+      <div class="dc-title">${d.title}</div>
+      <div class="dc-tags"><span class="tag">${d.theme}</span><span class="tag">${d.xp} XP</span></div>
+    </div>`;
+  }).join('');
+}
+function openDay(id){
+  currentDay=id;
+  document.getElementById('main-view').style.display='none';
+  document.getElementById('lesson-view').style.display='block';
+  const d=findDay(id);
+  document.getElementById('lh-date').textContent=d.date;
+  document.getElementById('lh-title').textContent=d.title;
+  document.getElementById('lh-xp').textContent=`+${d.xp} XP`;
+  setTab(ST.tab[id]||'learn');window.scrollTo(0,0);
+  if(ST.parentUnlocked)renderParentPanel();
+}
+function backToGrid(){
+  currentDay=null;
+  document.getElementById('main-view').style.display='block';
+  document.getElementById('lesson-view').style.display='none';
+  renderGrid();if(ST.parentUnlocked)document.getElementById('parent-panel').style.display='none';
+}
+function setTab(tab){
+  const d=findDay(currentDay);if(!d)return;
+  ST.tab[currentDay]=tab;
+  ['learn','quiz','challenges'].forEach(t=>{
+    document.getElementById('tab-'+t).classList.toggle('active',t===tab);
+    document.getElementById('sec-'+t).classList.toggle('hidden',t!==tab);
+  });
+  if(tab==='learn')renderLearn(d);
+  if(tab==='quiz')renderQuiz(d);
+  if(tab==='challenges')renderChallenges(d);
+}
+function renderLearn(d){document.getElementById('sec-learn').innerHTML=d.learn+(ST.done[d.id]?doneBanner(d):'');}
+function renderQuiz(d){
+  let h='';
+  d.quiz.forEach((q,qi)=>{
+    const key=d.id+'_'+qi;
+    const finalAns=ST.qa[key];
+    const triesCount=ST.tries[key]||0;
+    const solved=(finalAns!==undefined);
+    h+=`<div class="quiz-item" id="qi_${key}"><div class="q-num">Question ${qi+1} / ${d.quiz.length}</div><div class="q-text">${q.q}</div><div class="opts">`;
+    q.opts.forEach((opt,oi)=>{
+      h+=`<button class="opt" ${solved?'disabled':''} onclick="answerQ(${d.id},${qi},${oi})">${opt}</button>`;
+    });
+    h+=`</div>`;
+    if(!solved&&triesCount===1)h+=`<div class="retry-msg">❌ Mauvaise réponse. Il te reste <strong>1 essai</strong> — réfléchis bien.</div>`;
+    if(solved){
+      const ok=(finalAns===q.ans);
+      h+=`<div class="fb ${ok?'ok':'ko'}"><div class="fb-label">${ok?'✓ Correct !':'✗ Mauvaise réponse'}</div><p style="margin-bottom:${ok?'0':'.75rem'}">${ok?q.exp.ok:q.exp.ko}</p>`;
+      if(!ok){h+=`<div style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:.5rem;font-family:'Syne',sans-serif;font-weight:700">Raisonnement étape par étape :</div>`;q.exp.steps.forEach(s=>{h+=`<div class="fb-step"><div class="arr">→</div><div>${s}</div></div>`;});}
+      h+=`</div>`;
+    }
+    h+=`</div>`;
+  });
+  const allDone=d.quiz.every((_,qi)=>ST.qa[d.id+'_'+qi]!==undefined);
+  if(allDone){const c=d.quiz.filter((_,qi)=>ST.qa[d.id+'_'+qi]===d.quiz[qi].ans).length;h+=`<div class="quiz-score">${c}/${d.quiz.length} bonnes réponses ${c===d.quiz.length?'🏆':c>=Math.ceil(d.quiz.length*.75)?'💪':'📚'}</div>`;}
+  if(ST.done[d.id])h+=doneBanner(d);
+  document.getElementById('sec-quiz').innerHTML=h;
+  d.quiz.forEach((q,qi)=>{
+    const key=d.id+'_'+qi;const fa=ST.qa[key];if(fa===undefined)return;
+    const item=document.getElementById('qi_'+key);if(!item)return;
+    item.querySelectorAll('.opt').forEach((btn,oi)=>{btn.className='opt';if(oi===q.ans)btn.classList.add('correct');else if(oi===fa&&fa!==q.ans)btn.classList.add('wrong-final');else btn.classList.add('neutral-off');});
+  });
+}
+function answerQ(dayId,qi,oi){
+  const key=dayId+'_'+qi;if(ST.qa[key]!==undefined)return;
+  const d=findDay(dayId);const correct=d.quiz[qi].ans;const tries=ST.tries[key]||0;
+  if(oi===correct){ST.qa[key]=oi;upUI();renderQuiz(d);if(ST.parentUnlocked)renderParentPanel();return;}
+  if(tries===0){
+    ST.tries[key]=1;
+    const item=document.getElementById('qi_'+key);
+    if(item){const btn=item.querySelectorAll('.opt')[oi];if(btn){btn.classList.add('wrong-shake');setTimeout(()=>btn.classList.remove('wrong-shake'),400);}}
+    renderQuiz(d);
+  }else{ST.qa[key]=oi;renderQuiz(d);}
+  if(ST.parentUnlocked)renderParentPanel();
+}
+function renderChallenges(d){
+  const code=getDC(d.id);
+  let h=`<div class="ch-info"><span>DÉFIS DU JOUR</span> — Essaie vraiment par toi-même. Écris ton raisonnement complet. Demande le code à tes parents pour voir la correction.</div>`;
+  d.challenges.forEach((c,ci)=>{
+    const cid=d.id+'_'+ci;
+    h+=`<div class="ch-card"><div class="ch-title">${c.title}</div><div class="ch-ctx">${c.ctx}</div>
+    <textarea class="answer-input" rows="6" placeholder="Écris ici ton raisonnement et tes calculs étape par étape..."></textarea>
+    <div class="code-row">
+      <input type="text" class="code-input" id="ci_${cid}" placeholder="CODE" maxlength="3" oninput="this.value=this.value.replace(/\\D/g,'')">
+      <button class="unlock-btn" onclick="tryCode('${cid}','${code}')">Voir la correction</button>
+      <span class="code-hint">Code 3 chiffres · donné par tes parents</span>
+    </div>
+    <div class="wrong-code" id="wc_${cid}">❌ Code incorrect, réessaie !</div>
+    <div class="ans-reveal" id="ar_${cid}"><div class="ans-label">✓ Correction détaillée</div><div style="line-height:1.85;font-size:14px">${c.ans}</div></div></div>`;
+  });
+  h+=`<button class="complete-btn" onclick="completeDay(${d.id})">✓ J'ai terminé cette journée — Gagner ${d.xp} XP</button>`;
+  if(ST.done[d.id])h+=doneBanner(d);
+  document.getElementById('sec-challenges').innerHTML=h;
+}
+function tryCode(cid,correct){
+  const inp=document.getElementById('ci_'+cid),wc=document.getElementById('wc_'+cid),ar=document.getElementById('ar_'+cid);
+  if(inp.value===correct){ar.style.display='block';wc.style.display='none';inp.style.borderColor='var(--success)';inp.disabled=true;}
+  else{wc.style.display='block';inp.style.borderColor='var(--danger)';setTimeout(()=>{inp.style.borderColor='';inp.value='';wc.style.display='none';},1800);}
+}
+function completeDay(id){
+  if(ST.done[id])return;
+  const d=findDay(id);ST.done[id]=true;ST.xp+=d.xp;ST.streak++;
+  localStorage.setItem('day_done_'+id,'1');upUI();renderGrid();setTab(ST.tab[id]||'challenges');
+}
+function doneBanner(d){return`<div class="done-banner"><div class="big">+${d.xp} XP !</div><p style="color:var(--muted);font-size:13px;margin-top:4px">${lvl(ST.xp)} · ${d.date} terminé 🎉</p></div>`;}
+renderGrid();upUI();
+
+</script>
+</body>
+</html>
