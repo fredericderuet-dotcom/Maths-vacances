@@ -6,243 +6,100 @@
 <title>Révisions Maths – Été 2025</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --bg: #0a0a0f;
-    --card: #13131a;
-    --border: #2a2a3a;
-    --text: #e8e8f0;
-    --muted: #888899;
-    --s1: #e8ff47;
-    --s2: #ff6b35;
-    --s3: #4ecdc4;
-  }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; min-height: 100vh; }
-
-  /* HERO */
-  .hero {
-    background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 50%, #0a0a0f 100%);
-    padding: 3rem 1.5rem 2rem;
-    text-align: center;
-    border-bottom: 1px solid var(--border);
-    position: relative;
-    overflow: hidden;
-  }
-  .hero::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(ellipse at center, rgba(232,255,71,0.05) 0%, transparent 60%);
-    pointer-events: none;
-  }
-  .hero-badge {
-    display: inline-block;
-    background: rgba(232,255,71,0.1);
-    border: 1px solid rgba(232,255,71,0.3);
-    color: var(--s1);
-    font-size: 0.7rem;
-    font-weight: 700;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    padding: 0.3rem 0.8rem;
-    border-radius: 20px;
-    margin-bottom: 1rem;
-  }
-  .hero h1 { font-size: clamp(1.8rem, 5vw, 3rem); font-weight: 900; line-height: 1.1; margin-bottom: 0.5rem; }
-  .hero h1 span { color: var(--s1); }
-  .hero-sub { color: var(--muted); font-size: 1rem; margin-bottom: 2rem; }
-  .hero-stats {
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-    flex-wrap: wrap;
-  }
-  .hero-stat { text-align: center; }
-  .hero-stat .val { font-size: 2rem; font-weight: 900; color: var(--s1); }
-  .hero-stat .lbl { font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; }
-
-  /* MAIN */
-  main { max-width: 900px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
-
-  h2 { font-size: 1rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); margin-bottom: 1.25rem; margin-top: 2.5rem; }
-
-  /* SEMAINE CARDS */
-  .semaines { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.25rem; margin-bottom: 0.5rem; }
-
-  .sem-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 1.5rem;
-    text-decoration: none;
-    color: var(--text);
-    display: block;
-    transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
-    position: relative;
-    overflow: hidden;
-  }
-  .sem-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 3px;
-    border-radius: 16px 16px 0 0;
-  }
-  .sem-card.s1::before { background: var(--s1); }
-  .sem-card.s2::before { background: var(--s2); }
-  .sem-card.s3::before { background: var(--s3); }
-  .sem-card:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(0,0,0,0.4); }
-  .sem-card.s1:hover { border-color: rgba(232,255,71,0.4); box-shadow: 0 8px 30px rgba(232,255,71,0.1); }
-  .sem-card.s2:hover { border-color: rgba(255,107,53,0.4); box-shadow: 0 8px 30px rgba(255,107,53,0.1); }
-  .sem-card.s3:hover { border-color: rgba(78,205,196,0.4); box-shadow: 0 8px 30px rgba(78,205,196,0.1); }
-
-  .sem-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 0.5rem; }
-  .sem-card.s1 .sem-label { color: var(--s1); }
-  .sem-card.s2 .sem-label { color: var(--s2); }
-  .sem-card.s3 .sem-label { color: var(--s3); }
-  .sem-card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.25rem; }
-  .sem-dates { font-size: 0.8rem; color: var(--muted); margin-bottom: 1rem; }
-  .sem-days { display: flex; flex-direction: column; gap: 0.4rem; }
-  .sem-day { display: flex; align-items: center; gap: 0.6rem; font-size: 0.82rem; }
-  .day-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
-  .sem-card.s1 .day-dot { background: var(--s1); }
-  .sem-card.s2 .day-dot { background: var(--s2); }
-  .sem-card.s3 .day-dot { background: var(--s3); }
-  .day-name { color: var(--muted); min-width: 30px; }
-  .day-theme { color: var(--text); }
-  .sem-cta {
-    display: flex; align-items: center; justify-content: space-between;
-    margin-top: 1.25rem; padding-top: 1rem; border-top: 1px solid var(--border);
-    font-size: 0.8rem; font-weight: 600;
-  }
-  .sem-card.s1 .sem-cta { color: var(--s1); }
-  .sem-card.s2 .sem-cta { color: var(--s2); }
-  .sem-card.s3 .sem-cta { color: var(--s3); }
-
-  /* CODES TABLE */
-  .codes-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 1.5rem;
-    margin-top: 0.5rem;
-  }
-  .codes-intro { font-size: 0.85rem; color: var(--muted); margin-bottom: 1.25rem; line-height: 1.6; }
-  .codes-intro strong { color: var(--text); }
-  .codes-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-    gap: 0.6rem;
-  }
-  .code-item {
-    background: #0a0a0f;
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 0.75rem 1rem;
-    display: flex; align-items: center; justify-content: space-between;
-  }
-  .code-day { font-size: 0.75rem; color: var(--muted); }
-  .code-day strong { color: var(--text); display: block; font-size: 0.82rem; }
-  .code-val {
-    font-size: 1.1rem;
-    font-weight: 900;
-    font-family: monospace;
-    letter-spacing: 0.1em;
-  }
-  .code-item.s1 .code-val { color: var(--s1); }
-  .code-item.s2 .code-val { color: var(--s2); }
-  .code-item.s3 .code-val { color: var(--s3); }
-
-  /* PAPA */
-  .papa-section {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 1.5rem;
-    margin-top: 0.5rem;
-  }
-  .papa-intro { font-size: 0.85rem; color: var(--muted); line-height: 1.6; margin-bottom: 1rem; }
-  .papa-code-display {
-    display: inline-flex; align-items: center; gap: 0.75rem;
-    background: #0a0a0f; border: 1px solid var(--border); border-radius: 10px;
-    padding: 0.75rem 1.25rem;
-  }
-  .papa-code-display .lbl { font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; }
-  .papa-code-display .val { font-size: 1.4rem; font-weight: 900; font-family: monospace; color: var(--s1); letter-spacing: 0.2em; }
-  .papa-legend { margin-top: 1rem; display: flex; flex-wrap: wrap; gap: 0.6rem; }
-  .papa-legend-item { font-size: 0.78rem; color: var(--muted); display: flex; align-items: center; gap: 0.4rem; }
-  .papa-legend-item .icon { font-size: 1rem; }
-
-  /* FOOTER */
-  footer { text-align: center; padding: 2rem; color: var(--muted); font-size: 0.75rem; border-top: 1px solid var(--border); }
+  :root{--bg:#0a0a0f;--card:#13131a;--border:#2a2a3a;--text:#e8e8f0;--muted:#888899;--s1:#e8ff47;--s2:#ff6b35;--s3:#4ecdc4;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;min-height:100vh;}
+  .hero{background:linear-gradient(135deg,#0a0a0f 0%,#1a1a2e 50%,#0a0a0f 100%);padding:3rem 1.5rem 2rem;text-align:center;border-bottom:1px solid var(--border);}
+  .badge{display:inline-block;background:rgba(232,255,71,.1);border:1px solid rgba(232,255,71,.3);color:var(--s1);font-size:.7rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;padding:.3rem .8rem;border-radius:20px;margin-bottom:1rem;}
+  .hero h1{font-size:clamp(1.8rem,5vw,3rem);font-weight:900;line-height:1.1;margin-bottom:.5rem;}
+  .hero h1 span{color:var(--s1);}
+  .hero-sub{color:var(--muted);font-size:1rem;margin-bottom:2rem;}
+  .stats{display:flex;justify-content:center;gap:2rem;flex-wrap:wrap;}
+  .stat .val{font-size:2rem;font-weight:900;color:var(--s1);}
+  .stat .lbl{font-size:.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;}
+  main{max-width:900px;margin:0 auto;padding:2rem 1.5rem 4rem;}
+  h2{font-size:1rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin-bottom:1.25rem;margin-top:2.5rem;}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.25rem;}
+  .card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.5rem;text-decoration:none;color:var(--text);display:block;transition:transform .2s,border-color .2s,box-shadow .2s;position:relative;overflow:hidden;}
+  .card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:16px 16px 0 0;}
+  .card.s1::before{background:var(--s1);}
+  .card.s2::before{background:var(--s2);}
+  .card.s3::before{background:var(--s3);}
+  .card:hover{transform:translateY(-3px);}
+  .card.s1:hover{border-color:rgba(232,255,71,.4);box-shadow:0 8px 30px rgba(232,255,71,.1);}
+  .card.s2:hover{border-color:rgba(255,107,53,.4);box-shadow:0 8px 30px rgba(255,107,53,.1);}
+  .card.s3:hover{border-color:rgba(78,205,196,.4);box-shadow:0 8px 30px rgba(78,205,196,.1);}
+  .clabel{font-size:.65rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;margin-bottom:.5rem;}
+  .card.s1 .clabel{color:var(--s1);}
+  .card.s2 .clabel{color:var(--s2);}
+  .card.s3 .clabel{color:var(--s3);}
+  .card h3{font-size:1.1rem;font-weight:700;margin-bottom:.25rem;}
+  .dates{font-size:.8rem;color:var(--muted);margin-bottom:1rem;}
+  .days{display:flex;flex-direction:column;gap:.4rem;}
+  .day{display:flex;align-items:center;gap:.6rem;font-size:.82rem;}
+  .dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;}
+  .card.s1 .dot{background:var(--s1);}
+  .card.s2 .dot{background:var(--s2);}
+  .card.s3 .dot{background:var(--s3);}
+  .dn{color:var(--muted);min-width:24px;}
+  .cta{display:flex;align-items:center;justify-content:space-between;margin-top:1.25rem;padding-top:1rem;border-top:1px solid var(--border);font-size:.8rem;font-weight:600;}
+  .card.s1 .cta{color:var(--s1);}
+  .card.s2 .cta{color:var(--s2);}
+  .card.s3 .cta{color:var(--s3);}
+  footer{text-align:center;padding:2rem;color:var(--muted);font-size:.75rem;border-top:1px solid var(--border);}
 </style>
 </head>
 <body>
-
 <div class="hero">
-  <div class="hero-badge">🏉 Révisions Maths · Été 2025</div>
+  <div class="badge">🏉 Révisions Maths · Été 2025</div>
   <h1>Prêt pour la <span>4e</span> ?</h1>
-  <p class="hero-sub">9 jours · 9 thèmes · rugby &amp; F1 au programme</p>
-  <div class="hero-stats">
-    <div class="hero-stat"><div class="val">9</div><div class="lbl">Thèmes</div></div>
-    <div class="hero-stat"><div class="val">72</div><div class="lbl">Questions quiz</div></div>
-    <div class="hero-stat"><div class="val">18</div><div class="lbl">Défis</div></div>
-    <div class="hero-stat"><div class="val">900</div><div class="lbl">XP max</div></div>
+  <p class="hero-sub">10 jours · 10 thèmes · rugby &amp; F1 au programme</p>
+  <div class="stats">
+    <div class="stat"><div class="val">10</div><div class="lbl">Thèmes</div></div>
+    <div class="stat"><div class="val">80</div><div class="lbl">Questions</div></div>
+    <div class="stat"><div class="val">20</div><div class="lbl">Défis</div></div>
+    <div class="stat"><div class="val">1000</div><div class="lbl">XP max</div></div>
   </div>
 </div>
-
 <main>
-
   <h2>📅 Programme</h2>
-  <div class="semaines">
-
-    <a href="semaine1.html" class="sem-card s1">
-      <div class="sem-label">Semaine 1</div>
-      <h3>Fractions &amp; Proportionnalité</h3>
-      <div class="sem-dates">17 – 19 juin</div>
-      <div class="sem-days">
-        <div class="sem-day"><div class="day-dot"></div><span class="day-name">Mer</span><span class="day-theme">Fractions — bases &amp; simplification</span></div>
-        <div class="sem-day"><div class="day-dot"></div><span class="day-name">Jeu</span><span class="day-theme">Fractions — toutes les opérations</span></div>
-        <div class="sem-day"><div class="day-dot"></div><span class="day-name">Ven</span><span class="day-theme">Proportionnalité &amp; règle de trois</span></div>
+  <div class="grid">
+    <a href="semaine1.html" class="card s1">
+      <div class="clabel">Semaine 1</div>
+      <h3>Division &amp; Fractions</h3>
+      <div class="dates">17 – 18 juin</div>
+      <div class="days">
+        <div class="day"><div class="dot"></div><span class="dn">J0</span><span>La division — partager sans paniquer</span></div>
+        <div class="day"><div class="dot"></div><span class="dn">J1</span><span>Les fractions — c'est juste partager</span></div>
+        <div class="day"><div class="dot"></div><span class="dn">J2</span><span>Additionner et soustraire des fractions</span></div>
       </div>
-      <div class="sem-cta"><span>Commencer →</span><span>J1 – J3</span></div>
+      <div class="cta"><span>Commencer →</span><span>J0–J2</span></div>
     </a>
-
-    <a href="semaine2.html" class="sem-card s2">
-      <div class="sem-label">Semaine 2</div>
-      <h3>Pourcentages &amp; Algèbre</h3>
-      <div class="sem-dates">23 – 25 juin</div>
-      <div class="sem-days">
-        <div class="sem-day"><div class="day-dot"></div><span class="day-name">Lun</span><span class="day-theme">Pourcentages — les 3 formules</span></div>
-        <div class="sem-day"><div class="day-dot"></div><span class="day-name">Mar</span><span class="day-theme">Nombres relatifs</span></div>
-        <div class="sem-day"><div class="day-dot"></div><span class="day-name">Mer</span><span class="day-theme">Calcul littéral &amp; développement</span></div>
+    <a href="semaine2.html" class="card s2">
+      <div class="clabel">Semaine 2</div>
+      <h3>Proportionnalité &amp; Pourcentages</h3>
+      <div class="dates">19 – 24 juin</div>
+      <div class="days">
+        <div class="day"><div class="dot"></div><span class="dn">J3</span><span>Proportionnalité — tout se multiplie pareil</span></div>
+        <div class="day"><div class="dot"></div><span class="dn">J4</span><span>Pourcentages — les 3 formules</span></div>
+        <div class="day"><div class="dot"></div><span class="dn">J5</span><span>Nombres relatifs — positif et négatif</span></div>
       </div>
-      <div class="sem-cta"><span>Commencer →</span><span>J4 – J6</span></div>
+      <div class="cta"><span>Commencer →</span><span>J3–J5</span></div>
     </a>
-
-    <a href="semaine3.html" class="sem-card s3">
-      <div class="sem-label">Semaine 3</div>
-      <h3>Équations &amp; Géométrie</h3>
-      <div class="sem-dates">26 – 27 juin</div>
-      <div class="sem-days">
-        <div class="sem-day"><div class="day-dot"></div><span class="day-name">Jeu</span><span class="day-theme">Équations du 1er degré</span></div>
-        <div class="sem-day"><div class="day-dot"></div><span class="day-name">Ven</span><span class="day-theme">Géométrie — angles, aires &amp; périmètres</span></div>
-        <div class="sem-day"><div class="day-dot"></div><span class="day-name">Ven</span><span class="day-theme">Statistiques &amp; volumes</span></div>
+    <a href="semaine3.html" class="card s3">
+      <div class="clabel">Semaine 3</div>
+      <h3>Algèbre, Géométrie &amp; Stats</h3>
+      <div class="dates">25 – 27 juin</div>
+      <div class="days">
+        <div class="day"><div class="dot"></div><span class="dn">J6</span><span>Calcul littéral — les maths avec des lettres</span></div>
+        <div class="day"><div class="dot"></div><span class="dn">J7</span><span>Équations — trouver l'inconnu</span></div>
+        <div class="day"><div class="dot"></div><span class="dn">J8</span><span>Géométrie — angles et surfaces</span></div>
+        <div class="day"><div class="dot"></div><span class="dn">J9</span><span>Statistiques et volumes</span></div>
       </div>
-      <div class="sem-cta"><span>Commencer →</span><span>J7 – J9</span></div>
+      <div class="cta"><span>Commencer →</span><span>J6–J9</span></div>
     </a>
-
   </div>
-
-
 </main>
-
-<footer>
-  Révisions Maths · 5e → 4e · Juin 2025 · Bon courage ! 🏉🏎️
-</footer>
-
+<footer>Révisions Maths · 5e → 4e · Juin 2025 · Bon courage ! 🏉🏎️</footer>
 </body>
 </html>

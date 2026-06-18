@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Semaine 1 — Fractions & Proportionnalité</title>
+<title>J0+J1+J2 — Divisions & Fractions</title>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#0d0e12;--surface:#16181f;--card:#1e2029;--border:#2a2d38;--text:#f0f0f0;--muted:#7a7d8a;--success:#4ecdc4;--danger:#ff6b6b;--warn:#ffd93d;}
 *{box-sizing:border-box;margin:0;padding:0;}html{scroll-behavior:smooth;}
-body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;font-size:16px;line-height:1.6;min-height:100vh;}
+body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;font-size:16px;line-height:1.7;min-height:100vh;}
 .topbar{position:sticky;top:0;z-index:100;background:rgba(13,14,18,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 1.5rem;display:flex;align-items:center;justify-content:space-between;height:54px;}
 .back-home{font-size:12px;color:var(--muted);text-decoration:none;transition:color .15s;}
 .back-home:hover{color:var(--accent);}
@@ -18,7 +18,7 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;fon
 .streak-pill{background:var(--surface);border:1px solid var(--border);font-size:12px;padding:3px 10px;border-radius:20px;color:var(--warn);}
 .pbtn{background:none;border:1px solid var(--border);color:var(--muted);font-size:11px;padding:5px 11px;border-radius:6px;cursor:pointer;transition:all .15s;}
 .pbtn:hover{border-color:var(--accent);color:var(--accent);}
-.container{max-width:900px;margin:0 auto;padding:2rem 1.5rem 6rem;}
+.container{max-width:860px;margin:0 auto;padding:2rem 1.5rem 6rem;}
 .week-hero{margin-bottom:2.5rem;}
 .week-hero h1{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(1.8rem,4vw,2.6rem);margin-bottom:.5rem;}
 .week-hero p{color:var(--muted);font-size:15px;}
@@ -43,26 +43,37 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;fon
 .lesson-tabs{display:flex;gap:4px;background:var(--surface);border-radius:10px;padding:4px;margin-bottom:2rem;border:1px solid var(--border);}
 .ltab{flex:1;padding:10px;text-align:center;border-radius:7px;cursor:pointer;font-size:13px;font-family:'Syne',sans-serif;font-weight:600;color:var(--muted);transition:all .15s;}
 .ltab.active{background:var(--card);color:var(--text);border:1px solid var(--border);}
-.lsec-title{font-family:'Syne',sans-serif;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:1.2px;color:var(--muted);margin:2.25rem 0 .85rem;}
-.lsec-title:first-child{margin-top:0;}
-.concept{border-left:3px solid var(--accent);background:var(--card);border-radius:0 12px 12px 0;padding:1.35rem 1.6rem;margin-bottom:1.35rem;font-size:15px;line-height:1.9;}
-.concept strong,.concept b{color:var(--accent);}
-.analogy{background:rgba(232,255,71,.04);border:1px solid rgba(232,255,71,.14);border-radius:12px;padding:1.1rem 1.4rem;margin-bottom:1.35rem;font-size:14px;line-height:1.85;}
-.analogy .alabel{font-size:10px;text-transform:uppercase;letter-spacing:.7px;color:#e8ff47;font-family:'Syne',sans-serif;font-weight:700;margin-bottom:7px;}
-.step-box{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.35rem 1.6rem;margin-bottom:1.35rem;}
-.step-box .stitle{font-family:'Syne',sans-serif;font-weight:700;font-size:13px;color:var(--success);margin-bottom:.9rem;text-transform:uppercase;letter-spacing:.5px;}
-.step-row{display:flex;gap:13px;align-items:flex-start;margin-bottom:.8rem;font-size:14px;line-height:1.75;}
-.step-row:last-child{margin-bottom:0;}
-.sn{background:var(--accent);color:#fff;font-family:'Syne',sans-serif;font-weight:800;font-size:11px;border-radius:50%;min-width:22px;height:22px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:3px;}
-.eg{background:rgba(255,255,255,.02);border:1px solid var(--border);border-radius:12px;padding:1.35rem 1.6rem;margin-bottom:1.35rem;}
-.eg .etitle{font-size:10px;text-transform:uppercase;letter-spacing:.7px;color:var(--accent);font-family:'Syne',sans-serif;font-weight:700;margin-bottom:.9rem;}
-.eg .line{font-family:monospace;font-size:15px;color:var(--warn);margin:.4rem 0;line-height:1.65;}
-.eg .note{font-size:13px;color:var(--muted);margin-top:.7rem;font-style:italic;line-height:1.6;}
-.warn-box{background:rgba(255,107,107,.06);border:1px solid rgba(255,107,107,.2);border-radius:12px;padding:1.1rem 1.4rem;margin-bottom:1.35rem;}
-.warn-box .wtitle{font-size:10px;text-transform:uppercase;letter-spacing:.7px;color:var(--danger);font-family:'Syne',sans-serif;font-weight:700;margin-bottom:7px;}
-.recap{background:var(--surface);border:1px solid rgba(78,205,196,.2);border-radius:12px;padding:1.35rem 1.6rem;margin-bottom:1.35rem;font-size:14px;line-height:1.95;}
-.recap .rtitle{font-size:10px;text-transform:uppercase;letter-spacing:.7px;color:var(--success);font-family:'Syne',sans-serif;font-weight:700;margin-bottom:.8rem;}
-.svg-wrap{background:var(--card);border-radius:12px;padding:1rem;margin-bottom:1.35rem;}
+
+/* LEARN STYLES — nouvelle approche */
+.big-idea{background:linear-gradient(135deg,rgba(232,255,71,.06),rgba(232,255,71,.02));border:2px solid rgba(232,255,71,.25);border-radius:16px;padding:1.5rem 1.75rem;margin-bottom:1.5rem;font-size:17px;line-height:1.85;}
+.big-idea .label{font-size:10px;font-family:'Syne',sans-serif;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--accent);margin-bottom:.6rem;}
+.big-idea strong{color:var(--accent);}
+.sport-block{background:rgba(255,107,53,.05);border-left:4px solid #ff6b35;border-radius:0 12px 12px 0;padding:1.25rem 1.5rem;margin-bottom:1.5rem;font-size:15px;line-height:1.85;}
+.sport-block .slabel{font-size:10px;font-family:'Syne',sans-serif;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:#ff6b35;margin-bottom:.5rem;}
+.method-block{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:1.4rem 1.6rem;margin-bottom:1.5rem;}
+.method-block .mlabel{font-size:10px;font-family:'Syne',sans-serif;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--success);margin-bottom:.9rem;}
+.step{display:flex;gap:14px;align-items:flex-start;margin-bottom:1rem;font-size:15px;line-height:1.75;}
+.step:last-child{margin-bottom:0;}
+.snum{background:var(--accent);color:#0d0e12;font-family:'Syne',sans-serif;font-weight:800;font-size:11px;border-radius:50%;min-width:24px;height:24px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:3px;}
+.example-block{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.3rem 1.5rem;margin-bottom:1.5rem;}
+.example-block .elabel{font-size:10px;font-family:'Syne',sans-serif;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--accent);margin-bottom:.75rem;}
+.calc-line{font-family:monospace;font-size:16px;color:var(--warn);margin:.5rem 0;line-height:1.6;}
+.calc-note{font-size:13px;color:var(--muted);margin-top:.6rem;font-style:italic;}
+.trap-block{background:rgba(255,107,107,.05);border:2px solid rgba(255,107,107,.2);border-radius:12px;padding:1.2rem 1.5rem;margin-bottom:1.5rem;}
+.trap-block .tlabel{font-size:10px;font-family:'Syne',sans-serif;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--danger);margin-bottom:.6rem;}
+.trap-block .wrong{color:var(--danger);font-size:15px;margin:.3rem 0;}
+.trap-block .right{color:var(--success);font-size:15px;margin:.3rem 0;}
+.recap-block{background:var(--surface);border:1px solid rgba(78,205,196,.2);border-radius:12px;padding:1.3rem 1.5rem;margin-bottom:1.5rem;}
+.recap-block .rlabel{font-size:10px;font-family:'Syne',sans-serif;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--success);margin-bottom:.7rem;}
+.recap-block ul{list-style:none;padding:0;}
+.recap-block li{padding:.3rem 0;font-size:14px;border-bottom:1px solid var(--border);}
+.recap-block li:last-child{border:none;}
+.recap-block li::before{content:"→ ";color:var(--accent);font-weight:700;}
+.section-title{font-family:'Syne',sans-serif;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:1.2px;color:var(--muted);margin:2rem 0 .85rem;}
+.section-title:first-child{margin-top:0;}
+.svg-wrap{background:var(--card);border-radius:12px;padding:1rem;margin-bottom:1.5rem;}
+
+/* QUIZ */
 .quiz-item{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.6rem;margin-bottom:1.1rem;}
 .q-num{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:7px;font-family:'Syne',sans-serif;font-weight:600;}
 .q-text{font-family:'Syne',sans-serif;font-weight:600;font-size:15px;margin-bottom:1.1rem;line-height:1.55;}
@@ -84,6 +95,8 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;fon
 .fb-step{display:flex;gap:11px;align-items:flex-start;margin-bottom:.5rem;font-size:13px;color:var(--muted);}
 .fb-step .arr{color:#e8ff47;font-weight:700;flex-shrink:0;}
 .quiz-score{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:15px 20px;text-align:center;margin-top:1.1rem;font-family:'Syne',sans-serif;font-weight:700;font-size:19px;color:var(--accent);}
+
+/* CHALLENGES */
 .ch-info{background:rgba(255,255,255,.02);border:1px solid var(--border);border-radius:12px;padding:1.1rem 1.4rem;margin-bottom:1.5rem;font-size:13px;color:var(--muted);line-height:1.65;}
 .ch-info span{color:#e8ff47;font-family:'Syne',sans-serif;font-weight:700;}
 .ch-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.6rem;margin-bottom:1.1rem;}
@@ -135,7 +148,7 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;fon
 <nav class="topbar">
   <div class="topbar-left">
     <a href="index.html" class="back-home">← Accueil</a>
-    <span class="week-label">Semaine 1 · 17–19 juin</span>
+    <span class="week-label">Semaine 1 · 17–18 juin</span>
   </div>
   <div class="topbar-right">
     <span class="streak-pill" id="streak-top">🔥 0</span>
@@ -146,9 +159,9 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;fon
 <div class="modal-overlay" id="parent-modal">
   <div class="modal">
     <h3>🔐 Vue parents</h3>
-    <p style="font-size:13px;color:var(--muted);margin-bottom:1rem">Ce panneau montre pour chaque question du quiz combien de clics votre fils a fait avant de trouver la bonne réponse.</p>
+    <p style="font-size:13px;color:var(--muted);margin-bottom:1rem">Ce panneau montre pour chaque question combien de clics votre fils a faits.</p>
     <input type="text" id="parent-input" placeholder="PAPA" maxlength="4" oninput="this.value=this.value.toUpperCase()">
-    <div class="modal-err" id="modal-err">Code incorrect — réessaie</div>
+    <div class="modal-err" id="modal-err">Code incorrect</div>
     <div class="modal-btns">
       <button onclick="closeParentModal()">Annuler</button>
       <button class="primary" onclick="checkParentCode()">Accéder</button>
@@ -158,16 +171,16 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;fon
 <div class="container">
   <div id="main-view">
     <div class="week-hero">
-      <h1>Semaine 1 — <span style="color:var(--accent)">Fractions &amp; Proportionnalité</span></h1>
-      <p>Jours 1, 2, 3 · Fractions · Proportionnalité</p>
+      <h1>Divisions &amp; <span style="color:var(--accent)">Fractions</span></h1>
+      <p>J0 Division · J1 Fractions bases · J2 Fractions opérations</p>
       <div class="xp-bar-wrap"><div class="xp-bar" id="xp-bar" style="width:0%"></div></div>
     </div>
     <div class="day-grid" id="day-grid"></div>
   </div>
   <div id="lesson-view">
-    <button class="back-btn" onclick="backToGrid()">← Retour aux jours</button>
+    <button class="back-btn" onclick="backToGrid()">← Retour</button>
     <div class="parent-panel" id="parent-panel">
-      <h3>📊 Suivi parental — Clics par question</h3>
+      <h3>📊 Suivi — Clics par question</h3>
       <div id="pp-content"></div>
     </div>
     <div class="lh-date" id="lh-date"></div>
@@ -186,136 +199,350 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;fon
 <script>
 const DAYS = [
 {
-  id:1, date:"Mercredi 17 juin", title:"Fractions — bases &amp; mécanique", xp:100, theme:"Fractions",
+  id:0, date:"Avant tout", title:"La division — partager sans paniquer", xp:100, theme:"Bases",
   learn:`
-<div class="lsec-title">1. Le sens d'une fraction</div>
-<div class="concept">Imagine une pizza coupée en <strong>4 parts égales</strong>. Tu en manges <strong>3</strong>. On écrit <strong>3/4</strong> — "trois quarts".<br><br>La barre sépare deux informations :<br>— En <strong>bas</strong> : le <strong>dénominateur</strong> = en combien de parts on a coupé le tout (ici : 4).<br>— En <strong>haut</strong> : le <strong>numérateur</strong> = combien de parts on prend (ici : 3).<br><br>Astuce : <strong>D</strong>énominateur = <strong>D</strong>essous. Les deux D vont ensemble.</div>
-<div class="svg-wrap"><svg viewBox="0 0 480 175" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:480px;display:block;margin:0 auto"><text x="240" y="18" text-anchor="middle" fill="#7a7d8a" font-size="11" font-family="sans-serif" font-weight="700" letter-spacing="1">LA FRACTION 3/4 EN IMAGE</text><g transform="translate(90,100)"><circle cx="0" cy="0" r="65" fill="#2a2d38" stroke="#e8ff47" stroke-width="2"/><path d="M0,0 L0,-65 A65,65 0 0,1 65,0 Z" fill="rgba(232,255,71,0.25)" stroke="#e8ff47" stroke-width="1.5"/><path d="M0,0 L65,0 A65,65 0 0,1 0,65 Z" fill="rgba(232,255,71,0.25)" stroke="#e8ff47" stroke-width="1.5"/><path d="M0,0 L0,65 A65,65 0 0,1 -65,0 Z" fill="rgba(232,255,71,0.25)" stroke="#e8ff47" stroke-width="1.5"/><path d="M0,0 L-65,0 A65,65 0 0,1 0,-65 Z" fill="#1e2029" stroke="#2a2d38" stroke-width="1.5"/><line x1="0" y1="-65" x2="0" y2="65" stroke="#0d0e12" stroke-width="2.5"/><line x1="-65" y1="0" x2="65" y2="0" stroke="#0d0e12" stroke-width="2.5"/></g><text x="225" y="62" fill="#e8ff47" font-size="13" font-weight="700" font-family="sans-serif">Numérateur = 3</text><text x="225" y="78" fill="#7a7d8a" font-size="12" font-family="sans-serif">→ parts prises (jaune)</text><text x="225" y="118" fill="#ff6b35" font-size="13" font-weight="700" font-family="sans-serif">Dénominateur = 4</text><text x="225" y="134" fill="#7a7d8a" font-size="12" font-family="sans-serif">→ parts totales</text><text x="90" y="172" text-anchor="middle" fill="#7a7d8a" font-size="11" font-family="sans-serif">3/4 = 0,75 = 75%</text></svg></div>
-<div class="lsec-title">2. Fractions équivalentes</div>
-<div class="concept">1/2 et 2/4 = même quantité. Règle : multiplier ou diviser le numérateur ET le dénominateur par le <strong>même nombre</strong>.<br><br>Exemple — 1/2 vers 3/6 :<br>Je veux 6 au dénominateur. 2×3=6, donc ×3. Je fais PAREIL en haut : 1×3=3. → 1/2=3/6.<br>Vérif : 1÷2=0,5 et 3÷6=0,5 ✓</div>
-<div class="eg"><div class="etitle">Simplifier 3/6 vers 1/2</div><div class="line">Quel nombre divise exactement 3 ET 6 ? → 3</div><div class="line">3÷3=1 et 6÷3=2 → 3/6 = 1/2</div><div class="note">Vérif : 3÷6=0,5=1÷2 ✓</div></div>
-<div class="lsec-title">3. Simplifier — fraction irréductible</div>
-<div class="step-box"><div class="stitle">Méthode</div>
-<div class="step-row"><div class="sn">1</div><div>Cherche un nombre qui divise exactement le numérateur ET le dénominateur.</div></div>
-<div class="step-row"><div class="sn">2</div><div>Divise les deux. Recommence jusqu'à ce qu'aucun diviseur commun n'existe.</div></div>
-<div class="step-row"><div class="sn">✓</div><div>Vérif : même résultat décimal avant et après.</div></div></div>
-<div class="eg"><div class="etitle">Simplifier 12/18</div><div class="line">÷2 → 6/9 → ÷3 → 2/3. Irréductible : 2 et 3 sans diviseur commun.</div><div class="note">Vérif : 12÷18=0,666=2÷3 ✓</div></div>
-<div class="warn-box"><div class="wtitle">⚠️ Erreur absolue à éviter</div>FAUX : 3/6 − soustraire 2 → 1/4 ❌ | FAUX : diviser seulement le numérateur → 1/6 ❌<br>JUSTE : diviser LES DEUX par 3 → 1/2 ✓</div>
-<div class="lsec-title">4. Fraction ↔ décimal</div>
-<div class="concept"><strong>Fraction → décimal :</strong> divise numérateur par dénominateur. La barre = signe de division.<br>3/4 = 3÷4 = 0,75 | 1/3 = 0,333… | 7/2 = 3,5<br><br><strong>Décimal → fraction :</strong> nombre de décimales = dénominateur (/10, /100, /1000…) puis simplifie.<br>0,4 = 4/10 → ÷2 → 2/5 | 0,25 = 25/100 → ÷25 → 1/4 | 0,75 = 75/100 → ÷25 → 3/4</div>
-<div class="svg-wrap"><svg viewBox="0 0 500 100" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:500px;display:block;margin:0 auto"><text x="250" y="16" text-anchor="middle" fill="#7a7d8a" font-size="11" font-family="sans-serif" font-weight="700" letter-spacing="1">CONVERSIONS À MÉMORISER</text><rect x="10" y="25" width="480" height="65" rx="8" fill="#16181f" stroke="#2a2d38" stroke-width="1"/><text x="57" y="55" text-anchor="middle" fill="#f0f0f0" font-size="14" font-weight="700" font-family="sans-serif">1/2</text><text x="57" y="73" text-anchor="middle" fill="#e8ff47" font-size="12" font-family="sans-serif">0,5 = 50%</text><line x1="106" y1="30" x2="106" y2="85" stroke="#2a2d38" stroke-width="1"/><text x="155" y="55" text-anchor="middle" fill="#f0f0f0" font-size="14" font-weight="700" font-family="sans-serif">1/4</text><text x="155" y="73" text-anchor="middle" fill="#e8ff47" font-size="12" font-family="sans-serif">0,25 = 25%</text><line x1="204" y1="30" x2="204" y2="85" stroke="#2a2d38" stroke-width="1"/><text x="253" y="55" text-anchor="middle" fill="#f0f0f0" font-size="14" font-weight="700" font-family="sans-serif">3/4</text><text x="253" y="73" text-anchor="middle" fill="#e8ff47" font-size="12" font-family="sans-serif">0,75 = 75%</text><line x1="302" y1="30" x2="302" y2="85" stroke="#2a2d38" stroke-width="1"/><text x="351" y="55" text-anchor="middle" fill="#f0f0f0" font-size="14" font-weight="700" font-family="sans-serif">1/3</text><text x="351" y="73" text-anchor="middle" fill="#e8ff47" font-size="12" font-family="sans-serif">0,333…</text><line x1="400" y1="30" x2="400" y2="85" stroke="#2a2d38" stroke-width="1"/><text x="448" y="55" text-anchor="middle" fill="#f0f0f0" font-size="14" font-weight="700" font-family="sans-serif">1/5</text><text x="448" y="73" text-anchor="middle" fill="#e8ff47" font-size="12" font-family="sans-serif">0,2 = 20%</text></svg></div>
-<div class="analogy"><div class="alabel">🏉 XV de France</div>15 joueurs : 8 avants + 7 arrières.<br>8/15 + 7/15 = 15/15 = 1 (tout le groupe). Avants : 8÷15 ≈ 53,3%.</div>
-<div class="recap"><div class="rtitle">📄 Récap Jour 1</div>• D = Dessous = Dénominateur (parts totales). Haut = Numérateur (parts prises).<br>• Équivalentes : ×ou÷ les DEUX par le même nombre.<br>• Simplifier : trouver diviseur commun, diviser les deux, recommencer.<br>• Fraction→décimal : numérateur÷dénominateur.<br>• Décimal→fraction : /10 ou /100 selon décimales, puis simplifier.</div>`,
+<div class="section-title">C'est quoi diviser ?</div>
+<div class="big-idea">
+  <div class="label">💡 L'idée de base</div>
+  Diviser = <strong>partager en parts égales</strong>.<br><br>
+  Tu as 12 bonbons. Tu les partages entre 4 amis. Chacun en a combien ?<br>
+  12 ÷ 4 = <strong>3</strong> bonbons chacun.<br><br>
+  C'est tout. La division c'est juste ça.
+</div>
+
+<div class="sport-block">
+  <div class="slabel">🏉 Image rugby</div>
+  Il y a 15 joueurs dans une équipe. Le coach les sépare en groupes égaux de 5.<br>
+  Combien de groupes ? → 15 ÷ 5 = <strong>3 groupes</strong>.<br><br>
+  Autre sens : 15 joueurs, 3 groupes → combien par groupe ? → 15 ÷ 3 = <strong>5 joueurs</strong>.
+</div>
+
+<div class="section-title">Les tables de division — la même chose que la multiplication</div>
+<div class="big-idea">
+  <div class="label">💡 Le secret</div>
+  Tu connais déjà les divisions si tu connais les multiplications.<br><br>
+  Tu sais que <strong>3 × 4 = 12</strong>.<br>
+  Donc tu sais que <strong>12 ÷ 4 = 3</strong> et que <strong>12 ÷ 3 = 4</strong>.<br><br>
+  La multiplication et la division sont les deux faces de la même pièce.
+</div>
+
+<div class="example-block">
+  <div class="elabel">Exemples — lis chaque ligne à voix haute</div>
+  <div class="calc-line">6 × 7 = 42 → donc 42 ÷ 7 = 6</div>
+  <div class="calc-line">8 × 9 = 72 → donc 72 ÷ 9 = 8</div>
+  <div class="calc-line">5 × 6 = 30 → donc 30 ÷ 6 = 5</div>
+  <div class="calc-note">Pour vérifier une division : multiplie le résultat par ce qui divise. Tu dois retrouver le départ.</div>
+</div>
+
+<div class="section-title">Diviser des grands nombres — la méthode posée</div>
+<div class="big-idea">
+  <div class="label">💡 Quand c'est trop grand pour la tête</div>
+  Pour 84 ÷ 4, on utilise la <strong>division posée</strong>.<br>
+  C'est une méthode qu'on fait étape par étape, chiffre par chiffre.
+</div>
+
+<div class="method-block">
+  <div class="mlabel">Méthode — 84 ÷ 4</div>
+  <div class="step"><div class="snum">1</div><div>Je prends le premier chiffre : 8. Est-ce que 4 rentre dans 8 ? Oui : 4×2=8. J'écris 2 en haut.</div></div>
+  <div class="step"><div class="snum">2</div><div>8 − (4×2) = 8 − 8 = 0. Je "descends" le chiffre suivant : 4.</div></div>
+  <div class="step"><div class="snum">3</div><div>Maintenant j'ai 4. Est-ce que 4 rentre dans 4 ? Oui : 4×1=4. J'écris 1 en haut.</div></div>
+  <div class="step"><div class="snum">✓</div><div>Résultat : 21. Vérifie : 21 × 4 = 84 ✓</div></div>
+</div>
+
+<div class="example-block">
+  <div class="elabel">Exemple complet — 96 ÷ 3</div>
+  <div class="calc-line">Premier chiffre : 9. 3×3=9 → j'écris 3 en haut.</div>
+  <div class="calc-line">9−9=0, je descends 6. 3×2=6 → j'écris 2 en haut.</div>
+  <div class="calc-line">Résultat : 32. Vérif : 32×3=96 ✓</div>
+</div>
+
+<div class="section-title">Le reste — quand ça ne tombe pas juste</div>
+<div class="big-idea">
+  <div class="label">💡 Pas toujours exact</div>
+  Parfois on ne peut pas partager exactement. Il reste quelque chose.<br><br>
+  17 bonbons entre 5 amis → 5×3=15, il reste 17−15=<strong>2</strong>.<br>
+  Chacun a 3 bonbons, et il reste 2 bonbons non partagés.<br><br>
+  On écrit : 17 ÷ 5 = 3 reste 2. (ou 3,4 si on continue avec des décimales)
+</div>
+
+<div class="sport-block">
+  <div class="slabel">🏎️ F1 — partager les points</div>
+  Un pilote a marqué 175 points en 5 courses égales.<br>
+  Points par course : 175 ÷ 5 = <strong>35 points</strong> par course.<br>
+  Vérif : 35 × 5 = 175 ✓<br><br>
+  Sur 24 courses, il a gagné 3 fois. En moyenne combien de victoires par manche de 8 courses ?<br>
+  3 ÷ 8 = 0,375 → moins d'une victoire par manche en moyenne.
+</div>
+
+<div class="trap-block">
+  <div class="tlabel">⚠️ Erreurs classiques</div>
+  <div class="wrong">❌ 12 ÷ 4 = 8 (c'est 12 − 4, pas 12 ÷ 4)</div>
+  <div class="right">✓ 12 ÷ 4 = 3 (on partage, pas on soustrait)</div>
+  <div class="wrong">❌ 12 ÷ 4 = 48 (c'est 12 × 4, pas 12 ÷ 4)</div>
+  <div class="right">✓ Division → le résultat est PLUS PETIT que ce qu'on divise</div>
+</div>
+
+<div class="recap-block">
+  <div class="rlabel">📄 À retenir</div>
+  <ul>
+    <li>Diviser = partager en parts égales</li>
+    <li>Division et multiplication sont liées : si 3×4=12 alors 12÷4=3</li>
+    <li>Pour vérifier : résultat × diviseur = départ</li>
+    <li>Le résultat d'une division est toujours plus petit que ce qu'on divise</li>
+    <li>S'il reste quelque chose, on l'appelle le reste</li>
+  </ul>
+</div>`,
   quiz:[
-    {q:"Dans 5/8, quel est le dénominateur ?",opts:["5","8","13","40"],ans:1,
-     exp:{ok:"Exact ! Dénominateur = Dessous. Dans 5/8, en bas c'est 8.",ko:"D = Dessous. Le nombre EN BAS de la barre = dénominateur.",steps:["5 / 8","Haut = numérateur = 5","Bas = dénominateur = 8"]}},
-    {q:"Quelle fraction est équivalente à 1/2 ?",opts:["2/3","4/8","3/5","5/8"],ans:1,
-     exp:{ok:"Parfait ! 1×4=4 et 2×4=8 → 4/8. Vérif : 4÷8=0,5=1÷2 ✓",ko:"Convertis en décimal : 4÷8=0,5=1÷2 ✓.",steps:["1÷2=0,5","4÷8=0,5 ✓ → c'est 4/8"]}},
-    {q:"Simplifie 12/16",opts:["6/8","4/5","3/4","2/3"],ans:2,
-     exp:{ok:"Bravo ! 12÷4=3 et 16÷4=4 → 3/4. Vérif : 12÷16=0,75=3÷4 ✓",ko:"Cherche un diviseur de 12 ET 16. 4 fonctionne : 12÷4=3, 16÷4=4.",steps:["12÷2=6, 16÷2=8 → 6/8","6÷2=3, 8÷2=4 → 3/4 irréductible","Vérif : 12÷16=0,75=3÷4 ✓"]}},
-    {q:"3/4 en décimal ?",opts:["0,43","0,34","0,75","1,33"],ans:2,
-     exp:{ok:"Parfait ! 3÷4=0,75.",ko:"La barre = division. 3/4 = 3÷4 = 0,75.",steps:["3÷4","30÷4=7 reste 2","20÷4=5 reste 0","= 0,75"]}},
-    {q:"XV de France, 6 joueurs remplacés sur 15. Fraction simplifiée ?",opts:["6/15","2/5","3/5","1/3"],ans:1,
-     exp:{ok:"Super ! 6/15 ÷3 → 2/5. Vérif : 6÷15=0,4=2÷5 ✓",ko:"6/15 : diviseur commun de 6 et 15 = 3.",steps:["6÷3=2 et 15÷3=5 → 2/5","Vérif : 6÷15=0,4=2÷5 ✓"]}},
-    {q:"Convertis 0,4 en fraction irréductible",opts:["4/100","2/5","4/10","1/4"],ans:1,
-     exp:{ok:"Exact ! 0,4=4/10 → ÷2 → 2/5. Vérif : 2÷5=0,4 ✓",ko:"1 décimale → /10. 0,4=4/10. Puis simplifie.",steps:["0,4 = 4/10","÷2 → 2/5","Vérif : 2÷5=0,4 ✓"]}},
-    {q:"F1 2024 : 9 victoires sur 24 courses. Fraction simplifiée ?",opts:["9/24","1/3","3/8","3/9"],ans:2,
-     exp:{ok:"Parfait ! 9/24 ÷3 → 3/8. Vérif : 9÷24=0,375=3÷8 ✓",ko:"9/24 : diviseur commun de 9 et 24 = 3.",steps:["9÷3=3 et 24÷3=8 → 3/8","Vérif : 9÷24=0,375=3÷8 ✓"]}},
-    {q:"0,25 en fraction irréductible ?",opts:["25/10","1/4","5/20","2/8"],ans:1,
-     exp:{ok:"Bien ! 0,25 = 25/100 → ÷25 → 1/4. Vérif : 1÷4=0,25 ✓",ko:"2 décimales → /100. 0,25=25/100. Simplifie ÷25.",steps:["0,25 = 25/100","÷25 → 1/4","Vérif : 1÷4=0,25 ✓"]}}
+    {q:"15 joueurs répartis en 3 groupes égaux. Combien par groupe ?",opts:["3","5","12","45"],ans:1,
+     exp:{ok:"Exact ! 15 ÷ 3 = 5. Vérif : 5 × 3 = 15 ✓",ko:"Division = partager. 15 ÷ 3 = ? Demande-toi : 3 × ? = 15.",steps:["15 ÷ 3 = ?","3 × 5 = 15","Donc 15 ÷ 3 = 5"]}},
+    {q:"42 ÷ 6 = ?",opts:["7","8","36","48"],ans:0,
+     exp:{ok:"Bien ! 6 × 7 = 42. Donc 42 ÷ 6 = 7.",ko:"Cherche : 6 × ? = 42. C'est 6 × 7 = 42.",steps:["6 × 6 = 36 (trop petit)","6 × 7 = 42 ✓","Donc 42 ÷ 6 = 7"]}},
+    {q:"84 ÷ 4 = ?",opts:["21","22","20","24"],ans:0,
+     exp:{ok:"Parfait ! 8÷4=2, puis 4÷4=1 → 21. Vérif : 21×4=84 ✓",ko:"Division posée : 8÷4=2 puis 4÷4=1 → 21.",steps:["Premier chiffre 8 : 8÷4=2","Reste 0, descend 4","4÷4=1","Résultat : 21"]}},
+    {q:"Si 8 × 9 = 72, alors 72 ÷ 8 = ?",opts:["8","9","64","576"],ans:1,
+     exp:{ok:"Exact ! Multiplication et division sont liées. 8×9=72 donc 72÷8=9.",ko:"Multiplication et division sont liées : si 8×9=72 alors 72÷8=?",steps:["8 × 9 = 72","Donc 72 ÷ 8 = 9"]}},
+    {q:"175 points en 5 courses égales. Points par course ?",opts:["35","30","40","180"],ans:0,
+     exp:{ok:"Bien ! 175 ÷ 5 = 35. Vérif : 35×5=175 ✓",ko:"175 ÷ 5 = ? On cherche combien de fois 5 rentre dans 175.",steps:["175 ÷ 5","100÷5=20, 75÷5=15","20+15=35"]}},
+    {q:"17 ÷ 5 = ? (avec reste)",opts:["3 reste 2","4 reste 3","2 reste 7","3 reste 5"],ans:0,
+     exp:{ok:"Exact ! 5×3=15, 17−15=2. Donc 3 reste 2.",ko:"5×3=15 (trop petit), 5×4=20 (trop grand). Donc 3, et il reste 17−15=2.",steps:["5×3=15 (≤17)","5×4=20 (>17)","17−15=2","Résultat : 3 reste 2"]}},
+    {q:"Le résultat d'une division est toujours...",opts:["plus grand","plus petit","égal","impossible à savoir"],ans:1,
+     exp:{ok:"Exact ! Diviser = partager → on obtient des morceaux plus petits.",ko:"Diviser = couper en morceaux. Les morceaux sont plus petits que le tout.",steps:["Diviser = partager","Des parts sont plus petites que le tout","Résultat < ce qu'on divise"]}},
+    {q:"60 joueurs de rugby, 4 terrains. Joueurs par terrain ?",opts:["15","16","20","240"],ans:0,
+     exp:{ok:"Parfait ! 60 ÷ 4 = 15. Vérif : 15×4=60 ✓",ko:"60 ÷ 4. Cherche : 4 × ? = 60.",steps:["60 ÷ 4","4×10=40, 4×5=20","40+20=60 → 4×15=60","Résultat : 15"]}}
   ],
   challenges:[
-    {title:"🏉 Défi XV de France",ctx:"15 joueurs : 8 avants, 7 arrières. 1) Fraction d'avants simplifiée ? 2) Fraction d'arrières ? 3) Additionne les deux et explique le résultat. 4) Convertis chaque fraction en pourcentage (arrondi au dixième).",
-     ans:"1) 8/15 (irréductible : 8 et 15 sans diviseur commun). 2) 7/15 (idem). 3) 8/15+7/15=15/15=1 : logique car tous les joueurs sont soit avants soit arrières → le tout entier. 4) 8÷15≈53,3% et 7÷15≈46,7%. Vérif : 53,3+46,7=100% ✓"},
-    {title:"🏎️ Défi conversions F1",ctx:"Un pilote termine 0,75 de la course avant abandon. 1) Convertis 0,75 en fraction (toutes étapes). 2) La course = 60 tours. Combien en a-t-il fait ? 3) Fraction des tours NON effectués ?",
-     ans:"1) 0,75=75/100 → ÷25 → 3/4. 2) 3/4×60=45 tours. 3) 1−3/4=1/4 des tours non faits. 1/4×60=15 tours. Vérif : 45+15=60 ✓"}
+    {title:"🏉 Défi partage d'équipement",ctx:"Un club de rugby achète 144 ballons pour 12 équipes. 1) Combien de ballons par équipe ? 2) Chaque équipe a 15 joueurs. Combien de ballons par joueur ? (Écris ton calcul complet)",
+     ans:"1) 144 ÷ 12 = 12 ballons par équipe. Vérif : 12×12=144 ✓. 2) 12 ÷ 15 = 0,8 ballon par joueur. Soit moins d'un ballon chacun → les joueurs doivent partager."},
+    {title:"🏎️ Défi points F1",ctx:"Max a marqué 575 points sur toute une saison de 23 courses. 1) Moyenne de points par course (arrondi). 2) S'il avait marqué exactement 25 points par course, quel serait son total ? 3) Quelle est la différence avec ses vrais points ?",
+     ans:"1) 575 ÷ 23 ≈ 25 points par course. 2) 25 × 23 = 575 points. 3) Différence = 575 − 575 = 0 ! Dans ce cas la moyenne tombe juste."}
   ]
 },
 {
-  id:2, date:"Jeudi 18 juin", title:"Fractions — toutes les opérations", xp:100, theme:"Fractions",
+  id:1, date:"Mercredi 17 juin", title:"Les fractions — c'est juste partager", xp:100, theme:"Fractions",
   learn:`
-<div class="lsec-title">1. Addition — le piège à éviter absolument</div>
-<div class="concept">Tentation : 1/2+1/3=2/5. <strong>NON, FAUX.</strong><br><br>Pourquoi ? Dénominateurs différents = parts de tailles différentes. Comme additionner des mètres et des km sans convertir.<br><br>Preuve : 1/2+1/3 doit valoir 0,5+0,333=0,833. Or 2÷5=0,4 → pas la même chose !<br><br><strong>Règle absolue :</strong> on ne peut additionner (ou soustraire) des fractions que si elles ont le <strong>même dénominateur</strong>.</div>
-<div class="warn-box"><div class="wtitle">⚠️ Erreur n°1 en 5e</div>1/2+1/3 = 2/5 → <strong style="color:var(--danger)">FAUX !</strong> On n'additionne JAMAIS numérateurs et dénominateurs séparément.</div>
-<div class="lsec-title">2. Addition/soustraction — méthode complète</div>
-<div class="step-box"><div class="stitle">Les 5 étapes</div>
-<div class="step-row"><div class="sn">1</div><div>Dénominateurs identiques ? Additionne les numérateurs, le dénominateur reste. FIN.</div></div>
-<div class="step-row"><div class="sn">2</div><div>Dénominateurs différents ? Trouver le commun (méthode simple : multiplier les deux dénominateurs).</div></div>
-<div class="step-row"><div class="sn">3</div><div>Convertir la 1ère fraction : "×combien pour passer au nouveau dénominateur ?" → multiplier le numérateur par ce même nombre.</div></div>
-<div class="step-row"><div class="sn">4</div><div>Convertir la 2ème fraction de la même façon.</div></div>
-<div class="step-row"><div class="sn">5</div><div>Additionner/soustraire les numérateurs. Simplifier si possible.</div></div></div>
-<div class="eg"><div class="etitle">Exemple fil rouge : 1/2 + 1/3</div><div class="line">Commun = 2×3 = 6</div><div class="line">1/2 → ×3 → 3/6 | 1/3 → ×2 → 2/6</div><div class="line">3/6+2/6 = 5/6. Irréductible (5 et 6 sans diviseur commun).</div><div class="note">Vérif : 0,5+0,333=0,833=5÷6 ✓</div></div>
-<div class="eg"><div class="etitle">Exemple soustraction : 5/6 − 1/4</div><div class="line">Commun = 6×4 = 24</div><div class="line">5/6 → ×4 → 20/24 | 1/4 → ×6 → 6/24</div><div class="line">20/24−6/24 = 14/24 → ÷2 → 7/12</div><div class="note">Vérif : 5÷6−1÷4=0,583=7÷12 ✓</div></div>
-<div class="lsec-title">3. Multiplication — la règle directe</div>
-<div class="concept">Pas besoin de dénominateur commun. <strong>(a/b)×(c/d) = (a×c)/(b×d)</strong><br><br>2/3×3/4 = 6/12 = 1/2.<br><br><strong>Le mot "de" = multiplication :</strong> "les 3/4 de 80" = 3/4×80. Méthode rapide : 80÷4=20, puis 20×3=60.</div>
-<div class="lsec-title">4. Division — la règle KFC</div>
-<div class="concept"><strong>KFC : Keep · Flip · Change</strong><br>— Keep : garde la 1ère fraction<br>— Flip : retourne la 2ème<br>— Change : remplace ÷ par ×<br><br>2/3÷1/4 → K:2/3, F:4/1, C:× → 2/3×4/1=8/3</div>
-<div class="analogy"><div class="alabel">🏉 Possession de balle</div>France : 3/8 du temps en 1re MT et 2/5 en 2e MT.<br>Commun=40. 15/40+16/40=31/40 du match. Adversaire : 9/40.</div>
-<div class="recap"><div class="rtitle">📄 Récap Jour 2</div>• JAMAIS additionner numérateurs et dénominateurs séparément.<br>• Addition : dénominateur commun → convertir → opérer les numérateurs.<br>• Multiplication : (a/b)×(c/d)=(a×c)/(b×d). Pas de commun nécessaire.<br>• "de"=multiplication. Rapide : ÷dénom puis ×num.<br>• Division : KFC → multiplier par l'inverse.</div>`,
+<div class="section-title">Une fraction, c'est quoi vraiment ?</div>
+<div class="big-idea">
+  <div class="label">💡 L'idée simple</div>
+  Une fraction, c'est juste une <strong>division qu'on n'a pas encore faite</strong>.<br><br>
+  3/4 ça veut dire : "j'ai coupé quelque chose en 4 parts égales, et j'en prends 3".<br><br>
+  La barre du milieu = le signe ÷<br>
+  <strong>3/4 = 3 ÷ 4 = 0,75</strong>
+</div>
+
+<div class="sport-block">
+  <div class="slabel">🍕 Image pizza (classique mais efficace)</div>
+  Une pizza coupée en <strong>4 parts</strong>. Tu en manges <strong>3</strong>.<br>
+  Tu as mangé <strong>3/4</strong> de la pizza.<br><br>
+  Le bas = en combien tu as coupé = <strong>4</strong><br>
+  Le haut = combien tu prends = <strong>3</strong>
+</div>
+
+<div class="big-idea">
+  <div class="label">💡 Le truc pour retenir</div>
+  Le nombre du <strong>B</strong>as s'appelle le dénominateur → "B" comme "Bas".<br>
+  Le nombre du <strong>H</strong>aut s'appelle le numérateur → "H" comme "Haut".<br><br>
+  Dans 3/4 : le dénominateur = 4 (bas), le numérateur = 3 (haut).
+</div>
+
+<div class="section-title">Fractions équivalentes — même chose, écrit différemment</div>
+<div class="big-idea">
+  <div class="label">💡 L'idée</div>
+  1/2 et 2/4 représentent <strong>exactement la même quantité</strong>.<br>
+  C'est comme dire "une moitié" ou "deux quarts" — c'est pareil.<br><br>
+  Pour passer de l'une à l'autre :<br>
+  tu multiplies (ou divises) le haut ET le bas par le <strong>même nombre</strong>.
+</div>
+
+<div class="example-block">
+  <div class="elabel">Passer de 1/2 à 4/8</div>
+  <div class="calc-line">2 × 4 = 8 → je multiplie le bas par 4</div>
+  <div class="calc-line">Donc je multiplie aussi le haut par 4 : 1 × 4 = 4</div>
+  <div class="calc-line">1/2 = 4/8 ✓ (vérifie : 1÷2=0,5 et 4÷8=0,5)</div>
+</div>
+
+<div class="trap-block">
+  <div class="tlabel">⚠️ La règle absolue</div>
+  <div class="wrong">❌ Multiplier seulement le haut → 1/2 → 4/2 (FAUX, la valeur change !)</div>
+  <div class="wrong">❌ Ajouter le même nombre → 1/2 → 2/3 (FAUX !)</div>
+  <div class="right">✓ Multiplier le HAUT et le BAS par le MÊME nombre</div>
+</div>
+
+<div class="section-title">Simplifier — trouver la version la plus courte</div>
+<div class="big-idea">
+  <div class="label">💡 Pourquoi simplifier ?</div>
+  6/8 et 3/4 c'est la même chose. Mais 3/4 est plus simple à lire et comprendre.<br>
+  Simplifier = trouver le nombre qui divise exactement le haut ET le bas.
+</div>
+
+<div class="method-block">
+  <div class="mlabel">Comment simplifier 6/8</div>
+  <div class="step"><div class="snum">1</div><div>Je cherche un nombre qui divise 6 ET 8 sans reste. → 2 fonctionne !</div></div>
+  <div class="step"><div class="snum">2</div><div>6 ÷ 2 = 3 (nouveau haut) et 8 ÷ 2 = 4 (nouveau bas)</div></div>
+  <div class="step"><div class="snum">3</div><div>6/8 = 3/4. Est-ce qu'on peut encore simplifier 3/4 ? Non : 3 et 4 n'ont aucun diviseur commun.</div></div>
+  <div class="step"><div class="snum">✓</div><div>Vérif : 6÷8=0,75 et 3÷4=0,75 ✓ Même valeur.</div></div>
+</div>
+
+<div class="section-title">Fraction → nombre décimal</div>
+<div class="big-idea">
+  <div class="label">💡 C'est juste une division</div>
+  La barre de fraction = le signe ÷<br><br>
+  3/4 = 3 ÷ 4 = <strong>0,75</strong><br>
+  1/2 = 1 ÷ 2 = <strong>0,5</strong><br>
+  1/3 = 1 ÷ 3 = <strong>0,333...</strong> (les 3 se répètent, c'est normal)
+</div>
+
+<div class="example-block">
+  <div class="elabel">Les fractions à connaître par cœur</div>
+  <div class="calc-line">1/2 = 0,5 = 50%</div>
+  <div class="calc-line">1/4 = 0,25 = 25%</div>
+  <div class="calc-line">3/4 = 0,75 = 75%</div>
+  <div class="calc-line">1/5 = 0,2 = 20%</div>
+  <div class="calc-line">1/10 = 0,1 = 10%</div>
+</div>
+
+<div class="sport-block">
+  <div class="slabel">🏉 XV de France — 15 joueurs</div>
+  8 joueurs sont des avants. Fraction d'avants dans l'équipe :<br>
+  <strong>8/15</strong> → c'est 8 joueurs sur 15 au total.<br>
+  En décimal : 8 ÷ 15 ≈ 0,53 → <strong>environ 53%</strong> de l'équipe sont des avants.
+</div>
+
+<div class="recap-block">
+  <div class="rlabel">📄 À retenir</div>
+  <ul>
+    <li>Fraction = division qu'on n'a pas encore faite</li>
+    <li>Bas = dénominateur (en combien on coupe). Haut = numérateur (combien on prend)</li>
+    <li>Fractions équivalentes : ×ou÷ le haut ET le bas par le même nombre</li>
+    <li>Simplifier : trouver un diviseur commun, diviser les deux</li>
+    <li>Fraction → décimal : divise le haut par le bas</li>
+  </ul>
+</div>`,
   quiz:[
-    {q:"3/8+2/8=?",opts:["5/16","5/8","1","6/8"],ans:1,
-     exp:{ok:"Parfait ! Même dénominateur → 3+2=5, dénom reste 8 → 5/8.",ko:"Même dénominateur → additionne seulement les numérateurs.",steps:["Dénom identiques (8 et 8)","3+2=5, dénom reste 8","= 5/8"]}},
-    {q:"1/2+1/3=? (piège !)",opts:["2/5","2/6","5/6","1/6"],ans:2,
-     exp:{ok:"Excellent ! Commun=6. 1/2=3/6, 1/3=2/6. 3+2=5 → 5/6.",ko:"JAMAIS 2/5 ! Il faut un commun : 6.",steps:["Commun=2×3=6","1/2→×3→3/6","1/3→×2→2/6","3/6+2/6=5/6"]}},
-    {q:"3/4 de 80=?",opts:["20","40","60","30"],ans:2,
-     exp:{ok:"Parfait ! 'de'=×. 80÷4=20, 20×3=60.",ko:"'de'=multiplication. ÷dénom puis ×num.",steps:["÷4 : 80÷4=20","×3 : 20×3=60"]}},
-    {q:"2/3×3/5=?",opts:["5/8","6/15","1/5","2/5"],ans:3,
-     exp:{ok:"Bien ! 2×3=6, 3×5=15 → 6/15 → ÷3 → 2/5.",ko:"Num×num et dénom×dénom. Puis simplifie.",steps:["2×3=6 et 3×5=15 → 6/15","÷3 → 2/5"]}},
-    {q:"3/4÷1/2=?",opts:["3/8","6/4","3/2","4/6"],ans:2,
-     exp:{ok:"Super ! KFC : 3/4, 1/2→2/1, × → 3/4×2/1=6/4=3/2.",ko:"KFC : K=3/4, F=1/2→2/1, C=×.",steps:["K: 3/4 | F: 2/1 | C: ×","3/4×2/1=6/4=3/2"]}},
-    {q:"1/3+1/6=?",opts:["2/9","1/2","3/6","2/6"],ans:1,
-     exp:{ok:"Bien ! 6 est multiple de 3. Commun=6. 1/3=2/6. 2/6+1/6=3/6=1/2.",ko:"6 est multiple de 3 → commun=6.",steps:["Commun=6","1/3→2/6","2/6+1/6=3/6=1/2"]}},
-    {q:"3/5−1/3=?",opts:["2/2","4/15","2/15","4/8"],ans:1,
-     exp:{ok:"Bravo ! Commun=15. 9/15−5/15=4/15.",ko:"Commun=5×3=15. Convertis puis soustrait.",steps:["Commun=15","3/5→9/15, 1/3→5/15","9−5=4 → 4/15"]}},
-    {q:"2/5+1/4=?",opts:["3/9","13/20","3/20","6/20"],ans:1,
-     exp:{ok:"Exact ! Commun=20. 2/5=8/20 et 1/4=5/20. 8+5=13 → 13/20.",ko:"Commun=5×4=20. Convertis puis additionne.",steps:["Commun=20","2/5→8/20, 1/4→5/20","8+5=13 → 13/20"]}}
+    {q:"Dans 5/8, le nombre EN BAS (dénominateur) est :",opts:["5","8","3","40"],ans:1,
+     exp:{ok:"Exact ! En BAS = dénominateur = 8.",ko:"Bas = dénominateur. Dans 5/8, en bas il y a 8.",steps:["5 / 8","BAS = dénominateur = 8"]}},
+    {q:"1/2 en décimal ?",opts:["0,12","2","0,5","12"],ans:2,
+     exp:{ok:"Parfait ! 1/2 = 1÷2 = 0,5",ko:"La barre = division. 1/2 = 1÷2 = 0,5",steps:["1/2 = 1÷2","1÷2 = 0,5"]}},
+    {q:"Simplifie 6/9",opts:["3/4","2/3","6/9","1/3"],ans:1,
+     exp:{ok:"Bien ! 6 et 9 divisibles par 3 : 6÷3=2 et 9÷3=3 → 2/3.",ko:"Cherche un nombre qui divise 6 ET 9. C'est 3.",steps:["6÷3=2 et 9÷3=3","→ 2/3","Vérif : 6÷9≈0,67=2÷3 ✓"]}},
+    {q:"Laquelle est équivalente à 1/3 ?",opts:["2/5","3/9","4/9","2/6"],ans:1,
+     exp:{ok:"Exact ! 1×3=3 et 3×3=9 → 3/9. Vérif : 1÷3≈0,33=3÷9 ✓",ko:"1/3 : multiplie haut et bas par 3 → 3/9.",steps:["1×3=3, 3×3=9 → 3/9","Vérif : 3÷9=0,33=1÷3 ✓"]}},
+    {q:"XV de France, 6 joueurs remplacés sur 15. Fraction ?",opts:["9/15","6/15","15/6","1/6"],ans:1,
+     exp:{ok:"Exact ! 6 joueurs sur 15 → 6/15. Simplifie : ÷3 → 2/5.",ko:"6 joueurs remplacés sur 15 au total → 6/15.",steps:["6 sur 15 → 6/15","÷3 → 2/5 (simplifié)"]}},
+    {q:"3/4 en décimal ?",opts:["0,34","0,43","0,75","1,33"],ans:2,
+     exp:{ok:"Parfait ! 3÷4=0,75",ko:"3/4 = 3÷4. Calcule 3÷4.",steps:["3/4 = 3÷4","3÷4 = 0,75"]}},
+    {q:"F1 : 9 victoires sur 24 courses. Fraction simplifiée ?",opts:["9/24","3/8","1/3","9/8"],ans:1,
+     exp:{ok:"Super ! 9÷3=3 et 24÷3=8 → 3/8.",ko:"9/24 : divise les deux par 3.",steps:["9÷3=3 et 24÷3=8","→ 3/8"]}},
+    {q:"0,25 en fraction simplifiée ?",opts:["25/10","1/4","25/100","5/20"],ans:1,
+     exp:{ok:"Bien ! 0,25 = 25/100 → ÷25 → 1/4.",ko:"0,25 = 25/100. Simplifie en divisant par 25.",steps:["0,25 = 25/100","÷25 → 1/4","Vérif : 1÷4=0,25 ✓"]}}
   ],
   challenges:[
-    {title:"🏉 Défi possession de balle",ctx:"XV de France, 80 min. 1re MT (40 min) : 3/8 de possession. 2e MT (40 min) : 2/5. 1) Minutes de possession par MT ? 2) Fraction totale du match ? 3) L'adversaire en minutes ?",
-     ans:"1) 1re MT : 3/8×40=15 min. 2e MT : 2/5×40=16 min. 2) (15+16)÷80=31/80 du match. 3) Adversaire = 80−31=49 min. Vérif : 31+49=80 ✓"},
-    {title:"🏎️ Défi stratégie pneus",ctx:"Course 60 tours. Tendres : 1/3. Médiums : 5/12. Durs : le reste. 1) Tours en tendres et médiums ? 2) Fraction en durs ? Nombre de tours ? 3) Vérifie que 1/3+5/12+fraction_durs=1.",
-     ans:"1) Tendres : 20 tours. Médiums : 25 tours. 2) Durs : 1−1/3−5/12=12/12−4/12−5/12=3/12=1/4. 1/4×60=15 tours. 3) 4/12+5/12+3/12=12/12=1 ✓ Et 20+25+15=60 ✓"}
+    {title:"🏉 Défi XV de France",ctx:"15 joueurs : 8 avants, 7 arrières. 1) Fraction d'avants ? 2) Fraction d'arrières ? 3) Additionne les deux fractions. Que remarques-tu ? 4) Convertis chaque fraction en décimal (arrondi au centième).",
+     ans:"1) 8/15 (irréductible). 2) 7/15 (irréductible). 3) 8/15 + 7/15 = 15/15 = 1 → le tout entier, logique car tous les joueurs sont soit avants soit arrières. 4) 8÷15≈0,53 et 7÷15≈0,47. Vérif : 0,53+0,47=1 ✓"},
+    {title:"🏎️ Défi F1 conversions",ctx:"Un pilote abandonne après avoir fait 0,75 de la course. La course = 60 tours. 1) Convertis 0,75 en fraction simplifiée (montre les étapes). 2) Combien de tours a-t-il faits ? 3) Combien lui restait-il à faire ?",
+     ans:"1) 0,75 = 75/100 → ÷25 → 3/4. 2) 3/4 de 60 = 45 tours. 3) 60−45=15 tours restants. Vérif : 45+15=60 ✓"}
   ]
 },
 {
-  id:3, date:"Vendredi 19 juin", title:"Proportionnalité &amp; règle de trois", xp:100, theme:"Proportionnalité",
+  id:2, date:"Jeudi 18 juin", title:"Additionner et soustraire des fractions", xp:100, theme:"Fractions",
   learn:`
-<div class="lsec-title">1. La proportionnalité — ce que ça veut dire vraiment</div>
-<div class="concept">Deux grandeurs sont <strong>proportionnelles</strong> quand si l'une est multipliée par k, l'autre l'est aussi par k.<br><br>Maillots de rugby à 25€ : 1→25€, 2→50€, 5→125€, 0→0€.<br>Si quantité ×3, prix ×3. La relation passe toujours par zéro.<br><br><strong>Coefficient de proportionnalité</strong> = rapport constant : prix÷quantité=25 toujours.</div>
-<div class="svg-wrap"><svg viewBox="0 0 500 155" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:500px;display:block;margin:0 auto"><text x="250" y="16" text-anchor="middle" fill="#7a7d8a" font-size="11" font-family="sans-serif" font-weight="700" letter-spacing="1">TABLEAU DE PROPORTIONNALITÉ — MAILLOTS</text><rect x="20" y="25" width="460" height="115" rx="8" fill="#16181f" stroke="#2a2d38" stroke-width="1.5"/><rect x="20" y="25" width="460" height="30" rx="8" fill="#2a2d38"/><line x1="200" y1="25" x2="200" y2="140" stroke="#2a2d38" stroke-width="1.5"/><line x1="360" y1="25" x2="360" y2="140" stroke="#2a2d38" stroke-width="1.5"/><text x="110" y="46" text-anchor="middle" fill="#e8ff47" font-size="12" font-weight="700" font-family="sans-serif">Nb maillots</text><text x="280" y="46" text-anchor="middle" fill="#e8ff47" font-size="12" font-weight="700" font-family="sans-serif">Prix (€)</text><text x="425" y="46" text-anchor="middle" fill="#e8ff47" font-size="11" font-weight="700" font-family="sans-serif">Quotient</text><line x1="20" y1="70" x2="480" y2="70" stroke="#2a2d38" stroke-width="1"/><text x="110" y="62" text-anchor="middle" fill="#f0f0f0" font-size="14" font-family="sans-serif">1</text><text x="280" y="62" text-anchor="middle" fill="#f0f0f0" font-size="14" font-family="sans-serif">25</text><text x="425" y="62" text-anchor="middle" fill="#4ecdc4" font-size="13" font-weight="700" font-family="sans-serif">25</text><line x1="20" y1="95" x2="480" y2="95" stroke="#2a2d38" stroke-width="1"/><text x="110" y="87" text-anchor="middle" fill="#f0f0f0" font-size="14" font-family="sans-serif">3</text><text x="280" y="87" text-anchor="middle" fill="#f0f0f0" font-size="14" font-family="sans-serif">75</text><text x="425" y="87" text-anchor="middle" fill="#4ecdc4" font-size="13" font-weight="700" font-family="sans-serif">25</text><line x1="20" y1="120" x2="480" y2="120" stroke="#2a2d38" stroke-width="1"/><text x="110" y="112" text-anchor="middle" fill="#f0f0f0" font-size="14" font-family="sans-serif">7</text><text x="280" y="112" text-anchor="middle" fill="#e8ff47" font-size="14" font-weight="700" font-family="sans-serif">?</text><text x="425" y="112" text-anchor="middle" fill="#4ecdc4" font-size="13" font-weight="700" font-family="sans-serif">25</text><text x="110" y="136" text-anchor="middle" fill="#f0f0f0" font-size="14" font-family="sans-serif">10</text><text x="280" y="136" text-anchor="middle" fill="#f0f0f0" font-size="14" font-family="sans-serif">250</text><text x="425" y="136" text-anchor="middle" fill="#4ecdc4" font-size="13" font-weight="700" font-family="sans-serif">25</text></svg></div>
-<div class="lsec-title">2. Règle de trois — produit en croix</div>
-<div class="step-box"><div class="stitle">Méthode</div>
-<div class="step-row"><div class="sn">1</div><div>Écris les deux valeurs connues l'une sous l'autre, avec l'inconnue x en face.</div></div>
-<div class="step-row"><div class="sn">2</div><div>x = (valeur côté x) × (valeur connue opposée) ÷ (valeur connue même côté).</div></div>
-<div class="step-row"><div class="sn">✓</div><div>Vérif : quotient constant.</div></div></div>
-<div class="eg"><div class="etitle">3 maillots = 75€. Prix de 7 maillots ?</div><div class="line">x = (7×75)÷3 = 525÷3 = 175€</div><div class="line">Ou : 75÷3=25€/maillot → 7×25=175€</div><div class="note">Vérif : 175÷7=25=75÷3 ✓</div></div>
-<div class="lsec-title">3. Ce qui N'est PAS proportionnel</div>
-<div class="concept">✅ Prix de n billets, distance à vitesse constante.<br>❌ Abonnement+conso (terme fixe → pas 0 quand x=0).<br>❌ Taille selon l'âge.<br>❌ Aire d'un carré selon le côté (×2 côté → ×4 aire).<br><br><strong>Test :</strong> x=0 → y=0 ? Et quotient constant ?</div>
-<div class="analogy"><div class="alabel">🏎️ Spa-Francorchamps</div>7,004 km/tour à 230 km/h. Temps par tour ≈ 1,83 min. Pour 44 tours ≈ 80,5 min.<br>Proportionnel : 0 tour=0 min ✓, quotient=1,83 min/tour constant ✓</div>
-<div class="recap"><div class="rtitle">📄 Récap Jour 3</div>• Proportionnel = quotient constant ET passe par zéro.<br>• Coefficient = quotient entre les deux grandeurs.<br>• Règle de 3 : x = (valeur cherchée × valeur connue) ÷ valeur de référence.<br>• Rapide : valeur pour 1 unité, puis multiplier.</div>`,
+<div class="section-title">Le piège numéro 1 — l'erreur que tout le monde fait</div>
+<div class="trap-block">
+  <div class="tlabel">⚠️ ATTENTION — l'erreur la plus commise</div>
+  <div class="wrong">❌ 1/2 + 1/3 = 2/5 → COMPLÈTEMENT FAUX</div>
+  <div class="right">✓ La vraie réponse c'est 5/6</div>
+  Pourquoi c'est faux ? Vérifie : 2÷5=0,4 mais 0,5+0,333=0,833. Pas pareil du tout !
+</div>
+
+<div class="big-idea">
+  <div class="label">💡 Pourquoi on ne peut pas juste additionner ?</div>
+  Imagine : tu mesures une table en mètres et une chaise en centimètres.<br>
+  Tu ne peux pas juste additionner les chiffres sans convertir d'abord.<br><br>
+  1/2 et 1/3 c'est pareil : des "demis" et des "tiers" ce sont des tailles différentes.<br>
+  <strong>Il faut d'abord les mettre dans la même unité</strong> (le même dénominateur).
+</div>
+
+<div class="sport-block">
+  <div class="slabel">🏉 Image avec des joueurs</div>
+  "La moitié de l'équipe" + "un tiers de l'équipe".<br>
+  Moitié = 1/2 = 15/30. Un tiers = 1/3 = 10/30.<br>
+  Total = 25/30 de l'équipe. <strong>Pas 2/5 !</strong>
+</div>
+
+<div class="section-title">La méthode — même dénominateur obligatoire</div>
+<div class="method-block">
+  <div class="mlabel">Les étapes pour 1/2 + 1/3</div>
+  <div class="step"><div class="snum">1</div><div><strong>Trouve le dénominateur commun</strong> : multiplie les deux bas. 2 × 3 = 6.</div></div>
+  <div class="step"><div class="snum">2</div><div><strong>Transforme la première fraction</strong> : pour passer de 2 à 6 en bas, tu multiplies par 3. Donc tu multiplies aussi le haut par 3 : 1×3=3. → 1/2 devient 3/6</div></div>
+  <div class="step"><div class="snum">3</div><div><strong>Transforme la deuxième fraction</strong> : pour passer de 3 à 6 en bas, tu multiplies par 2. Donc : 1×2=2. → 1/3 devient 2/6</div></div>
+  <div class="step"><div class="snum">4</div><div><strong>Additionne les haut</strong> : 3/6 + 2/6 = 5/6. Le bas ne change pas !</div></div>
+  <div class="step"><div class="snum">✓</div><div>Vérif : 0,5 + 0,333 = 0,833 = 5÷6 ✓</div></div>
+</div>
+
+<div class="example-block">
+  <div class="elabel">Autre exemple — 3/4 + 1/8</div>
+  <div class="calc-line">Astuce : 8 est déjà un multiple de 4 → dénominateur commun = 8</div>
+  <div class="calc-line">3/4 → ×2 → 6/8</div>
+  <div class="calc-line">6/8 + 1/8 = 7/8</div>
+  <div class="calc-note">Quand un dénominateur est multiple de l'autre, pas besoin de multiplier les deux !</div>
+</div>
+
+<div class="section-title">La soustraction — exactement pareil</div>
+<div class="big-idea">
+  <div class="label">💡 Même méthode</div>
+  Même technique qu'addition : trouver le dénominateur commun, transformer, puis soustraire les hauts.<br><br>
+  3/4 − 1/3 :<br>
+  Commun = 12. → 9/12 − 4/12 = 5/12.
+</div>
+
+<div class="section-title">Multiplier des fractions — plus simple !</div>
+<div class="big-idea">
+  <div class="label">💡 Pas besoin de dénominateur commun ici</div>
+  Multiplier = haut × haut, bas × bas. C'est tout.<br><br>
+  2/3 × 3/4 = (2×3)/(3×4) = 6/12 = 1/2<br><br>
+  <strong>Le mot "de" = multiplier :</strong><br>
+  "les 3/4 d'une équipe de 80 joueurs" = 3/4 × 80 = 60 joueurs.
+</div>
+
+<div class="method-block">
+  <div class="mlabel">Astuce pour "les 3/4 de 80"</div>
+  <div class="step"><div class="snum">1</div><div>Divise par le bas : 80 ÷ 4 = 20</div></div>
+  <div class="step"><div class="snum">2</div><div>Multiplie par le haut : 20 × 3 = 60</div></div>
+  <div class="step"><div class="snum">✓</div><div>Réponse : 60 joueurs</div></div>
+</div>
+
+<div class="recap-block">
+  <div class="rlabel">📄 À retenir</div>
+  <ul>
+    <li>JAMAIS additionner les hauts et les bas séparément</li>
+    <li>Addition/soustraction : trouver dénominateur commun d'abord</li>
+    <li>Dénominateur commun = multiplier les deux bas (ou prendre le multiple)</li>
+    <li>Multiplication : haut×haut et bas×bas, simple !</li>
+    <li>"de" = multiplication (3/4 de 80 = 60)</li>
+  </ul>
+</div>`,
   quiz:[
-    {q:"5 maillots=100€. Prix de 8 maillots ?",opts:["125€","160€","200€","80€"],ans:1,
-     exp:{ok:"Parfait ! 100÷5=20€/maillot. 8×20=160€.",ko:"Valeur unitaire : 100÷5=20€. Puis ×8.",steps:["100÷5=20€/maillot","8×20=160€"]}},
-    {q:"180 km/h, vitesse constante. Combien en 45 min ?",opts:["90 km","120 km","135 km","150 km"],ans:2,
-     exp:{ok:"Exact ! 45 min=3/4 h. 180×3/4=135 km.",ko:"45 min=45/60=3/4 h. Distance ∝ temps.",steps:["45 min=3/4 h","180×3/4=135 km"]}},
-    {q:"Coefficient=25, valeur pour x=4 ?",opts:["4","25","100","29"],ans:2,
-     exp:{ok:"Exact ! 4×25=100.",ko:"Valeur B = coeff × valeur A.",steps:["4×25=100"]}},
-    {q:"3,5 essais/match. Sur 26 matchs ?",opts:["78","91","84","96"],ans:1,
-     exp:{ok:"Parfait ! 3,5×26=91.",ko:"Proportionnel : 3,5×26.",steps:["3,5×20=70","3,5×6=21","70+21=91"]}},
-    {q:"8 ouvriers, 6 jours. Pour 12 ouvriers ?",opts:["9 jours","4 jours","3 jours","8 jours"],ans:1,
-     exp:{ok:"Bien ! Proportion inverse. 8×6=48 jours-ouvriers. 48÷12=4 jours.",ko:"Proportion INVERSE : plus d'ouvriers = moins de temps. Travail total=8×6=48.",steps:["Travail=8×6=48 jours-ouvriers","48÷12=4 jours"]}},
-    {q:"Laquelle EST proportionnelle ?",opts:["Abonnement 30€+0,02€/SMS","n kg à 15€/kg","Taille selon l'âge","Aire d'un carré selon le côté"],ans:1,
-     exp:{ok:"Exact ! n kg à 15€/kg : 0kg=0€ ✓, quotient=15 constant ✓",ko:"Test : 0→0 ? Quotient constant ?",steps:["Abonnement : 0 SMS=30€≠0 → non","n kg : 0kg=0€ ✓, quotient=15 ✓ → OUI"]}},
-    {q:"Spa : 7 km/tour, 210 km/h. Temps pour 1 tour (en secondes) ?",opts:["90 s","120 s","150 s","180 s"],ans:1,
-     exp:{ok:"Bien ! 7÷210=1/30 h=2 min=120 s.",ko:"Temps=dist÷vitesse=7÷210=1/30 h. ×3600 s.",steps:["7÷210=1/30 h","1/30×60=2 min","2×60=120 s"]}},
-    {q:"3 billets de train = 45€. Tarif de 7 billets ?",opts:["85€","105€","90€","120€"],ans:1,
-     exp:{ok:"Parfait ! 45÷3=15€/billet. 7×15=105€.",ko:"Valeur unitaire : 45÷3=15€.",steps:["45÷3=15€/billet","7×15=105€"]}}
+    {q:"3/8 + 2/8 = ?",opts:["5/16","5/8","1/2","3/4"],ans:1,
+     exp:{ok:"Parfait ! Même bas → 3+2=5, bas reste 8 → 5/8.",ko:"Même dénominateur : additionne seulement les hauts.",steps:["Même bas (8)","3+2=5","→ 5/8"]}},
+    {q:"1/2 + 1/3 = ?",opts:["2/5","2/6","5/6","1/6"],ans:2,
+     exp:{ok:"Super ! Commun=6. 3/6+2/6=5/6.",ko:"PAS 2/5 ! Dénominateur commun = 2×3=6.",steps:["Commun=6","1/2→3/6, 1/3→2/6","3+2=5 → 5/6"]}},
+    {q:"3/4 de 80 = ?",opts:["20","40","60","30"],ans:2,
+     exp:{ok:"Exact ! 80÷4=20, puis 20×3=60.",ko:"'de' = ×. 80÷4=20 puis ×3=60.",steps:["÷4 : 80÷4=20","×3 : 20×3=60"]}},
+    {q:"1/3 + 1/6 = ?",opts:["2/9","1/2","2/6","3/9"],ans:1,
+     exp:{ok:"Bien ! 6 est multiple de 3. 1/3=2/6. 2/6+1/6=3/6=1/2.",ko:"6 est multiple de 3 → commun=6.",steps:["Commun=6","1/3→2/6","2/6+1/6=3/6=1/2"]}},
+    {q:"2/3 × 3/5 = ?",opts:["5/8","6/15","1/5","2/5"],ans:3,
+     exp:{ok:"Bien ! 2×3=6, 3×5=15 → 6/15 → ÷3 → 2/5.",ko:"Haut×haut et bas×bas : (2×3)/(3×5)=6/15.",steps:["2×3=6 et 3×5=15","6/15 → ÷3 → 2/5"]}},
+    {q:"3/5 − 1/3 = ?",opts:["2/2","4/15","2/15","2/5"],ans:1,
+     exp:{ok:"Bravo ! Commun=15. 9/15−5/15=4/15.",ko:"Commun=5×3=15. 3/5→9/15, 1/3→5/15.",steps:["Commun=15","3/5→9/15, 1/3→5/15","9−5=4 → 4/15"]}},
+    {q:"1/4 + 1/4 = ?",opts:["2/8","1/2","2/4","1/4"],ans:1,
+     exp:{ok:"Exact ! 1/4+1/4=2/4=1/2.",ko:"Même bas. 1+1=2 → 2/4. Simplifie : 2/4=1/2.",steps:["1+1=2, bas=4 → 2/4","÷2 → 1/2"]}},
+    {q:"France : 3/8 du match en possession + 2/5. Total ?",opts:["5/13","13/20","31/40","5/8"],ans:2,
+     exp:{ok:"Exact ! Commun=40. 15/40+16/40=31/40.",ko:"Commun=8×5=40. 3/8→15/40, 2/5→16/40.",steps:["Commun=40","3/8→15/40, 2/5→16/40","15+16=31 → 31/40"]}}
   ],
   challenges:[
-    {title:"🏎️ Défi règle de trois F1",ctx:"Spa : 7,004 km/tour, 230 km/h. Course doit dépasser 305 km. 1) Nombre de tours minimum ? 2) Distance réelle ? 3) Durée en min et secondes ? 4) Distance en 1 heure à ce rythme ?",
-     ans:"1) 305÷7,004≈43,5 → 44 tours minimum. 2) 44×7,004=308,176 km. 3) 308,176÷230×60≈80,4 min=80 min 24 s. 4) 230 km (définition km/h)."},
-    {title:"🏉 Défi saison Top 14",ctx:"Équipe : 3,5 essais/match sur 26 matchs. Transforme 2/3 des essais (2pts). Pénalités : 1,5/match (3pts). 1) Total essais ? 2) Transformations ? 3) Pts essais+transfo ? 4) Pts pénalités ? 5) Total saison ?",
-     ans:"1) 3,5×26=91 essais. 2) 2/3×91≈60 transfo. 3) 91×5+60×2=455+120=575 pts. 4) 1,5×26×3=117 pts. 5) 575+117=692 pts."}
+    {title:"🏉 Défi possession de balle",ctx:"80 minutes de match. 1re mi-temps (40 min) : possession 3/8 du temps. 2e mi-temps (40 min) : possession 2/5 du temps. 1) Combien de minutes en possession par mi-temps ? 2) Fraction totale du match en possession ? 3) L'adversaire combien de minutes ?",
+     ans:"1) 1re MT : 3/8×40=15 min. 2e MT : 2/5×40=16 min. 2) (15+16)/80=31/80. 3) 80−31=49 min. Vérif : 31+49=80 ✓"},
+    {title:"🏎️ Défi pneus F1",ctx:"Course 60 tours. Pneus tendres : 1/3 des tours. Pneus médiums : 5/12. Pneus durs : le reste. 1) Tours en tendres et médiums ? 2) Quelle fraction en durs ? 3) Vérifie que les 3 fractions font 1.",
+     ans:"1) Tendres : 20 tours. Médiums : 25 tours. 2) Durs=1−1/3−5/12=3/12=1/4 → 15 tours. 3) 4/12+5/12+3/12=12/12=1 ✓"}
   ]
 }
 ];

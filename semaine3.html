@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Semaine 3 — Équations, Géométrie & Stats</title>
+<title>J6–J9 — Algèbre, Géométrie & Stats</title>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#0d0e12;--surface:#16181f;--card:#1e2029;--border:#2a2d38;--text:#f0f0f0;--muted:#7a7d8a;--success:#4ecdc4;--danger:#ff6b6b;--warn:#ffd93d;}
 *{box-sizing:border-box;margin:0;padding:0;}html{scroll-behavior:smooth;}
-body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;font-size:16px;line-height:1.6;min-height:100vh;}
+body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;font-size:16px;line-height:1.7;min-height:100vh;}
 .topbar{position:sticky;top:0;z-index:100;background:rgba(13,14,18,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 1.5rem;display:flex;align-items:center;justify-content:space-between;height:54px;}
 .back-home{font-size:12px;color:var(--muted);text-decoration:none;transition:color .15s;}
 .back-home:hover{color:var(--accent);}
@@ -18,7 +18,7 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;fon
 .streak-pill{background:var(--surface);border:1px solid var(--border);font-size:12px;padding:3px 10px;border-radius:20px;color:var(--warn);}
 .pbtn{background:none;border:1px solid var(--border);color:var(--muted);font-size:11px;padding:5px 11px;border-radius:6px;cursor:pointer;transition:all .15s;}
 .pbtn:hover{border-color:var(--accent);color:var(--accent);}
-.container{max-width:900px;margin:0 auto;padding:2rem 1.5rem 6rem;}
+.container{max-width:860px;margin:0 auto;padding:2rem 1.5rem 6rem;}
 .week-hero{margin-bottom:2.5rem;}
 .week-hero h1{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(1.8rem,4vw,2.6rem);margin-bottom:.5rem;}
 .week-hero p{color:var(--muted);font-size:15px;}
@@ -43,26 +43,37 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;fon
 .lesson-tabs{display:flex;gap:4px;background:var(--surface);border-radius:10px;padding:4px;margin-bottom:2rem;border:1px solid var(--border);}
 .ltab{flex:1;padding:10px;text-align:center;border-radius:7px;cursor:pointer;font-size:13px;font-family:'Syne',sans-serif;font-weight:600;color:var(--muted);transition:all .15s;}
 .ltab.active{background:var(--card);color:var(--text);border:1px solid var(--border);}
-.lsec-title{font-family:'Syne',sans-serif;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:1.2px;color:var(--muted);margin:2.25rem 0 .85rem;}
-.lsec-title:first-child{margin-top:0;}
-.concept{border-left:3px solid var(--accent);background:var(--card);border-radius:0 12px 12px 0;padding:1.35rem 1.6rem;margin-bottom:1.35rem;font-size:15px;line-height:1.9;}
-.concept strong,.concept b{color:var(--accent);}
-.analogy{background:rgba(232,255,71,.04);border:1px solid rgba(232,255,71,.14);border-radius:12px;padding:1.1rem 1.4rem;margin-bottom:1.35rem;font-size:14px;line-height:1.85;}
-.analogy .alabel{font-size:10px;text-transform:uppercase;letter-spacing:.7px;color:#e8ff47;font-family:'Syne',sans-serif;font-weight:700;margin-bottom:7px;}
-.step-box{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.35rem 1.6rem;margin-bottom:1.35rem;}
-.step-box .stitle{font-family:'Syne',sans-serif;font-weight:700;font-size:13px;color:var(--success);margin-bottom:.9rem;text-transform:uppercase;letter-spacing:.5px;}
-.step-row{display:flex;gap:13px;align-items:flex-start;margin-bottom:.8rem;font-size:14px;line-height:1.75;}
-.step-row:last-child{margin-bottom:0;}
-.sn{background:var(--accent);color:#fff;font-family:'Syne',sans-serif;font-weight:800;font-size:11px;border-radius:50%;min-width:22px;height:22px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:3px;}
-.eg{background:rgba(255,255,255,.02);border:1px solid var(--border);border-radius:12px;padding:1.35rem 1.6rem;margin-bottom:1.35rem;}
-.eg .etitle{font-size:10px;text-transform:uppercase;letter-spacing:.7px;color:var(--accent);font-family:'Syne',sans-serif;font-weight:700;margin-bottom:.9rem;}
-.eg .line{font-family:monospace;font-size:15px;color:var(--warn);margin:.4rem 0;line-height:1.65;}
-.eg .note{font-size:13px;color:var(--muted);margin-top:.7rem;font-style:italic;line-height:1.6;}
-.warn-box{background:rgba(255,107,107,.06);border:1px solid rgba(255,107,107,.2);border-radius:12px;padding:1.1rem 1.4rem;margin-bottom:1.35rem;}
-.warn-box .wtitle{font-size:10px;text-transform:uppercase;letter-spacing:.7px;color:var(--danger);font-family:'Syne',sans-serif;font-weight:700;margin-bottom:7px;}
-.recap{background:var(--surface);border:1px solid rgba(78,205,196,.2);border-radius:12px;padding:1.35rem 1.6rem;margin-bottom:1.35rem;font-size:14px;line-height:1.95;}
-.recap .rtitle{font-size:10px;text-transform:uppercase;letter-spacing:.7px;color:var(--success);font-family:'Syne',sans-serif;font-weight:700;margin-bottom:.8rem;}
-.svg-wrap{background:var(--card);border-radius:12px;padding:1rem;margin-bottom:1.35rem;}
+
+/* LEARN STYLES — nouvelle approche */
+.big-idea{background:linear-gradient(135deg,rgba(232,255,71,.06),rgba(232,255,71,.02));border:2px solid rgba(232,255,71,.25);border-radius:16px;padding:1.5rem 1.75rem;margin-bottom:1.5rem;font-size:17px;line-height:1.85;}
+.big-idea .label{font-size:10px;font-family:'Syne',sans-serif;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--accent);margin-bottom:.6rem;}
+.big-idea strong{color:var(--accent);}
+.sport-block{background:rgba(255,107,53,.05);border-left:4px solid #ff6b35;border-radius:0 12px 12px 0;padding:1.25rem 1.5rem;margin-bottom:1.5rem;font-size:15px;line-height:1.85;}
+.sport-block .slabel{font-size:10px;font-family:'Syne',sans-serif;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:#ff6b35;margin-bottom:.5rem;}
+.method-block{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:1.4rem 1.6rem;margin-bottom:1.5rem;}
+.method-block .mlabel{font-size:10px;font-family:'Syne',sans-serif;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--success);margin-bottom:.9rem;}
+.step{display:flex;gap:14px;align-items:flex-start;margin-bottom:1rem;font-size:15px;line-height:1.75;}
+.step:last-child{margin-bottom:0;}
+.snum{background:var(--accent);color:#0d0e12;font-family:'Syne',sans-serif;font-weight:800;font-size:11px;border-radius:50%;min-width:24px;height:24px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:3px;}
+.example-block{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.3rem 1.5rem;margin-bottom:1.5rem;}
+.example-block .elabel{font-size:10px;font-family:'Syne',sans-serif;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--accent);margin-bottom:.75rem;}
+.calc-line{font-family:monospace;font-size:16px;color:var(--warn);margin:.5rem 0;line-height:1.6;}
+.calc-note{font-size:13px;color:var(--muted);margin-top:.6rem;font-style:italic;}
+.trap-block{background:rgba(255,107,107,.05);border:2px solid rgba(255,107,107,.2);border-radius:12px;padding:1.2rem 1.5rem;margin-bottom:1.5rem;}
+.trap-block .tlabel{font-size:10px;font-family:'Syne',sans-serif;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--danger);margin-bottom:.6rem;}
+.trap-block .wrong{color:var(--danger);font-size:15px;margin:.3rem 0;}
+.trap-block .right{color:var(--success);font-size:15px;margin:.3rem 0;}
+.recap-block{background:var(--surface);border:1px solid rgba(78,205,196,.2);border-radius:12px;padding:1.3rem 1.5rem;margin-bottom:1.5rem;}
+.recap-block .rlabel{font-size:10px;font-family:'Syne',sans-serif;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--success);margin-bottom:.7rem;}
+.recap-block ul{list-style:none;padding:0;}
+.recap-block li{padding:.3rem 0;font-size:14px;border-bottom:1px solid var(--border);}
+.recap-block li:last-child{border:none;}
+.recap-block li::before{content:"→ ";color:var(--accent);font-weight:700;}
+.section-title{font-family:'Syne',sans-serif;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:1.2px;color:var(--muted);margin:2rem 0 .85rem;}
+.section-title:first-child{margin-top:0;}
+.svg-wrap{background:var(--card);border-radius:12px;padding:1rem;margin-bottom:1.5rem;}
+
+/* QUIZ */
 .quiz-item{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.6rem;margin-bottom:1.1rem;}
 .q-num{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:7px;font-family:'Syne',sans-serif;font-weight:600;}
 .q-text{font-family:'Syne',sans-serif;font-weight:600;font-size:15px;margin-bottom:1.1rem;line-height:1.55;}
@@ -84,6 +95,8 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;fon
 .fb-step{display:flex;gap:11px;align-items:flex-start;margin-bottom:.5rem;font-size:13px;color:var(--muted);}
 .fb-step .arr{color:#e8ff47;font-weight:700;flex-shrink:0;}
 .quiz-score{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:15px 20px;text-align:center;margin-top:1.1rem;font-family:'Syne',sans-serif;font-weight:700;font-size:19px;color:var(--accent);}
+
+/* CHALLENGES */
 .ch-info{background:rgba(255,255,255,.02);border:1px solid var(--border);border-radius:12px;padding:1.1rem 1.4rem;margin-bottom:1.5rem;font-size:13px;color:var(--muted);line-height:1.65;}
 .ch-info span{color:#e8ff47;font-family:'Syne',sans-serif;font-weight:700;}
 .ch-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.6rem;margin-bottom:1.1rem;}
@@ -135,7 +148,7 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;fon
 <nav class="topbar">
   <div class="topbar-left">
     <a href="index.html" class="back-home">← Accueil</a>
-    <span class="week-label">Semaine 3 · 26–27 juin</span>
+    <span class="week-label">Semaine 3 · 25–27 juin</span>
   </div>
   <div class="topbar-right">
     <span class="streak-pill" id="streak-top">🔥 0</span>
@@ -146,9 +159,9 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;fon
 <div class="modal-overlay" id="parent-modal">
   <div class="modal">
     <h3>🔐 Vue parents</h3>
-    <p style="font-size:13px;color:var(--muted);margin-bottom:1rem">Ce panneau montre pour chaque question du quiz combien de clics votre fils a fait avant de trouver la bonne réponse.</p>
+    <p style="font-size:13px;color:var(--muted);margin-bottom:1rem">Ce panneau montre pour chaque question combien de clics votre fils a faits.</p>
     <input type="text" id="parent-input" placeholder="PAPA" maxlength="4" oninput="this.value=this.value.toUpperCase()">
-    <div class="modal-err" id="modal-err">Code incorrect — réessaie</div>
+    <div class="modal-err" id="modal-err">Code incorrect</div>
     <div class="modal-btns">
       <button onclick="closeParentModal()">Annuler</button>
       <button class="primary" onclick="checkParentCode()">Accéder</button>
@@ -158,16 +171,16 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;fon
 <div class="container">
   <div id="main-view">
     <div class="week-hero">
-      <h1>Semaine 3 — <span style="color:var(--accent)">Équations, Géométrie &amp; Stats</span></h1>
-      <p>Jours 7, 8, 9 · Équations · Géométrie · Statistiques · Volumes</p>
+      <h1>Algèbre, Géométrie &amp; <span style="color:var(--accent)">Stats</span></h1>
+      <p>J6 Calcul littéral · J7 Équations · J8 Géométrie · J9 Stats & Volumes</p>
       <div class="xp-bar-wrap"><div class="xp-bar" id="xp-bar" style="width:0%"></div></div>
     </div>
     <div class="day-grid" id="day-grid"></div>
   </div>
   <div id="lesson-view">
-    <button class="back-btn" onclick="backToGrid()">← Retour aux jours</button>
+    <button class="back-btn" onclick="backToGrid()">← Retour</button>
     <div class="parent-panel" id="parent-panel">
-      <h3>📊 Suivi parental — Clics par question</h3>
+      <h3>📊 Suivi — Clics par question</h3>
       <div id="pp-content"></div>
     </div>
     <div class="lh-date" id="lh-date"></div>
@@ -186,129 +199,365 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;fon
 <script>
 const DAYS = [
 {
-  id:7, date:"Jeudi 26 juin", title:"Équations du 1er degré", xp:100, theme:"Algèbre",
+  id:6, date:"Mercredi 25 juin", title:"Calcul littéral — les maths avec des lettres", xp:100, theme:"Algèbre",
   learn:`
-<div class="lsec-title">1. Qu'est-ce qu'une équation ?</div>
-<div class="concept">Une <strong>équation</strong> = une égalité avec une inconnue (lettre). <strong>Résoudre</strong> = trouver la valeur qui rend l'égalité vraie.<br><br>Cette valeur = la <strong>solution</strong>.<br><br>2x+3=11 → solution x=4 car 2×4+3=11 ✓<br>Pour x=5 : 2×5+3=13≠11 → pas une solution.</div>
-<div class="svg-wrap"><svg viewBox="0 0 500 215" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:500px;display:block;margin:0 auto"><text x="250" y="14" text-anchor="middle" fill="#7a7d8a" font-size="11" font-family="sans-serif" font-weight="700" letter-spacing="1">L'ÉQUATION = UNE BALANCE À ÉQUILIBRER</text><rect x="235" y="155" width="30" height="40" rx="3" fill="#2a2d38"/><rect x="205" y="188" width="90" height="14" rx="7" fill="#2a2d38" stroke="#7a7d8a" stroke-width="1.5"/><polygon points="250,110 230,158 270,158" fill="#2a2d38" stroke="#7a7d8a" stroke-width="2"/><circle cx="250" cy="110" r="5" fill="#ff6b35"/><line x1="65" y1="90" x2="435" y2="90" stroke="#ff6b35" stroke-width="4" stroke-linecap="round"/><line x1="105" y1="90" x2="105" y2="125" stroke="#7a7d8a" stroke-width="2"/><rect x="50" y="125" width="110" height="10" rx="5" fill="#2a2d38" stroke="#7a7d8a" stroke-width="1.5"/><rect x="58" y="90" width="30" height="30" rx="6" fill="rgba(255,107,53,0.18)" stroke="#ff6b35" stroke-width="2"/><text x="73" y="110" text-anchor="middle" fill="#ff6b35" font-size="16" font-weight="700" font-family="sans-serif">x</text><rect x="94" y="90" width="30" height="30" rx="6" fill="rgba(255,107,53,0.18)" stroke="#ff6b35" stroke-width="2"/><text x="109" y="110" text-anchor="middle" fill="#ff6b35" font-size="16" font-weight="700" font-family="sans-serif">x</text><rect x="130" y="94" width="24" height="22" rx="4" fill="rgba(255,211,61,0.2)" stroke="#ffd93d" stroke-width="1.5"/><text x="142" y="109" text-anchor="middle" fill="#ffd93d" font-size="12" font-weight="700" font-family="sans-serif">+3</text><text x="105" y="150" text-anchor="middle" fill="#f0f0f0" font-size="15" font-weight="700" font-family="sans-serif">2x + 3</text><text x="250" y="148" text-anchor="middle" fill="#ff6b35" font-size="28" font-weight="800" font-family="sans-serif">=</text><line x1="395" y1="90" x2="395" y2="125" stroke="#7a7d8a" stroke-width="2"/><rect x="340" y="125" width="110" height="10" rx="5" fill="#2a2d38" stroke="#7a7d8a" stroke-width="1.5"/><rect x="352" y="85" width="86" height="38" rx="8" fill="rgba(78,205,196,0.15)" stroke="#4ecdc4" stroke-width="2"/><text x="395" y="111" text-anchor="middle" fill="#4ecdc4" font-size="24" font-weight="800" font-family="sans-serif">11</text><text x="395" y="150" text-anchor="middle" fill="#f0f0f0" font-size="15" font-weight="700" font-family="sans-serif">11</text><text x="250" y="193" text-anchor="middle" fill="#7a7d8a" font-size="12" font-family="sans-serif">Même opération des DEUX côtés !</text><text x="250" y="208" text-anchor="middle" fill="#ff6b35" font-size="12" font-weight="700" font-family="sans-serif">−3 → 2x=8 → ÷2 → x=4</text></svg></div>
-<div class="lsec-title">2. La règle fondamentale : l'équilibre</div>
-<div class="concept">Une équation = une balance. Toute opération effectuée d'un côté doit l'être de l'<strong>autre côté aussi</strong>.<br><br>Objectif : isoler x seul d'un côté avec un coefficient de 1.</div>
-<div class="step-box"><div class="stitle">Méthode en 4 étapes</div>
-<div class="step-row"><div class="sn">1</div><div>Développer les parenthèses.</div></div>
-<div class="step-row"><div class="sn">2</div><div>Regrouper tous les x à gauche.</div></div>
-<div class="step-row"><div class="sn">3</div><div>Regrouper tous les nombres à droite.</div></div>
-<div class="step-row"><div class="sn">4</div><div>Diviser par le coefficient de x. Vérifier.</div></div></div>
-<div class="eg"><div class="etitle">Exemple 1 : 3x+5=17</div><div class="line">−5 des deux côtés : 3x=12</div><div class="line">÷3 : x=4. Vérif : 3×4+5=17 ✓</div></div>
-<div class="eg"><div class="etitle">Exemple 2 : 2x−4=3x+1 (x des deux côtés)</div><div class="line">−3x des deux côtés : −x−4=1</div><div class="line">+4 : −x=5 → ÷(−1) : x=−5</div><div class="line">Vérif : 2×(−5)−4=−14 et 3×(−5)+1=−14 ✓</div></div>
-<div class="eg"><div class="etitle">Exemple 3 : avec parenthèses — 2(x+3)=4x−2</div><div class="line">Développe : 2x+6=4x−2</div><div class="line">2x−4x=−2−6 → −2x=−8 → x=4</div><div class="line">Vérif : 2(4+3)=14=4×4−2 ✓</div></div>
-<div class="analogy"><div class="alabel">🏉 Score mystère</div>3 essais transformés (7pts) + x pénalités (3pts) = 36pts.<br>21+3x=36 → 3x=15 → x=5 pénalités.<br>Vérif : 21+15=36 ✓</div>
-<div class="recap"><div class="rtitle">📄 Récap Jour 7</div>• Équation = égalité avec inconnue. Résoudre = trouver la valeur qui la rend vraie.<br>• Même opération des DEUX côtés.<br>• Méthode : développer → x à gauche → nombres à droite → diviser.<br>• Toujours vérifier en remplaçant dans l'équation de départ.</div>`,
+<div class="section-title">Pourquoi mettre des lettres en maths ?</div>
+<div class="big-idea">
+  <div class="label">💡 L'idée</div>
+  Une lettre = un nombre qu'on ne connaît pas encore (ou qu'on veut garder général).<br><br>
+  Au lieu de recalculer pour chaque cas :<br>
+  Prix de 1 maillot = 25€ → 3 maillots = 75€, 7 = 175€...<br><br>
+  On écrit : <strong>Prix = 25 × n</strong> (n = nombre de maillots).<br>
+  Une formule → valable pour tous les cas.
+</div>
+
+<div class="sport-block">
+  <div class="slabel">🏉 Score de rugby</div>
+  Un essai=5pts, transformation=2pts, pénalité=3pts.<br>
+  Score = <strong>5e + 2t + 3p</strong> (e=essais, t=transformations, p=pénalités)<br><br>
+  Pour e=3, t=2, p=4 :<br>
+  S = 5×3 + 2×2 + 3×4 = 15+4+12 = <strong>31 points</strong>
+</div>
+
+<div class="section-title">Réduire — regrouper ce qui va ensemble</div>
+<div class="big-idea">
+  <div class="label">💡 Les termes semblables</div>
+  On peut additionner des x avec des x, mais pas des x avec des nombres.<br><br>
+  3x + 5x = <strong>8x</strong> (comme 3 pommes + 5 pommes = 8 pommes)<br>
+  3x + 5 = 3x + 5 (on ne peut pas simplifier → pas les mêmes "objets")
+</div>
+
+<div class="example-block">
+  <div class="elabel">Exemples de réduction</div>
+  <div class="calc-line">4a + 3a = 7a</div>
+  <div class="calc-line">5x − 2x + 3 = 3x + 3</div>
+  <div class="calc-line">2x + 3y + 4x − y = 6x + 2y</div>
+</div>
+
+<div class="section-title">Développer — enlever les parenthèses</div>
+<div class="big-idea">
+  <div class="label">💡 La règle</div>
+  k × (a + b) = k×a + k×b<br><br>
+  Tu multiplies le nombre devant par <strong>chaque terme</strong> à l'intérieur.<br><br>
+  3(x + 4) = 3×x + 3×4 = <strong>3x + 12</strong>
+</div>
+
+<div class="example-block">
+  <div class="elabel">Tous les cas importants</div>
+  <div class="calc-line">3(x + 4) = 3x + 12</div>
+  <div class="calc-line">5(2x − 3) = 10x − 15</div>
+  <div class="calc-line">−2(x + 6) = −2x − 12</div>
+  <div class="calc-line">−3(x − 4) = −3x + 12 ← attention : −×−=+</div>
+</div>
+
+<div class="trap-block">
+  <div class="tlabel">⚠️ Le piège du signe −</div>
+  <div class="wrong">❌ −(x + 3) = −x + 3 (FAUX)</div>
+  <div class="right">✓ −(x + 3) = −x − 3 (le − change TOUT)</div>
+  <div class="wrong">❌ −(5x − 2) = −5x − 2 (FAUX)</div>
+  <div class="right">✓ −(5x − 2) = −5x + 2 (les deux signes changent)</div>
+</div>
+
+<div class="recap-block">
+  <div class="rlabel">📄 À retenir</div>
+  <ul>
+    <li>Lettre = nombre inconnu ou général</li>
+    <li>Termes semblables = même lettre → additionne les coefficients</li>
+    <li>Développer : k(a+b) = ka+kb</li>
+    <li>Signe − devant parenthèse : change TOUS les signes intérieurs</li>
+    <li>Toujours vérifier en remplaçant une valeur</li>
+  </ul>
+</div>`,
   quiz:[
-    {q:"Résous : x+7=15",opts:["x=8","x=22","x=7","x=−8"],ans:0,
-     exp:{ok:"Parfait ! −7 : x=8. Vérif : 8+7=15 ✓",ko:"Opération inverse de +7 = −7 des deux côtés.",steps:["x+7=15","−7 : x=15−7=8","Vérif : 8+7=15 ✓"]}},
-    {q:"Résous : 4x=28",opts:["x=24","x=32","x=7","x=112"],ans:2,
-     exp:{ok:"Bien ! ÷4 : x=7. Vérif : 4×7=28 ✓",ko:"x multiplié par 4 → divise les deux par 4.",steps:["4x=28","÷4 : x=7","Vérif : 4×7=28 ✓"]}},
-    {q:"Résous : 3x−6=12",opts:["x=2","x=6","x=10","x=8"],ans:1,
-     exp:{ok:"Super ! +6 : 3x=18. ÷3 : x=6.",ko:"+6 des deux côtés, puis ÷3.",steps:["3x−6=12","+6 : 3x=18","÷3 : x=6"]}},
-    {q:"Résous : 2x+5=x+9",opts:["x=2","x=4","x=7","x=14"],ans:1,
-     exp:{ok:"Exact ! −x : x+5=9. −5 : x=4.",ko:"Des x des deux côtés → soustrait x des deux membres.",steps:["2x+5=x+9","−x : x+5=9","−5 : x=4","Vérif : 2×4+5=13=4+9 ✓"]}},
-    {q:"Résous : 2(x+3)=14",opts:["x=4","x=7","x=10","x=−4"],ans:0,
-     exp:{ok:"Bien ! 2x+6=14. −6 : 2x=8. ÷2 : x=4.",ko:"D'abord développe, puis résous.",steps:["2x+6=14","-6 : 2x=8","÷2 : x=4"]}},
-    {q:"'Nombre ×3 +5 =20.' Ce nombre ?",opts:["5","3","6","7"],ans:0,
-     exp:{ok:"Super ! 3x+5=20 → 3x=15 → x=5.",ko:"Appelle x le nombre. 3x+5=20.",steps:["3x+5=20","−5 : 3x=15","÷3 : x=5"]}},
-    {q:"Résous : 5x−3=2x+9",opts:["x=4","x=2","x=6","x=3"],ans:0,
-     exp:{ok:"Parfait ! −2x : 3x−3=9. +3 : 3x=12. ÷3 : x=4.",ko:"−2x des deux membres, puis résous.",steps:["5x−3=2x+9","−2x : 3x−3=9","+3 : 3x=12","÷3 : x=4"]}},
-    {q:"Résous : −2(x−4)=6",opts:["x=1","x=−1","x=7","x=−7"],ans:0,
-     exp:{ok:"Bien ! −2x+8=6. −8 : −2x=−2. ÷(−2) : x=1.",ko:"Développe d'abord. (−2)×(−4)=+8.",steps:["−2x+8=6","−8 : −2x=−2","÷(−2) : x=1","Vérif : −2(1−4)=6 ✓"]}}
+    {q:"Simplifie : 5a + 3a",opts:["8a","8a²","15a","2a"],ans:0,
+     exp:{ok:"Exact ! (5+3)a=8a.",ko:"Mêmes lettres : additionne les coefficients.",steps:["5+3=8 → 8a"]}},
+    {q:"Simplifie : 7x − 3x + 2",opts:["4x+2","7x−1","4x−2","6x"],ans:0,
+     exp:{ok:"Bien ! 7x−3x=4x. Le +2 reste.",ko:"Regroupe les x : 7−3=4. Le 2 reste seul.",steps:["7x−3x=4x","+2 reste","→ 4x+2"]}},
+    {q:"Développe : 4(x + 5)",opts:["4x+5","4x+20","x+20","9x"],ans:1,
+     exp:{ok:"Parfait ! 4×x=4x et 4×5=20.",ko:"Multiplie 4 par CHAQUE terme.",steps:["4×x=4x","4×5=20","→ 4x+20"]}},
+    {q:"Développe : −3(x − 4)",opts:["−3x−12","−3x+12","3x−12","3x+12"],ans:1,
+     exp:{ok:"Super ! −3×x=−3x et −3×(−4)=+12.",ko:"−×−=+. (−3)×(−4)=+12.",steps:["−3×x=−3x","−3×(−4)=+12","→ −3x+12"]}},
+    {q:"Si x=3, que vaut 2x + 5 ?",opts:["10","11","13","8"],ans:1,
+     exp:{ok:"Exact ! 2×3+5=6+5=11.",ko:"Remplace x par 3 : 2×3+5.",steps:["2×3=6","6+5=11"]}},
+    {q:"Développe et réduis : 3(x+2) + 2(x−1)",opts:["5x+4","5x+8","5x+2","6x+4"],ans:0,
+     exp:{ok:"Parfait ! 3x+6+2x−2=5x+4.",ko:"Développe chaque parenthèse puis regroupe.",steps:["3(x+2)=3x+6","2(x−1)=2x−2","3x+2x=5x, 6−2=4","→ 5x+4"]}},
+    {q:"Développe : −(x + 3)",opts:["−x+3","−x−3","x+3","x−3"],ans:1,
+     exp:{ok:"Bien ! − change TOUT : −x−3.",ko:"Le − devant change tous les signes.",steps:["−×x=−x","−×(+3)=−3","→ −x−3"]}}
   ],
   challenges:[
-    {title:"🏉 Défi scores et équations",ctx:"Équipe A : 4 essais transformés (7pts) + x pénalités (3pts). Équipe B : 3 essais non transformés (5pts) + x pénalités. 1) Exprime les deux scores. 2) Pour quel x les équipes font-elles match nul ? 3) Est-ce possible ? Justifie.",
-     ans:"1) Score A=28+3x. Score B=15+3x. 2) Match nul : 28+3x=15+3x → 28=15 → IMPOSSIBLE ! 3) Non : l'équipe A gagne toujours de 13 points, quelle que soit x."},
-    {title:"🏎️ Défi stratégie F1",ctx:"Un pilote marque 25pts/victoire et 18pts/2e place. 3 victoires et d 2es places. Total=175pts. 1) Pose une équation et résous pour trouver d. 2) Vérife le résultat.",
-     ans:"3×25+18d=175 → 75+18d=175 → 18d=100 → d≈5,6. Comme d entier : d=5 donne 75+90=165 et d=6 donne 75+108=183. Avec exactement 175pts ce système nécessite une combinaison mixte — les données ne permettent pas un entier exact."}
+    {title:"🏉 Défi score",ctx:"S=5e+2t+3p. 1) Pour e=3,t=2,p=4 : calcule S. 2) Développe 2(3e+t)+3(p−1). 3) L'équipe double ses essais et triple ses pénalités (départ e=2,p=3). Score avant et après ?",
+     ans:"1) 15+4+12=31pts. 2) 6e+2t+3p−3. 3) Avant:5×2+3×3=19pts. Après:5×4+3×9=20+27=47pts."},
+    {title:"🏎️ Défi formules",ctx:"n tours à 7km, puis (n+10) tours à 5km. 1) Distance totale D(n) (développée et réduite). 2) Pour n=15, D=? 3) Développe 3(2v+5)−2(v−3).",
+     ans:"1) 7n+5(n+10)=7n+5n+50=12n+50. 2) 12×15+50=230km. 3) 6v+15−2v+6=4v+21."}
   ]
 },
 {
-  id:8, date:"Vendredi 27 juin", title:"Géométrie — angles, aires &amp; périmètres", xp:100, theme:"Géométrie",
+  id:7, date:"Jeudi 26 juin", title:"Équations — trouver l'inconnu", xp:100, theme:"Algèbre",
   learn:`
-<div class="lsec-title">1. Les 4 types d'angles</div>
-<div class="concept">Un <strong>angle</strong> = deux demi-droites partant d'un même point. On mesure en <strong>degrés (°)</strong>.<br><br>— <strong>Aigu</strong> : &lt; 90°<br>— <strong>Droit</strong> : = 90° (petit carré sur les figures)<br>— <strong>Obtus</strong> : entre 90° et 180°<br>— <strong>Plat</strong> : = 180°</div>
-<div class="svg-wrap"><svg viewBox="0 0 500 185" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:500px;display:block;margin:0 auto"><text x="250" y="14" text-anchor="middle" fill="#7a7d8a" font-size="11" font-family="sans-serif" font-weight="700" letter-spacing="1">LES 4 TYPES D'ANGLES</text><g transform="translate(60,120)"><line x1="0" y1="0" x2="55" y2="0" stroke="#ff6b35" stroke-width="2.5" stroke-linecap="round"/><line x1="0" y1="0" x2="39" y2="-39" stroke="#ff6b35" stroke-width="2.5" stroke-linecap="round"/><path d="M 22,0 A 22,22 0 0,0 15.5,-15.5" fill="none" stroke="#ff6b35" stroke-width="2"/><circle cx="0" cy="0" r="3" fill="#ff6b35"/><text x="28" y="-6" fill="#ff6b35" font-size="12" font-family="sans-serif" font-weight="700">45°</text></g><text x="60" y="150" text-anchor="middle" fill="#ff6b35" font-size="12" font-weight="700" font-family="sans-serif">AIGU</text><text x="60" y="163" text-anchor="middle" fill="#7a7d8a" font-size="10" font-family="sans-serif">&lt; 90°</text><g transform="translate(180,120)"><line x1="0" y1="0" x2="55" y2="0" stroke="#4ecdc4" stroke-width="2.5" stroke-linecap="round"/><line x1="0" y1="0" x2="0" y2="-55" stroke="#4ecdc4" stroke-width="2.5" stroke-linecap="round"/><rect x="0" y="-18" width="18" height="18" fill="none" stroke="#4ecdc4" stroke-width="2"/><circle cx="0" cy="0" r="3" fill="#4ecdc4"/><text x="26" y="-26" fill="#4ecdc4" font-size="12" font-family="sans-serif" font-weight="700">90°</text></g><text x="185" y="150" text-anchor="middle" fill="#4ecdc4" font-size="12" font-weight="700" font-family="sans-serif">DROIT</text><text x="185" y="163" text-anchor="middle" fill="#7a7d8a" font-size="10" font-family="sans-serif">= 90°</text><g transform="translate(315,120)"><line x1="0" y1="0" x2="55" y2="0" stroke="#e8ff47" stroke-width="2.5" stroke-linecap="round"/><line x1="0" y1="0" x2="-36" y2="-43" stroke="#e8ff47" stroke-width="2.5" stroke-linecap="round"/><path d="M 28,0 A 28,28 0 0,0 -18,-22" fill="none" stroke="#e8ff47" stroke-width="2"/><circle cx="0" cy="0" r="3" fill="#e8ff47"/><text x="4" y="-18" fill="#e8ff47" font-size="12" font-family="sans-serif" font-weight="700">130°</text></g><text x="325" y="150" text-anchor="middle" fill="#e8ff47" font-size="12" font-weight="700" font-family="sans-serif">OBTUS</text><text x="325" y="163" text-anchor="middle" fill="#7a7d8a" font-size="10" font-family="sans-serif">90° à 180°</text><g transform="translate(442,120)"><line x1="-50" y1="0" x2="50" y2="0" stroke="#ff6b6b" stroke-width="2.5" stroke-linecap="round"/><path d="M 22,0 A 22,22 0 0,0 -22,0" fill="none" stroke="#ff6b6b" stroke-width="2"/><circle cx="0" cy="0" r="3" fill="#ff6b6b"/><text x="0" y="-12" text-anchor="middle" fill="#ff6b6b" font-size="12" font-family="sans-serif" font-weight="700">180°</text></g><text x="444" y="150" text-anchor="middle" fill="#ff6b6b" font-size="12" font-weight="700" font-family="sans-serif">PLAT</text><text x="444" y="163" text-anchor="middle" fill="#7a7d8a" font-size="10" font-family="sans-serif">= 180°</text><line x1="125" y1="25" x2="125" y2="170" stroke="#2a2d38" stroke-width="1" stroke-dasharray="4,4"/><line x1="255" y1="25" x2="255" y2="170" stroke="#2a2d38" stroke-width="1" stroke-dasharray="4,4"/><line x1="385" y1="25" x2="385" y2="170" stroke="#2a2d38" stroke-width="1" stroke-dasharray="4,4"/></svg></div>
-<div class="lsec-title">2. Propriétés des angles</div>
-<div class="concept"><strong>Supplémentaires :</strong> somme=180°. Si A=130°, son supplément=50°.<br><strong>Complémentaires :</strong> somme=90°. Si A=35°, son complément=55°.<br><strong>AOS (opposés par le sommet) :</strong> deux droites croisées → angles face à face toujours égaux.<br><strong>Triangle :</strong> somme des 3 angles = toujours <strong>180°</strong>.</div>
-<div class="lsec-title">3. Périmètre vs Aire</div>
-<div class="concept"><strong>Périmètre</strong> = longueur du contour → unité simple (m, cm…)<br><strong>Aire</strong> = mesure de la surface → unité au carré (m², cm²…)<br><br>Moyen : <strong>Pé</strong>rimètre = <strong>Pé</strong>riphérie = le bord. Aire = Assiette = l'intérieur.</div>
-<div class="lsec-title">4. Formules essentielles</div>
-<div class="concept"><strong>Rectangle :</strong> P=2×(L+l) | A=L×l<br><strong>Carré :</strong> P=4c | A=c²<br><strong>Triangle :</strong> P=somme des 3 côtés | A=(base×hauteur)÷2<br><strong>Cercle :</strong> C=2πr ≈ 6,28r | A=πr² ≈ 3,14r²</div>
-<div class="warn-box"><div class="wtitle">⚠️ Conversions surfaces</div>1m=100cm MAIS 1m²=10 000 cm² (pas 100 !).<br>Car 1m²=1m×1m=100cm×100cm=10 000cm².<br>Doubler les dimensions → périmètre ×2 mais aire ×4 !</div>
-<div class="svg-wrap"><svg viewBox="0 0 520 220" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:520px;display:block;margin:0 auto"><text x="260" y="14" text-anchor="middle" fill="#7a7d8a" font-size="11" font-family="sans-serif" font-weight="700" letter-spacing="1">TERRAIN DE RUGBY — DIMENSIONS</text><rect x="30" y="22" width="460" height="172" rx="3" fill="#1a3a1a" stroke="#4ecdc4" stroke-width="2"/><rect x="30" y="22" width="46" height="172" fill="#153015" stroke="#4ecdc4" stroke-width="1.5"/><rect x="444" y="22" width="46" height="172" fill="#153015" stroke="#4ecdc4" stroke-width="1.5"/><line x1="260" y1="22" x2="260" y2="194" stroke="rgba(255,255,255,0.2)" stroke-width="1.5"/><line x1="55" y1="22" x2="55" y2="52" stroke="#ffd93d" stroke-width="3"/><line x1="40" y1="52" x2="70" y2="52" stroke="#ffd93d" stroke-width="3"/><line x1="465" y1="22" x2="465" y2="52" stroke="#ffd93d" stroke-width="3"/><line x1="450" y1="52" x2="480" y2="52" stroke="#ffd93d" stroke-width="3"/><text x="53" y="112" text-anchor="middle" fill="#ffd93d" font-size="9" font-family="sans-serif">EN-BUT</text><text x="467" y="112" text-anchor="middle" fill="#ffd93d" font-size="9" font-family="sans-serif">EN-BUT</text><text x="260" y="112" text-anchor="middle" fill="rgba(255,255,255,0.3)" font-size="11" font-family="sans-serif">Aire=100×70=7000m²</text><line x1="30" y1="204" x2="490" y2="204" stroke="#4ecdc4" stroke-width="1.5"/><polygon points="30,204 40,200 40,208" fill="#4ecdc4"/><polygon points="490,204 480,200 480,208" fill="#4ecdc4"/><text x="260" y="215" text-anchor="middle" fill="#4ecdc4" font-size="11" font-family="sans-serif">100m + 2×10m = 120m total</text><line x1="14" y1="22" x2="14" y2="194" stroke="#4ecdc4" stroke-width="1.5"/><text x="8" y="112" text-anchor="middle" fill="#4ecdc4" font-size="12" font-family="sans-serif" transform="rotate(-90,8,112)">70 m</text></svg></div>
-<div class="recap"><div class="rtitle">📄 Récap Jour 8</div>• Aigu&lt;90°, Droit=90°, Obtus 90°-180°, Plat=180°.<br>• Supplément : somme=180°. Complément : somme=90°. AOS : égaux. Triangle : 180°.<br>• Périmètre=contour→unité simple. Aire=surface→unité².<br>• Rectangle : P=2(L+l), A=L×l. Triangle : A=(b×h)÷2. 1m²=10 000cm².</div>`,
+<div class="section-title">C'est quoi une équation ?</div>
+<div class="big-idea">
+  <div class="label">💡 L'idée</div>
+  Une équation = une balance. Les deux côtés doivent peser pareil.<br><br>
+  2x + 3 = 11<br><br>
+  x est un nombre mystère. On cherche lequel rend l'égalité vraie.<br>
+  Pour x=4 : 2×4+3 = 11 ✓ → <strong>x=4 est la solution</strong>.
+</div>
+
+<div class="sport-block">
+  <div class="slabel">🏉 Problème concret</div>
+  L'équipe a marqué 3 essais transformés (7pts chacun) + un certain nombre de pénalités (3pts).<br>
+  Total : 36 points.<br><br>
+  Équation : 21 + 3p = 36<br>
+  On cherche p (le nombre de pénalités).
+</div>
+
+<div class="section-title">La règle de base</div>
+<div class="big-idea">
+  <div class="label">💡 La balance</div>
+  Ce qu'on fait d'un côté, on le fait de l'<strong>autre côté aussi</strong>.<br><br>
+  Si la balance est en équilibre et tu ajoutes 5kg à gauche → tu dois ajouter 5kg à droite.<br><br>
+  Objectif : se débrouiller pour avoir x tout seul d'un côté.
+</div>
+
+<div class="method-block">
+  <div class="mlabel">Méthode — 4 étapes</div>
+  <div class="step"><div class="snum">1</div><div>Développe les parenthèses s'il y en a.</div></div>
+  <div class="step"><div class="snum">2</div><div>Mets tous les x à gauche.</div></div>
+  <div class="step"><div class="snum">3</div><div>Mets tous les nombres à droite.</div></div>
+  <div class="step"><div class="snum">4</div><div>Divise par le coefficient de x. Vérifie !</div></div>
+</div>
+
+<div class="example-block">
+  <div class="elabel">Exemple 1 — 3x + 5 = 17</div>
+  <div class="calc-line">−5 des deux côtés : 3x = 12</div>
+  <div class="calc-line">÷3 des deux côtés : x = 4</div>
+  <div class="calc-line">Vérif : 3×4+5 = 17 ✓</div>
+</div>
+
+<div class="example-block">
+  <div class="elabel">Exemple 2 — x des deux côtés : 2x−4=3x+1</div>
+  <div class="calc-line">−3x : −x−4=1</div>
+  <div class="calc-line">+4 : −x=5</div>
+  <div class="calc-line">÷(−1) : x=−5</div>
+  <div class="calc-line">Vérif : 2×(−5)−4=−14 et 3×(−5)+1=−14 ✓</div>
+</div>
+
+<div class="example-block">
+  <div class="elabel">Retour au problème rugby — 21+3p=36</div>
+  <div class="calc-line">−21 : 3p = 15</div>
+  <div class="calc-line">÷3 : p = 5</div>
+  <div class="calc-line">Vérif : 21+3×5=21+15=36 ✓ → 5 pénalités</div>
+</div>
+
+<div class="recap-block">
+  <div class="rlabel">📄 À retenir</div>
+  <ul>
+    <li>Équation = balance. Même opération des deux côtés.</li>
+    <li>But : x seul d'un côté</li>
+    <li>Méthode : développer → x à gauche → nombres à droite → diviser</li>
+    <li>TOUJOURS vérifier en remplaçant dans l'équation de départ</li>
+  </ul>
+</div>`,
+  quiz:[
+    {q:"Résous : x + 7 = 15",opts:["x=8","x=22","x=7","x=−8"],ans:0,
+     exp:{ok:"Parfait ! −7 : x=8. Vérif : 8+7=15 ✓",ko:"−7 des deux côtés.",steps:["−7 : x=15−7=8"]}},
+    {q:"Résous : 4x = 28",opts:["x=24","x=32","x=7","x=4"],ans:2,
+     exp:{ok:"Bien ! ÷4 : x=7.",ko:"÷4 des deux côtés.",steps:["÷4 : x=28÷4=7"]}},
+    {q:"Résous : 3x − 6 = 12",opts:["x=2","x=6","x=10","x=8"],ans:1,
+     exp:{ok:"Super ! +6 : 3x=18. ÷3 : x=6.",ko:"+6 puis ÷3.",steps:["+6 : 3x=18","÷3 : x=6"]}},
+    {q:"Résous : 2x+5=x+9",opts:["x=2","x=4","x=7","x=14"],ans:1,
+     exp:{ok:"Exact ! −x : x+5=9. −5 : x=4.",ko:"−x des deux côtés d'abord.",steps:["−x : x+5=9","−5 : x=4"]}},
+    {q:"Résous : 2(x+3)=14",opts:["x=4","x=7","x=10","x=1"],ans:0,
+     exp:{ok:"Bien ! 2x+6=14. −6 : 2x=8. ÷2 : x=4.",ko:"Développe d'abord.",steps:["2x+6=14","−6 : 2x=8","÷2 : x=4"]}},
+    {q:"'Un nombre ×3 +5 = 20.' Ce nombre ?",opts:["5","3","6","7"],ans:0,
+     exp:{ok:"Super ! 3x+5=20 → 3x=15 → x=5.",ko:"Appelle x le nombre. 3x+5=20.",steps:["3x+5=20","−5 : 3x=15","÷3 : x=5"]}},
+    {q:"Résous : 5x−3=2x+9",opts:["x=4","x=2","x=6","x=3"],ans:0,
+     exp:{ok:"Parfait ! −2x : 3x−3=9. +3 : 3x=12. ÷3 : x=4.",ko:"−2x des deux côtés.",steps:["−2x : 3x−3=9","+3 : 3x=12","÷3 : x=4"]}}
+  ],
+  challenges:[
+    {title:"🏉 Défi équations score",ctx:"Score A=28+3x. Score B=15+3x (x=pénalités des deux). 1) Pour quel x match nul ? 2) Est-ce possible ? Explique.",
+     ans:"Match nul : 28+3x=15+3x → 28=15 → impossible ! L'équipe A gagne toujours de 13 points peu importe x."},
+    {title:"🏎️ Défi points F1",ctx:"Max marque 25pts/victoire, 18pts/2e place. Il a 3 victoires et d 2e places. Total=175pts. 1) Pose l'équation. 2) Résous pour d.",
+     ans:"3×25+18d=175 → 75+18d=175 → 18d=100 → d≈5,6. Comme d doit être entier : vérif d=5 donne 165 et d=6 donne 183 → les données ne donnent pas d'entier exact ici."}
+  ]
+},
+{
+  id:8, date:"Vendredi 27 juin", title:"Géométrie — angles et surfaces", xp:100, theme:"Géométrie",
+  learn:`
+<div class="section-title">Les angles — comprendre avec les bras</div>
+<div class="big-idea">
+  <div class="label">💡 L'image concrète</div>
+  Tends un bras droit devant toi. C'est ta référence (0°).<br>
+  L'angle = l'écart entre deux directions.<br><br>
+  Tu ouvres légèrement les bras → <strong>angle aigu</strong> (moins de 90°)<br>
+  Tu fais une croix parfaite → <strong>angle droit</strong> (exactement 90°)<br>
+  Tu ouvres plus → <strong>angle obtus</strong> (entre 90° et 180°)<br>
+  Bras en ligne → <strong>angle plat</strong> (180°)
+</div>
+
+<div class="sport-block">
+  <div class="slabel">🏉 Terrain de rugby</div>
+  Les coins du terrain font exactement 90° (angles droits).<br>
+  Le terrain mesure 100m × 70m.<br>
+  Périmètre du terrain de jeu : 2×(100+70) = <strong>340m</strong><br>
+  Aire : 100×70 = <strong>7000m²</strong>
+</div>
+
+<div class="section-title">Propriétés utiles des angles</div>
+<div class="big-idea">
+  <div class="label">💡 Les 4 règles</div>
+  <strong>Angles supplémentaires</strong> : deux angles qui font 180° ensemble.<br>
+  Si un angle vaut 130°, son supplément = 180−130 = 50°.<br><br>
+  <strong>Angles complémentaires</strong> : deux angles qui font 90° ensemble.<br><br>
+  <strong>Angles opposés par le sommet</strong> : deux droites qui se croisent → angles face à face toujours égaux.<br><br>
+  <strong>Triangle</strong> : la somme des 3 angles = toujours 180°.
+</div>
+
+<div class="section-title">Périmètre et Aire — ne pas confondre</div>
+<div class="big-idea">
+  <div class="label">💡 Moyen mnémotechnique</div>
+  <strong>Périmètre</strong> = le tour, le contour. Unité : m, cm...<br>
+  "Périmètre" commence par "P" comme "Pourtour".<br><br>
+  <strong>Aire</strong> = la surface intérieure. Unité : m², cm²...<br>
+  "Aire" = l'intérieur de ce que tu délimites.
+</div>
+
+<div class="method-block">
+  <div class="mlabel">Formules à connaître</div>
+  <div class="step"><div class="snum">□</div><div><strong>Rectangle</strong> : P=2×(L+l) | A=L×l</div></div>
+  <div class="step"><div class="snum">△</div><div><strong>Triangle</strong> : A=(base×hauteur)÷2</div></div>
+  <div class="step"><div class="snum">○</div><div><strong>Cercle</strong> : Périmètre=2×π×r | A=π×r²</div></div>
+</div>
+
+<div class="trap-block">
+  <div class="tlabel">⚠️ Piège des conversions d'aire</div>
+  <div class="wrong">❌ 1m² = 100cm² (FAUX)</div>
+  <div class="right">✓ 1m² = 10 000cm²</div>
+  Car 1m=100cm, donc 1m²=100cm×100cm=10 000cm².
+</div>
+
+<div class="recap-block">
+  <div class="rlabel">📄 À retenir</div>
+  <ul>
+    <li>Aigu &lt;90°, Droit=90°, Obtus 90-180°, Plat=180°</li>
+    <li>Supplément : +angle=180°. Complément : +angle=90°</li>
+    <li>Triangle : somme des angles = 180°</li>
+    <li>Périmètre=contour (unité simple). Aire=surface (unité²)</li>
+    <li>Rectangle : P=2(L+l), A=L×l. Triangle : A=base×h÷2</li>
+    <li>1m²=10 000cm² (pas 100 !)</li>
+  </ul>
+</div>`,
   quiz:[
     {q:"Un angle de 135° est :",opts:["aigu","droit","obtus","plat"],ans:2,
-     exp:{ok:"Exact ! 90°&lt;135°&lt;180° → obtus.",ko:"Rappel : aigu&lt;90°, droit=90°, obtus 90°-180°, plat=180°.",steps:["135°&gt;90° → pas aigu","135°&lt;180° → pas plat","90°&lt;135°&lt;180° → obtus"]}},
-    {q:"Supplémentaire de 72° ?",opts:["18°","72°","108°","180°"],ans:2,
-     exp:{ok:"Bien ! 180°−72°=108°.",ko:"Supplémentaires → somme=180°.",steps:["Somme=180°","180−72=108°"]}},
+     exp:{ok:"Exact ! 90°<135°<180° → obtus.",ko:"aigu<90°, droit=90°, obtus entre 90-180°, plat=180°.",steps:["135°>90° et 135°<180°","→ obtus"]}},
+    {q:"Supplément de 72° ?",opts:["18°","72°","108°","180°"],ans:2,
+     exp:{ok:"Bien ! 180−72=108°.",ko:"Supplémentaires → somme=180°.",steps:["180−72=108°"]}},
     {q:"Triangle : 75° et 60°. 3e angle ?",opts:["55°","45°","60°","65°"],ans:1,
-     exp:{ok:"Parfait ! 180−75−60=45°.",ko:"Somme des 3 angles d'un triangle=180°.",steps:["180−75−60=45°"]}},
-    {q:"Deux droites croisées, angle=50°. L'angle opposé par le sommet ?",opts:["40°","50°","130°","180°"],ans:1,
-     exp:{ok:"Exact ! AOS = toujours égaux.",ko:"Angles opposés par le sommet = toujours égaux.",steps:["AOS = égaux","Opposé de 50° = 50°"]}},
+     exp:{ok:"Parfait ! 180−75−60=45°.",ko:"Somme des 3 angles=180°.",steps:["180−75−60=45°"]}},
     {q:"Rectangle 8cm×5cm. Périmètre ?",opts:["40cm","26cm","13cm","40cm²"],ans:1,
      exp:{ok:"Bien ! 2×(8+5)=26cm.",ko:"P=2×(L+l).",steps:["2×(8+5)=2×13=26cm"]}},
     {q:"Rectangle 8cm×5cm. Aire ?",opts:["26cm²","40cm","40cm²","13cm²"],ans:2,
-     exp:{ok:"Exact ! 8×5=40cm². Unité au carré !",ko:"A=L×l. Unité = cm².",steps:["A=8×5=40cm²"]}},
+     exp:{ok:"Exact ! 8×5=40cm².",ko:"A=L×l. Unité = cm².",steps:["A=8×5=40cm²"]}},
     {q:"1m² = combien de cm² ?",opts:["100","1000","10 000","100 000"],ans:2,
-     exp:{ok:"Exact ! 1m=100cm. 1m²=100×100=10 000cm².",ko:"1m=100cm. 1m²=100cm×100cm=10 000cm². Pas 100 !",steps:["1m=100cm","1m²=100×100=10 000cm²"]}},
+     exp:{ok:"Exact ! 1m=100cm → 1m²=100×100=10 000cm².",ko:"1m=100cm. 1m²=100×100=10 000cm².",steps:["1m=100cm","1m²=100cm×100cm=10 000cm²"]}},
     {q:"Triangle base 10cm, hauteur 6cm. Aire ?",opts:["60cm²","30cm²","16cm","20cm²"],ans:1,
-     exp:{ok:"Parfait ! (10×6)÷2=30cm².",ko:"A=(base×hauteur)÷2. Ne pas oublier ÷2 !",steps:["A=(10×6)÷2","=60÷2=30cm²"]}}
+     exp:{ok:"Parfait ! (10×6)÷2=30cm².",ko:"A=(base×hauteur)÷2.",steps:["10×6=60","÷2=30cm²"]}}
   ],
   challenges:[
-    {title:"🏉 Défi terrain de rugby",ctx:"Terrain : 100m×70m + 2 en-buts de 10m. 1) Périmètre du terrain complet. 2) Aire de jeu pure. 3) Gazonner tout à 15€/m². Coût ? 4) Un angle du terrain = 90°. Son supplément ? Son complément (possible ?) ?",
-     ans:"1) 120m×70m : P=2×(120+70)=380m. 2) Aire jeu=100×70=7000m². 3) Aire totale=120×70=8400m². 8400×15=126 000€. 4) Supplément de 90°=90° (deux droites se croisent à 90° → les 4 angles font 90°). Complément : 90−90=0° → l'angle est déjà un angle droit, son complément serait 0° (pas vraiment un angle)."},
-    {title:"🏎️ Défi circuit F1",ctx:"Circuit modélisé comme un rectangle 2km×1km. 1) Périmètre du circuit. 2) Surface de la piste (largeur 12m). 3) Un virage intérieur fait 40°. Son supplément ? 4) Le virage est dans un triangle dont un angle est droit. Le 3e angle ?",
-     ans:"1) P=2×(2000+1000)=6000m=6km. 2) Longueur≈6km×largeur12m=72 000m²=7,2ha. 3) Supplément de 40°=140°. 4) Triangle : 90°+40°+3e=180° → 3e angle=50°."}
+    {title:"🏉 Défi terrain",ctx:"Terrain rugby 100m×70m + 2 en-buts de 10m. 1) Périmètre total. 2) Aire de jeu pure. 3) Gazon à 15€/m². Coût total du gazon ?",
+     ans:"1) 120m×70m : P=2×(120+70)=380m. 2) 100×70=7000m². 3) Aire totale=8400m². 8400×15=126 000€."},
+    {title:"🏎️ Défi circuit",ctx:"Circuit ≈ rectangle 2km×1km. Piste large 12m. 1) Périmètre du circuit. 2) Un virage forme un angle de 40°. Son supplément ? 3) Dans un triangle rectangle avec un angle de 40°, quel est le 3e angle ?",
+     ans:"1) 2×(2000+1000)=6km. 2) Supplément=140°. 3) 180−90−40=50°."}
   ]
 },
 {
-  id:9, date:"Vendredi 27 juin", title:"Statistiques &amp; Volumes", xp:100, theme:"Stats",
+  id:9, date:"Vendredi 27 juin", title:"Statistiques et volumes", xp:100, theme:"Stats",
   learn:`
-<div class="lsec-title">1. Les 3 indicateurs statistiques</div>
-<div class="concept"><strong>Moyenne :</strong> somme de toutes les valeurs ÷ nombre de valeurs.<br>Essais sur 7 matchs : 2,0,3,1,2,4,2 → somme=14 → moyenne=14÷7=<strong>2</strong><br><br><strong>Médiane :</strong> valeur du milieu une fois les données triées par ordre croissant.<br>Triées : 0,1,2,<strong>2</strong>,2,3,4 → 7 valeurs, la 4e est au milieu → médiane=<strong>2</strong><br><br><strong>Étendue :</strong> valeur max − valeur min = mesure de la dispersion.<br>4−0=<strong>4</strong></div>
-<div class="concept">Quand utiliser quoi ?<br>— <strong>Moyenne :</strong> quand les données sont homogènes (pas de valeurs extrêmes).<br>— <strong>Médiane :</strong> meilleure quand il y a des valeurs extrêmes (un match à 15 essais fausserait la moyenne).<br>— <strong>Étendue :</strong> mesure la régularité (petite étendue = performances constantes).</div>
-<div class="svg-wrap"><svg viewBox="0 0 500 165" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:500px;display:block;margin:0 auto"><text x="250" y="14" text-anchor="middle" fill="#7a7d8a" font-size="11" font-family="sans-serif" font-weight="700" letter-spacing="1">ESSAIS D'UN AILIER SUR 7 MATCHS</text><line x1="40" y1="120" x2="470" y2="120" stroke="#2a2d38" stroke-width="2"/><line x1="40" y1="20" x2="40" y2="120" stroke="#2a2d38" stroke-width="2"/><line x1="36" y1="95" x2="44" y2="95" stroke="#2a2d38" stroke-width="1.5"/><text x="30" y="99" text-anchor="end" fill="#7a7d8a" font-size="11" font-family="sans-serif">1</text><line x1="36" y1="70" x2="44" y2="70" stroke="#2a2d38" stroke-width="1.5"/><text x="30" y="74" text-anchor="end" fill="#7a7d8a" font-size="11" font-family="sans-serif">2</text><line x1="36" y1="45" x2="44" y2="45" stroke="#2a2d38" stroke-width="1.5"/><text x="30" y="49" text-anchor="end" fill="#7a7d8a" font-size="11" font-family="sans-serif">3</text><line x1="36" y1="20" x2="44" y2="20" stroke="#2a2d38" stroke-width="1.5"/><text x="30" y="24" text-anchor="end" fill="#7a7d8a" font-size="11" font-family="sans-serif">4</text><rect x="55" y="70" width="40" height="50" rx="4" fill="rgba(232,255,71,0.35)" stroke="#e8ff47" stroke-width="1.5"/><text x="75" y="115" text-anchor="middle" fill="#7a7d8a" font-size="10" font-family="sans-serif">M1</text><text x="75" y="65" text-anchor="middle" fill="#e8ff47" font-size="12" font-weight="700" font-family="sans-serif">2</text><rect x="115" y="118" width="40" height="2" rx="1" fill="#e8ff47" opacity="0.4"/><text x="135" y="115" text-anchor="middle" fill="#7a7d8a" font-size="10" font-family="sans-serif">M2</text><text x="135" y="112" text-anchor="middle" fill="#e8ff47" font-size="12" font-weight="700" font-family="sans-serif">0</text><rect x="175" y="45" width="40" height="75" rx="4" fill="rgba(232,255,71,0.35)" stroke="#e8ff47" stroke-width="1.5"/><text x="195" y="115" text-anchor="middle" fill="#7a7d8a" font-size="10" font-family="sans-serif">M3</text><text x="195" y="40" text-anchor="middle" fill="#e8ff47" font-size="12" font-weight="700" font-family="sans-serif">3</text><rect x="235" y="95" width="40" height="25" rx="4" fill="rgba(232,255,71,0.35)" stroke="#e8ff47" stroke-width="1.5"/><text x="255" y="115" text-anchor="middle" fill="#7a7d8a" font-size="10" font-family="sans-serif">M4</text><text x="255" y="90" text-anchor="middle" fill="#e8ff47" font-size="12" font-weight="700" font-family="sans-serif">1</text><rect x="295" y="70" width="40" height="50" rx="4" fill="rgba(232,255,71,0.35)" stroke="#e8ff47" stroke-width="1.5"/><text x="315" y="115" text-anchor="middle" fill="#7a7d8a" font-size="10" font-family="sans-serif">M5</text><text x="315" y="65" text-anchor="middle" fill="#e8ff47" font-size="12" font-weight="700" font-family="sans-serif">2</text><rect x="355" y="20" width="40" height="100" rx="4" fill="rgba(255,107,53,0.4)" stroke="#ff6b35" stroke-width="2"/><text x="375" y="115" text-anchor="middle" fill="#7a7d8a" font-size="10" font-family="sans-serif">M6</text><text x="375" y="15" text-anchor="middle" fill="#ff6b35" font-size="11" font-weight="700" font-family="sans-serif">4=max</text><rect x="415" y="70" width="40" height="50" rx="4" fill="rgba(232,255,71,0.35)" stroke="#e8ff47" stroke-width="1.5"/><text x="435" y="115" text-anchor="middle" fill="#7a7d8a" font-size="10" font-family="sans-serif">M7</text><text x="435" y="65" text-anchor="middle" fill="#e8ff47" font-size="12" font-weight="700" font-family="sans-serif">2</text><line x1="40" y1="70" x2="470" y2="70" stroke="#4ecdc4" stroke-width="2" stroke-dasharray="6,4"/><text x="473" y="74" fill="#4ecdc4" font-size="11" font-family="sans-serif">moy=2</text><text x="250" y="145" text-anchor="middle" fill="#7a7d8a" font-size="11" font-family="sans-serif">Moyenne=14÷7=2 | Médiane=2 | Étendue=4−0=4</text><text x="250" y="160" text-anchor="middle" fill="#7a7d8a" font-size="11" font-family="sans-serif">Trié : 0,1,2,[2],2,3,4 → valeur du milieu (4e)=2</text></svg></div>
-<div class="lsec-title">2. La médiane — trouver la valeur du milieu</div>
-<div class="step-box"><div class="stitle">Méthode</div>
-<div class="step-row"><div class="sn">1</div><div>Trie les données par ordre croissant.</div></div>
-<div class="step-row"><div class="sn">2</div><div>Si nombre de valeurs <strong>impair</strong> → la médiane est la valeur du milieu.</div></div>
-<div class="step-row"><div class="sn">3</div><div>Si nombre de valeurs <strong>pair</strong> → la médiane est la moyenne des deux valeurs du milieu.</div></div></div>
-<div class="eg"><div class="etitle">Exemple pair : 6 valeurs — 2,5,3,8,1,4</div><div class="line">Triées : 1,2,3,4,5,8</div><div class="line">6 valeurs (pair) → moyenne des 3e et 4e : (3+4)÷2 = 3,5</div></div>
-<div class="lsec-title">3. Volumes — les 3 formules</div>
-<div class="concept"><strong>Cube</strong> (arête a) : V=a³ = a×a×a<br><strong>Pavé droit</strong> (L,l,h) : V=L×l×h<br><strong>Cylindre</strong> (rayon r, hauteur h) : V=π×r²×h<br><br>Unités : m³, cm³, L. Conversion : 1L=1dm³=1000cm³.</div>
-<div class="svg-wrap"><svg viewBox="0 0 500 170" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:500px;display:block;margin:0 auto"><text x="250" y="14" text-anchor="middle" fill="#7a7d8a" font-size="11" font-family="sans-serif" font-weight="700" letter-spacing="1">VOLUMES — LES 3 SOLIDES</text><g transform="translate(75,100)"><polygon points="0,-50 43,-25 43,25 0,50 -43,25 -43,-25" fill="#1e2029" stroke="#e8ff47" stroke-width="1.5"/><polygon points="0,-50 43,-25 0,0 -43,-25" fill="rgba(232,255,71,0.15)" stroke="#e8ff47" stroke-width="1.5"/><polygon points="43,-25 43,25 0,50 0,0" fill="rgba(232,255,71,0.08)" stroke="#e8ff47" stroke-width="1.5"/><polygon points="-43,-25 0,0 0,50 -43,25" fill="rgba(232,255,71,0.05)" stroke="#e8ff47" stroke-width="1.5"/><text x="-62" y="-35" fill="#e8ff47" font-size="11" font-family="sans-serif">a</text></g><text x="75" y="158" text-anchor="middle" fill="#f0f0f0" font-size="12" font-weight="700" font-family="sans-serif">Cube</text><text x="75" y="172" text-anchor="middle" fill="#e8ff47" font-size="11" font-family="sans-serif">V = a³</text><g transform="translate(255,100)"><polygon points="-55,-30 25,-30 25,10 -55,10" fill="rgba(78,205,196,0.12)" stroke="#4ecdc4" stroke-width="1.5"/><polygon points="25,-30 55,-50 55,-10 25,10" fill="rgba(78,205,196,0.08)" stroke="#4ecdc4" stroke-width="1.5"/><polygon points="-55,-30 25,-50 55,-50 25,-30" fill="rgba(78,205,196,0.2)" stroke="#4ecdc4" stroke-width="1.5"/><text x="-15" y="28" fill="#4ecdc4" font-size="10" font-family="sans-serif">L</text><text x="42" y="-5" fill="#4ecdc4" font-size="10" font-family="sans-serif">l</text><text x="-62" y="-8" fill="#4ecdc4" font-size="10" font-family="sans-serif">h</text></g><text x="255" y="158" text-anchor="middle" fill="#f0f0f0" font-size="12" font-weight="700" font-family="sans-serif">Pavé droit</text><text x="255" y="172" text-anchor="middle" fill="#4ecdc4" font-size="11" font-family="sans-serif">V = L×l×h</text><g transform="translate(420,90)"><ellipse cx="0" cy="0" rx="45" ry="15" fill="rgba(255,107,53,0.2)" stroke="#ff6b35" stroke-width="1.5"/><rect x="-45" y="0" width="90" height="52" fill="rgba(255,107,53,0.08)"/><line x1="-45" y1="0" x2="-45" y2="52" stroke="#ff6b35" stroke-width="1.5"/><line x1="45" y1="0" x2="45" y2="52" stroke="#ff6b35" stroke-width="1.5"/><ellipse cx="0" cy="52" rx="45" ry="15" fill="rgba(255,107,53,0.15)" stroke="#ff6b35" stroke-width="1.5"/><text x="24" y="-8" fill="#ff6b35" font-size="10" font-family="sans-serif">r</text><text x="50" y="28" fill="#ff6b35" font-size="10" font-family="sans-serif">h</text></g><text x="420" y="158" text-anchor="middle" fill="#f0f0f0" font-size="12" font-weight="700" font-family="sans-serif">Cylindre</text><text x="420" y="172" text-anchor="middle" fill="#ff6b35" font-size="11" font-family="sans-serif">V = π×r²×h</text></svg></div>
-<div class="analogy"><div class="alabel">🏉 Bouteille d'eau au stade</div>Une bouteille cylindrique : r=3cm, h=20cm.<br>V=π×3²×20=π×9×20=180π≈565 cm³≈0,565 litre.<br>Pour le vestiaire (15 joueurs, 0,5L/joueur) : 7,5L = 7500cm³.</div>
-<div class="recap"><div class="rtitle">📄 Récap Jour 9</div>• Moyenne=somme÷nb de valeurs. Médiane=valeur du milieu (après tri). Étendue=max−min.<br>• Médiane pair : moyenne des 2 valeurs centrales.<br>• Cube : V=a³. Pavé : V=L×l×h. Cylindre : V=πr²h.<br>• 1L=1dm³=1000cm³.</div>`,
+<div class="section-title">Les statistiques — résumer des données</div>
+<div class="big-idea">
+  <div class="label">💡 Pourquoi les stats ?</div>
+  Tu as les résultats d'un joueur sur 7 matchs : 2, 0, 3, 1, 2, 4, 2 essais.<br>
+  C'est difficile à comparer comme ça. Les stats résument en 1 ou 2 chiffres.
+</div>
+
+<div class="method-block">
+  <div class="mlabel">Les 3 indicateurs</div>
+  <div class="step"><div class="snum">∑</div><div><strong>Moyenne</strong> : additionne tout, divise par le nombre de valeurs.<br>2+0+3+1+2+4+2=14. 14÷7=<strong>2 essais/match</strong></div></div>
+  <div class="step"><div class="snum">M</div><div><strong>Médiane</strong> : trie les données, prends la valeur du milieu.<br>Triées : 0,1,2,<strong>2</strong>,2,3,4 → 7 valeurs → 4e = <strong>2</strong></div></div>
+  <div class="step"><div class="snum">E</div><div><strong>Étendue</strong> : max − min = mesure de la régularité.<br>4 − 0 = <strong>4</strong></div></div>
+</div>
+
+<div class="big-idea">
+  <div class="label">💡 Médiane pair ou impair ?</div>
+  Nombre de valeurs <strong>impair</strong> → valeur du milieu (simple).<br>
+  Nombre de valeurs <strong>pair</strong> → moyenne des 2 valeurs du milieu.<br><br>
+  Exemple : 1, 2, 3, 4, 5, 6 (6 valeurs)<br>
+  Milieu = entre 3e (=3) et 4e (=4) → (3+4)÷2 = <strong>3,5</strong>
+</div>
+
+<div class="sport-block">
+  <div class="slabel">🏉 Pourquoi médiane > moyenne parfois</div>
+  Si un match exceptionnel (10 essais) est inclus, la moyenne monte artificiellement.<br>
+  La médiane est moins affectée → elle représente mieux le "match typique".
+</div>
+
+<div class="section-title">Les volumes — mesurer en 3D</div>
+<div class="big-idea">
+  <div class="label">💡 L'idée</div>
+  Aire = surface (2 dimensions : longueur et largeur).<br>
+  Volume = espace occupé (3 dimensions : longueur, largeur ET hauteur).<br><br>
+  Unité : cm³, m³ ou litres (1L = 1dm³ = 1000cm³).
+</div>
+
+<div class="method-block">
+  <div class="mlabel">Les 3 formules</div>
+  <div class="step"><div class="snum">□</div><div><strong>Cube</strong> (arête a) : V = a × a × a = a³<br>Cube de côté 3cm : V=3³=27cm³</div></div>
+  <div class="step"><div class="snum">▭</div><div><strong>Pavé droit</strong> (boîte) : V = L × l × h<br>Boîte 5×3×2 : V=30cm³</div></div>
+  <div class="step"><div class="snum">○</div><div><strong>Cylindre</strong> (canette) : V = π × r² × h<br>r=5cm, h=10cm : V=3,14×25×10=785cm³</div></div>
+</div>
+
+<div class="sport-block">
+  <div class="slabel">🏉 Bouteille d'eau</div>
+  Bouteille cylindrique : r=3cm, h=20cm.<br>
+  V = π×3²×20 = 3,14×9×20 ≈ <strong>565cm³ ≈ 0,565 litre</strong><br><br>
+  Pour 15 joueurs qui boivent 0,5L chacun : 7,5L total.<br>
+  Combien de bouteilles ? 7500cm³ ÷ 565 ≈ 13 bouteilles.
+</div>
+
+<div class="recap-block">
+  <div class="rlabel">📄 À retenir</div>
+  <ul>
+    <li>Moyenne = somme ÷ nombre de valeurs</li>
+    <li>Médiane = valeur du milieu (après tri)</li>
+    <li>Médiane pair = moyenne des 2 valeurs centrales</li>
+    <li>Étendue = max − min</li>
+    <li>Cube : V=a³. Pavé : V=L×l×h. Cylindre : V=πr²h</li>
+    <li>1L = 1000cm³</li>
+  </ul>
+</div>`,
   quiz:[
     {q:"Données : 5,3,8,2,7. Moyenne ?",opts:["4","5","6","7"],ans:1,
-     exp:{ok:"Exact ! (5+3+8+2+7)÷5=25÷5=5.",ko:"Moyenne=somme÷nb de valeurs.",steps:["Somme=5+3+8+2+7=25","25÷5=5"]}},
+     exp:{ok:"Exact ! (5+3+8+2+7)÷5=25÷5=5.",ko:"Somme÷nb valeurs.",steps:["5+3+8+2+7=25","25÷5=5"]}},
     {q:"Données : 5,3,8,2,7. Médiane ?",opts:["5","3","7","8"],ans:0,
-     exp:{ok:"Parfait ! Triées : 2,3,5,7,8. 5 valeurs (impair) → milieu=3e valeur=5.",ko:"Trie d'abord ! Triées : 2,3,5,7,8. La valeur du milieu (3e sur 5)=5.",steps:["Trier : 2,3,5,7,8","5 valeurs (impair)","Milieu = 3e valeur = 5"]}},
-    {q:"Données : 2,0,3,1,2,4,2. Étendue ?",opts:["2","3","4","6"],ans:2,
-     exp:{ok:"Exact ! max=4, min=0. 4−0=4.",ko:"Étendue=max−min.",steps:["Max=4, min=0","4−0=4"]}},
+     exp:{ok:"Parfait ! Triées : 2,3,5,7,8. 5 valeurs → 3e = 5.",ko:"Trie d'abord ! Triées : 2,3,5,7,8. Milieu = 3e valeur.",steps:["Trier : 2,3,5,7,8","5 valeurs → 3e = 5"]}},
+    {q:"Max=4, min=0. Étendue ?",opts:["2","3","4","6"],ans:2,
+     exp:{ok:"Exact ! 4−0=4.",ko:"Étendue=max−min.",steps:["4−0=4"]}},
     {q:"Cube côté 4cm. Volume ?",opts:["12cm³","16cm³","48cm³","64cm³"],ans:3,
-     exp:{ok:"Parfait ! V=4³=4×4×4=64cm³.",ko:"V=a³. 4³=4×4×4.",steps:["V=4×4×4","=16×4=64cm³"]}},
+     exp:{ok:"Parfait ! 4³=4×4×4=64cm³.",ko:"V=a³=a×a×a.",steps:["4×4=16","16×4=64cm³"]}},
     {q:"Pavé 5m×3m×2m. Volume ?",opts:["10m³","15m³","30m³","25m³"],ans:2,
-     exp:{ok:"Bien ! V=5×3×2=30m³.",ko:"V=L×l×h.",steps:["V=5×3×2=30m³"]}},
+     exp:{ok:"Bien ! 5×3×2=30m³.",ko:"V=L×l×h.",steps:["5×3×2=30m³"]}},
     {q:"6 valeurs triées : 1,3,5,7,9,11. Médiane ?",opts:["5","6","7","5,5"],ans:1,
-     exp:{ok:"Exact ! 6 valeurs (pair) → moyenne des 3e et 4e : (5+7)÷2=6.",ko:"Nombre pair de valeurs → moyenne des 2 valeurs centrales.",steps:["6 valeurs (pair)","3e=5 et 4e=7","(5+7)÷2=6"]}},
+     exp:{ok:"Exact ! Pair → (5+7)÷2=6.",ko:"6 valeurs (pair) → moyenne des 3e et 4e.",steps:["3e=5, 4e=7","(5+7)÷2=6"]}},
     {q:"Cylindre r=5cm, h=10cm. Volume ≈ ? (π≈3,14)",opts:["157cm³","314cm³","785cm³","1570cm³"],ans:2,
-     exp:{ok:"Bien ! V=3,14×5²×10=3,14×25×10=785cm³.",ko:"V=π×r²×h. r²=25. 3,14×25×10.",steps:["V=π×r²×h","=3,14×25×10","=785cm³"]}},
-    {q:"Une piscine 10m×5m×2m. Volume en litres ?",opts:["100L","1000L","100 000L","1 000 000L"],ans:2,
-     exp:{ok:"Parfait ! V=10×5×2=100m³=100 000L (1m³=1000L).",ko:"V=L×l×h=100m³. Puis ×1000 pour avoir des litres.",steps:["V=10×5×2=100m³","1m³=1000L","100×1000=100 000L"]}},
+     exp:{ok:"Bien ! 3,14×25×10=785cm³.",ko:"V=π×r²×h. r²=5²=25.",steps:["r²=25","3,14×25=78,5","78,5×10=785cm³"]}},
+    {q:"1 litre = combien de cm³ ?",opts:["10","100","1000","10 000"],ans:2,
+     exp:{ok:"Exact ! 1L=1dm³=1000cm³.",ko:"1L=1dm³=1000cm³.",steps:["1L=1000cm³"]}}
   ],
   challenges:[
-    {title:"🏉 Défi statistiques saison",ctx:"Ailier sur 10 matchs : 3,1,2,4,0,3,5,2,1,4 essais. 1) Moyenne ? 2) Médiane ? 3) Étendue ? 4) Un nouveau match : il marque 10 essais. Recalcule moyenne et étendue. La médiane change-t-elle beaucoup ?",
-     ans:"1) Somme=25, moyenne=25÷10=2,5 essais. 2) Triées : 0,1,1,2,2,3,3,4,4,5. Pair → (2+3)÷2=2,5. 3) Étendue=5−0=5. 4) Avec 10 essais : somme=35, 11 valeurs, moyenne=35÷11≈3,18. Étendue=10−0=10. Médiane : triées : 0,1,1,2,2,3,3,4,4,5,10 → 6e valeur=3. La médiane passe de 2,5 à 3 (moins affectée par la valeur extrême 10 que la moyenne)."},
-    {title:"🏎️ Défi volumes aquarium F1",ctx:"Un aquarium en forme de pavé droit : 60cm×30cm×40cm. 1) Volume en cm³. 2) Volume en litres. 3) On le remplit à 3/4. Combien de litres ? 4) Un cylindre de rayon 5cm et de même hauteur (40cm) est placé dedans. Volume du cylindre ? Quel volume d'eau reste dans l'aquarium ?",
-     ans:"1) V=60×30×40=72 000cm³. 2) 72 000÷1000=72L. 3) 3/4×72=54L. 4) Cylindre : V=π×5²×40=3,14×25×40=3140cm³=3,14L. Volume restant : 54L−3,14L=50,86L."}
+    {title:"🏉 Défi stats saison",ctx:"Ailier : 3,1,2,4,0,3,5,2,1,4 essais sur 10 matchs. 1) Moyenne ? 2) Médiane ? 3) Étendue ? 4) Match bonus : 10 essais. Recalcule moyenne et médiane. Laquelle est la plus affectée ?",
+     ans:"1) Somme=25, moy=2,5. 2) Triées: 0,1,1,2,2,3,3,4,4,5. Pair→(2+3)/2=2,5. 3) 5−0=5. 4) Avec 10: somme=35, moy=35/11≈3,18. Médiane: 0,1,1,2,2,3,3,4,4,5,10→6e=3. Moyenne plus affectée (passe de 2,5 à 3,18). Médiane peu changée (2,5→3)."},
+    {title:"🏎️ Défi aquarium",ctx:"Aquarium pavé : 60cm×30cm×40cm. 1) Volume en cm³. 2) Volume en litres. 3) Rempli à 3/4. Combien de litres ? 4) Cylindre r=5cm, h=40cm placé dedans. Son volume ? Volume d'eau restant ?",
+     ans:"1) 60×30×40=72 000cm³. 2) 72L. 3) 3/4×72=54L. 4) V=3,14×25×40=3140cm³=3,14L. Eau restante: 54−3,14≈50,86L."}
   ]
 }
 ];
